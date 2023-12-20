@@ -1,0 +1,70 @@
+<ion-content>
+
+  <header-title
+   [close]="true"
+   (closeEvent)="back()"
+   [title]="localization.localize('basket.typeMethods.title','ecommerce')" >
+  </header-title>
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--28 pt-20">
+        <section class="advice">
+          <ion-text  class="text--secondary text--content-2-a">
+            😊 Por favor, confirma tus datos para terminar tu comprar 💁
+          </ion-text>
+        </section>
+
+        <section class="cards-container">
+          <article class="method-pay" *ngFor="let card of cards">
+            <img
+              class="method-pay-logo"
+              src="/assets/general/yape-pay.svg"
+              alt="Logo Method Pay">
+
+            <ion-text
+              class="method-pay-description text--primary">
+              {{ card.description }}
+            </ion-text>
+          </article>
+        </section>
+
+        <section class="box-container">
+          <div class="box-container__item">
+            <ion-input
+              type="tel"
+              maxlength="9"
+              placeholder="Ingresa tu número de celular"
+              [(ngModel)]="celular">
+            </ion-input>
+          </div>
+
+            <div class="card-form-field cvv">
+            <ion-input
+              type="tel"
+              maxlength="8"
+              placeholder="Código de aprobación"
+              [(ngModel)]="codigoAprobacion">
+            </ion-input>
+            <ion-icon
+             (click)="openCodeModal()"
+              class="icon icon--danger-circle icon--gray-scale-700 icon--20">
+            </ion-icon>
+            </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button
+        (click)="voucherPay()"
+        [disabled]="!(celular && codigoAprobacion)"
+        class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'basket.paymentMethods.buttomPayment' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

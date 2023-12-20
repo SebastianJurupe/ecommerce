@@ -1,0 +1,30 @@
+.code__container {
+  width: 65% !important;
+  margin: auto;
+
+  .code-input ion-item {
+    --padding-start: 0px;
+    --inner-padding-end: 10px;
+    --inner-padding-start: 10px;
+    --border-color: var(--p-gray-scale-400);
+
+    .input-code {
+      --padding-start: 0px;
+      --padding-end: 0px;
+    }
+
+    .spaced-input {
+      letter-spacing: 10px;
+    }
+
+    .max-length-reached {
+      caret-color: transparent;
+    }
+  }
+}
+
+ion-input {
+  --width: 50% !important;
+  margin: auto;
+  letter-spacing: 10px;
+}

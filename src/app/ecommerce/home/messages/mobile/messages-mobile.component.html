@@ -1,0 +1,60 @@
+<ion-content>
+  <header-title
+    (backEvent)="goBack()"
+    [back]="true"
+    avatarSrc="/assets/general/logo-chat.png"
+    title="Renac Perú"
+    position="start"
+    classIconButton="icon icon--headphones"
+    (iconButtonEvent)="open()">
+  </header-title>
+
+  <div
+    [ngClass]="{'content-with-overlay': showContentOverlay}"
+    class="container display--flex flex--column justify-content--end align-items--center">
+
+    <div class="content">
+
+
+      <footer-spacing height="200px"></footer-spacing>
+
+      <div class="footer-base footer-base--no-toolbar footer-base--no-line">
+        <div class="footer-base__container">
+
+          <div class="container-messages display--flex inner-spacing--8 image width--full-page">
+            <product-preview [src]="'/assets/images/test1.jpg'"></product-preview>
+            <div class="display--flex flex--column justify-content--center">
+              <ion-text class="text--content-1-c">S/ 120.90</ion-text>
+              <ion-text class="text--content-1-a">
+                {{titleLine.length > 50 ? titleLine.slice(0,65)+'...':titleLine}}
+              </ion-text>
+            </div>
+          </div>
+
+          <div class="options-more display--flex flex--column inner-spacing--24" *ngIf="showOptionsMore">
+            <div class="display--flex align-items--center inner-spacing--12">
+              <ion-icon class="icon icon--image-2"></ion-icon>
+              <ion-text>
+                {{"home.message.image" | localize : "ecommerce"}}
+              </ion-text>
+            </div>
+            <div class="display--flex align-items--center inner-spacing--12">
+              <ion-icon class="icon icon--paper"></ion-icon>
+              <ion-text>
+                {{"home.message.archive" | localize : "ecommerce"}}
+              </ion-text>
+            </div>
+          </div>
+
+          <input-message
+            [more]="true"
+            (moreEvent)="openDocumentTypesPopover($event)"
+            (sendMessageEvent)="sendMessage($event)"
+            placeholder="Escribe algo"
+            [search]="true">
+          </input-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

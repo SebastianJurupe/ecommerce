@@ -1,0 +1,17 @@
+.label-description{
+  padding: 12px;
+  background-color: var(--p-gray-scale-50);
+  border-radius: 10px;
+}
+
+.description {
+  border: 1px solid var(--p-gray-scale-200);
+  border-radius: 10px;
+  min-height: 120px;
+  --padding-start: 12px !important;
+  --padding-end: 12px !important;
+  --padding-top: 12px !important;
+  --padding-bootom: 12px !important;
+  
+}
+

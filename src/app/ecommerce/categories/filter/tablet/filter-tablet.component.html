@@ -1,0 +1,110 @@
+<ion-content class="content-no-header remove-content-safe-area-top">
+
+    <div class="content">
+
+      <div class="display--flex flex--column  inner-spacing--40">
+
+
+        <section class="title">
+          <ion-text class="text--primary text--content-0-c width--100">
+            Filtrar por
+          </ion-text>
+          <ion-text *ngIf="hasSelections" class=" text--primary text--content-1-a" (click)="clean()">
+            Limpiar
+          </ion-text>
+        </section>
+
+        <section class="display--flex flex--column  inner-spacing--16">
+          <item-navigation
+            classLabel="text--content-1-c"
+            (click)="toggleCategories()"
+            [arrowDirection]="showCategories ? 'up' : 'down'"
+            [label]="localization.localize('categories.filter.textCategory','ecommerce')">
+          </item-navigation>
+
+          <div
+            *ngIf="showCategories"
+            class="categories">
+            <button-option
+              *ngFor="let categoria of categorias"
+              [label]="categoria"
+              [bordered]="selectedCategoria === categoria"
+              size="small"
+              (click)="selectCat(categoria)">
+            </button-option>
+          </div>
+        </section>
+
+        <section class="display--flex flex--column  inner-spacing--16">
+
+          <item-navigation
+            classLabel="text--content-1-c"
+            (click)="toggleOptions()"
+            [arrowDirection]="showOptions ? 'down' : 'up'"
+            label="Tamaño">
+          </item-navigation>
+
+          <div
+            *ngIf="showOptions"
+            class="size">
+            <button-option
+              *ngFor="let option of options"
+              [label]="option"
+              [bordered]="selectedOption === option"
+              size="small"
+              (click)="selectOpt(option)">
+            </button-option>
+          </div>
+        </section>
+
+        <section class="display--flex flex--column  inner-spacing--16">
+
+          <item-navigation
+            classLabel="text--content-1-c"
+            (click)="toggleColor()"
+            [arrowDirection]="showColor ? 'down' : 'up'"
+            [label]="localization.localize('categories.filter.textColor','ecommerce')">
+          </item-navigation>
+
+          <div
+            *ngIf="showColor"
+            class="display--flex align-items--start justify-content--start inner-spacing--10 category">
+            <button-option
+              *ngFor="let color of colores"
+              [bordered]="color.selected"
+              size="extra-small"
+              [background]="color.background"
+              (click)="selectColor(color)">
+            </button-option>
+          </div>
+        </section>
+
+        <section class="display--flex flex--column  inner-spacing--16">
+
+          <item-navigation
+            classLabel="text--content-1-c"
+            (click)="togglePrice()"
+            [arrowDirection]="showPrice ? 'down' : 'up'"
+            [label]="localization.localize('categories.filter.textPrices','ecommerce')">
+          </item-navigation>
+
+          <div *ngIf="showPrice">
+            <div class="prices">
+              <input-range-price
+                label="Min"
+                placeholder="S/ 0.00"
+                (inputEvent)="input($event)">
+              </input-range-price>
+
+              <input-range-price
+                label="Max"
+                placeholder="S/ 0.00"
+                (inputEvent)="input($event)">
+              </input-range-price>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+</ion-content>

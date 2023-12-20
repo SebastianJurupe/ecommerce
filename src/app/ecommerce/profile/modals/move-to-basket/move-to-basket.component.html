@@ -1,0 +1,8 @@
+<div class="content overflow-y" >
+  <modal-base [title]="localization.localize('profile.favorites.moveToBasketModal.title','ecommerce')"
+    [subtitle]="localization.localize('profile.favorites.moveToBasketModal.subtitle','ecommerce')"
+    [outlineLabel]="localization.localize('general.cancel','ecommerce')"
+    [fillLabel]="localization.localize('profile.favorites.moveToBasketModal.move','ecommerce')"
+    (outlineButtonClickEvent)="handleCancelEvent()" (fillButtonClickEvent)="handleMoveEvent()">
+  </modal-base>
+</div>

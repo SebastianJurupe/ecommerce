@@ -1,0 +1,34 @@
+<ion-content>
+
+  <header-title [close]="true" (closeEvent)="onBackButtonPressed()" title="">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div class="center-content">
+        <div class="display--flex flex--column inner-spacing--24">
+          <div class="display--flex flex--column align-items--center justify-content--center inner-spacing--20">
+            <ion-icon class="icon icon--ok-green icon--48"> </ion-icon>
+            <div class="display--flex flex--column align-items--center justify-content--center inner-spacing--8">
+              <title-section
+                [title]="localization.localize('basket.successPay.title.desktop','ecommerce')"></title-section>
+              <ion-text class="text--secondary text--content-2-a align-items--center justify-content--center">
+                {{'basket.successPay.subtitle.desktop' | localize: 'ecommerce'}}
+              </ion-text>
+            </div>
+          </div>
+          <div class="display--flex flex--column inner-spacing--16">
+            <ion-button class="c-button c-button--primary c-button--large width--100"
+              (click)="orders()">{{'basket.successPay.buttom' | localize: 'ecommerce'}}</ion-button>
+            <ion-button class="c-button c-button--primary c-button--outline c-button--large width--100"
+              (click)="goShopping()">
+              {{'basket.successPay.buttom2' | localize: 'ecommerce'}}
+            </ion-button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

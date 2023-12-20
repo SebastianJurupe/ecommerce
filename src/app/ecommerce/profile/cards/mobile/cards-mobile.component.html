@@ -1,0 +1,43 @@
+<ion-content>
+
+  <header-title
+    [back]="true"
+    (backEvent)="back()"
+    [title]="localization.localize('profile.cards.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <page-empty
+        *ngIf="cards.length === 0"
+        icon="😊"
+        [title]="localization.localize('profile.cards.empty.title','ecommerce')"
+        [subtitle]="localization.localize('profile.cards.empty.subtitle','ecommerce')">
+      </page-empty>
+
+      <section class="cards-container">
+
+        <card-item-mobile
+          *ngFor="let card of cards"
+          [card]="card"
+          (deleteCard)="deleteCard($event)">
+        </card-item-mobile>
+
+      </section>
+
+    </div>
+  </div>
+
+  <footer-spacing height="82px"></footer-spacing>
+
+  <div class="footer-base ">
+    <div  class="footer-base__container">
+      <ion-button
+      (click)="addCard()"
+      class="c-button c-button--large c-button--primary c-button--full-width">
+      {{ 'profile.cards.newCard' | localize: 'ecommerce' }}
+    </ion-button>
+  </div>
+</div>
+</ion-content>

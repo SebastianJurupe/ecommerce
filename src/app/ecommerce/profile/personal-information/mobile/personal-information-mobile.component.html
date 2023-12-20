@@ -1,0 +1,69 @@
+<ion-content>
+  <header-title
+    (backEvent)="onBackButtonPressed()"
+    [back]="true"
+    [title]="localization.localize('profile.infPersonal.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <div class="display--flex flex--column inner-spacing--24">
+
+        <div
+          (click)="onChangeProfile()"
+          class="display--flex align-items--center inner-spacing--24 justify-content--space-between">
+          <ion-label class="text--content-1-a">
+            {{ 'profile.infPersonal.photo' | localize: 'ecommerce' }}
+          </ion-label>
+          <avatar-profile
+            [src]="personalInformation.avatar ? personalInformation.avatar : defaultAvatarSrc"
+            [width]="40"
+            [height]="40">
+          </avatar-profile>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation
+            (clickEvent)="onShowUpdateNameModal()"
+            [label]="localization.localize('profile.infPersonal.name','ecommerce')"
+            [sublabel]="personalInformation.name">
+          </item-navigation>
+        </div>
+
+        <div class="utils-line--all-width"></div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation
+            (clickEvent)="onShowUpdateEmailModal()"
+            [label]="localization.localize('profile.infPersonal.email','ecommerce')"
+            [sublabel]="personalInformation.email"
+            [setButton]="!session.user.isEmailConfirmed"
+            buttonLabel="(Validar correo)"
+            classButton="c-button c-button--text-delete c-button--no-padding"
+            (clickButtonEvent)="onValidateEmail()">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation
+            (clickEvent)="onShowUpdatePhoneModal()"
+            [label]="localization.localize('profile.infPersonal.phone','ecommerce')"
+            [sublabel]="personalInformation.country.code + ' ' +personalInformation.phone"
+            [setButton]="!session.user.isPhoneNumberConfirmed"
+            buttonLabel="(Validar número de celular)"
+            classButton="c-button c-button--text-delete c-button--no-padding"
+            (clickButtonEvent)="onValidatePhone()">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation
+            (clickEvent)="onShowUpdatePasswordModal()"
+            [label]="localization.localize('profile.infPersonal.password','ecommerce')">
+          </item-navigation>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

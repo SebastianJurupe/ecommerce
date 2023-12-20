@@ -1,0 +1,41 @@
+<ion-content>
+
+  <header-title
+    (click)="this.dialog.dismiss('cancel')"
+    [back]="true"
+    [title]="localization.localize('profile.infPersonal.email','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div>
+        <input-floating-label
+        [setAutofocus]="true"
+        [label]="localization.localize('profile.infPersonal.modalEmail','ecommerce')"
+        [(value)]="email">
+      </input-floating-label>
+      </div>
+
+      <div class="footer-base footer-base--no-toolbar">
+        <div class="footer-base__container">
+
+          <ion-button
+            [disabled]="disableButton()"
+            class="c-button c-button--primary  c-button--large c-button--full-width buttom-top"
+            (click)="submit()">
+
+            <ng-container *ngIf="isLoading">
+              <ion-spinner name="crescent" />
+            </ng-container>
+
+            <span *ngIf="!isLoading">
+              {{'profile.modalPassw.save' | localize: 'ecommerce'}}
+            </span>
+          </ion-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

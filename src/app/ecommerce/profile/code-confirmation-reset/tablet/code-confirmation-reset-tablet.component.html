@@ -1,0 +1,42 @@
+<ion-content>
+  <header-title>
+  </header-title>
+  <header-title position="start" [title]="localization.localize('profile.codeConfirmation.titleReset', 'ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="hide-scrollbar width--100 display--flex flex--column inner-spacing--40 align-items--center">
+
+      <div class="content-label-text display--flex justify-content--center">
+        <ion-label class="label-text text--gray-scale-700  text--content-1-a text-align--center">
+          {{'profile.codeConfirmation.subtitleReset' | localize: 'ecommerce'}}
+          <span class="text--gray-scale-1000 ">
+            {{email}}
+          </span>
+        </ion-label>
+      </div>
+
+      <div class="content-input-label display--flex flex--column inner-spacing--32">
+        <div class="code__container display--flex flex--column inner-spacing--12">
+          <div class="code-input border-bottom--gray">
+            <ion-input #ionInput type="tel" [value]="inputModel" (ionInput)="onInput($event)"
+              [class.max-length-reached]="isMaxLengthReached" class="input-code spaced-input text-align--center">
+            </ion-input>
+          </div>
+          <div class="counter-label display--flex justify-content--center">
+            <ion-label>{{ countdown }}</ion-label>
+          </div>
+        </div>
+        <div class="content-label text-align--center">
+          <ion-label class="text--content-1-a text--gray-scale-500">
+            {{'profile.codeConfirmation.textCode' | localize: 'ecommerce'}}
+            <span [ngClass]="{'text--gray-scale-1000': countdownExpired}" (click)="onResendCode()"
+              class="cursor-pointer">
+              {{'profile.codeConfirmation.resend' | localize: 'ecommerce'}}
+            </span>
+          </ion-label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

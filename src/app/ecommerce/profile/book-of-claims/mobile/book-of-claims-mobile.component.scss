@@ -1,0 +1,16 @@
+.claim-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.description {
+  border: 1px solid var(--p-gray-scale-200);
+  border-radius: 10px;
+  max-height: 80px;
+}
+
+.footer-base {
+  transform: translateY(calc(var(--keyboard-height) * 1)) !important;
+  transition: transform 125ms linear !important;
+}

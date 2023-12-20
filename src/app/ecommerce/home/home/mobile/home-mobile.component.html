@@ -1,0 +1,90 @@
+<ion-content #content class="content-no-header">
+
+  <div class="box-tap"></div>
+
+  <div class="header__branch">
+    <img class="header__logo" src="/assets/config/resources/logo-horizontal.svg" alt="Logo">
+  </div>
+
+  <div class="container">
+
+    <div class="content" [ngClass]="{'auto-size-content':showMenuInput}">
+
+      <div class="width--full-page">
+
+        <ion-skeleton-text *ngIf="slides.length === 0" class="slide-skeleton" animated />
+
+        <swiper-container *ngIf="slides.length !== 0" autoplay="true"
+          [autoplay]="{delay:3000,disableOnInteraction:false, pauseOnMouseEnter:false,waitForTransition:false}"
+          [pagination]="true" [slidesPerView]="platform === 'android'? 1.150 : 1.140" [spaceBetween]="10"
+          [slidesOffsetBefore]="24" [slidesOffsetAfter]="24" [breakpoints]="platform === 'android' ? breakpoints : {}">
+          <swiper-slide *ngFor="let slide of slides">
+
+            <img [style]="platform === 'ios' ?  'width:100%' : ''" class="slide" [src]="slide.image_movil"
+              [alt]="slide.description" (click)="goToBannerProducts(slide.link_value)">
+          </swiper-slide>
+          <swiper-pagination>
+          </swiper-pagination>
+        </swiper-container>
+      </div>
+
+      <section class="for-you">
+        <ion-text class="text--primary text--heading-a">
+          {{ placeholders.forYou }}
+        </ion-text>
+
+        <article *ngIf="forYouProducts" class="for-you-items"
+          [ngClass]="{ 'banner-active': forYouProductsDesktop.length>0 }">
+          <card-product-recommendation *ngFor="let item of forYouProducts" [src]="item.files[0].path"
+            [currencySymbol]="item.currency.symbol" [price]="item.price"
+            (clickEvent)="item.has_variants ?  goToProductDetail(item.id,item.description) : goToProductDetail(item.id,item.description)">
+          </card-product-recommendation>
+        </article>
+
+        <div *ngIf="forYouProducts.length === 0" class="skeletons-container display--flex inner-spacing--16">
+
+          <div class="for-you-skeleton" *ngFor="let item of [1,1,1,1,1,1]">
+
+            <ion-skeleton-text class="for-you-skeleton-image" animated />
+            <ion-skeleton-text class="for-you-skeleton-price" animated />
+          </div>
+        </div>
+      </section>
+
+      <section class="featured">
+        <ion-text class="text--primary text--heading-a">
+          {{ placeholders.featured }}
+        </ion-text>
+
+        <article *ngIf="featuredProducts" class="featured-products">
+          <card-product *ngFor="let product of featuredProducts ; let i = index" (blurEvent)="onProductCardBlur()"
+            (clickCartShoppingEvent)="onClickShoppingCart($event, product.has_variants, product.id,product.description)"
+            (clickEvent)="goToProductDetail(product.id,product.description)"
+            (clickInputCartShoppingEvent)="clickInputCartShopping($event,product.description,product.has_variants, product.id)"
+            (focusEvent)="onProductCardFocus()" (indexSelected)="setSelectedProductCardIndex($event)"
+            (offsetTopEvent)="handleOffsetTop($event,product.has_variants)" [setLockInput]="!userIsAuthenticated"
+            [(inputValue)]="basketProductQuantity[i].quantity" [readonly]="product.has_variants ? true : false"
+            [data]="product" [index]="product.id">
+          </card-product>
+        </article>
+
+        <div class="featured-products-skeleton-container" *ngIf="featuredProducts.length === 0">
+          <card-product-skeleton *ngFor="let item of [1,1,1,1,1,1]" />
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <menu-input [ngClass]="{
+      'keyboard-animation-top-menu':keyboardWillShow && platform === 'ios',
+      'keyboard-animation-bottom-menu':!keyboardWillShow && platform === 'ios'
+    }" *ngIf="showMenuInput" (clickClearEvent)="clickClearOption()" (clickOkEvent)="clickOkOption()">
+  </menu-input>
+
+  <ion-infinite-scroll *ngIf="page <= totalPages" [ngClass]="{'ios':platform ==='ios','android':platform ==='android'}"
+    threshold="150px" position="bottom" (ionInfinite)="loadMoreData($event)" class="loader">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

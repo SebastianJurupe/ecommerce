@@ -1,0 +1,75 @@
+<ion-content>
+
+  <header-title [close]="true" (closeEvent)="onBackButtonPressed()"
+    [title]="localization.localize('basket.typeMethods.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--28 pt-20">
+        <section class="advice">
+          <ion-text class="text--secondary text--content-2-a">
+            {{ 'profile.addCard.advice' | localize: 'ecommerce' }}
+          </ion-text>
+        </section>
+
+        <div class="box-container">
+
+          <div class="box-container__item">
+            <ion-input type="tel" maxlength="19" [(ngModel)]="card.number" (ionInput)="onCardNumberInput($event)"
+              placeholder="0000 0000 0000 0000">
+            </ion-input>
+          </div>
+
+          <div class="box-container__item">
+            <ion-input type="text" [(ngModel)]="card.name" (ionInput)="checkFieldsCompletion()"
+              placeholder="Nombre del titular">
+            </ion-input>
+          </div>
+
+          <div class="card-form-date-cvv">
+            <ion-input class="date" type="tel" maxlength="5" [(ngModel)]="card.date" (ionInput)="onDateInput($event)"
+              placeholder="00/00">
+            </ion-input>
+            <div class="card-form-field cvv">
+              <ion-input type="tel" maxlength="3" [(ngModel)]="card.cvv" (ionInput)="checkFieldsCompletion()"
+                placeholder="CVV">
+              </ion-input>
+              <ion-icon (click)="openSecurityCodeModal()"
+                class="icon icon--danger-circle icon--gray-scale-700 icon--20">
+              </ion-icon>
+            </div>
+          </div>
+        </div>
+
+        <section class="save-card display--flex justify-content--space-between align-items--center">
+          <ion-text class="text--primary text--content-1-a">
+            {{ 'profile.addCard.saveCard' | localize: 'ecommerce' }}
+          </ion-text>
+
+          <ion-toggle class="c-toggle c-toggle--primary">
+          </ion-toggle>
+        </section>
+      </div>
+
+      <div class="safety-label">
+        <img src="/assets/profile/security-icon.svg" alt="Icon Safe">
+        <ion-text class="text--secondary text--content-2-a">
+          {{'basket.typeMethods.textMessage2' | localize: 'ecommerce'}}
+        </ion-text>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button [disabled]="!allFieldsCompleted" (click)="payDecline()"
+        class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'basket.paymentMethods.buttomPayment' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

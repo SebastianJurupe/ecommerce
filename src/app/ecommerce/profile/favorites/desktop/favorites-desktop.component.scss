@@ -1,0 +1,37 @@
+.container-all {
+  flex: 1;
+  padding-top: 60px;
+  padding-bottom: 24px;
+}
+
+.favorite-items {
+  display: grid;
+  gap: 24px;
+}
+
+//SKELETON
+.imgProduct-skeleton {
+  width: 70px;
+  height: 92px;
+}
+
+.price-skeleton {
+  width: 10%;
+  height: 20px;
+}
+
+.like-skeleton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.detail-skeleton {
+  width: 35%;
+  height: 20px;
+}
+
+.move-skeleton {
+  width: 15%;
+  height: 20px;
+}

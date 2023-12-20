@@ -1,0 +1,34 @@
+.container {
+  height: 89vh;
+}
+
+.container-messages {
+  padding: 24px;
+  background: var(--p-gray-scale-100) !important;
+  margin-bottom: 16px !important;
+}
+.content-with-overlay {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.image-preview {
+  display: flex;
+width: 54px;
+height: 54px;
+border-radius: 10px;
+justify-content: flex-end;
+align-items: flex-start;
+gap: 5.151px;
+flex-shrink: 0;
+}
+
+.image-galery {
+  display: flex;
+  width: 110px;
+  height: 110px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 5.151px;
+  border-radius: 10px;
+}
+

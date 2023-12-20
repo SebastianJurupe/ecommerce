@@ -1,0 +1,52 @@
+<ion-content>
+
+  <div class="container">
+    <div class="content display--flex">
+
+      <app-desktop-slide></app-desktop-slide>
+
+
+      <div class="display--flex flex--column inner-spacing--24 width--100">
+
+        <div class="display--flex align-items--center inner-spacing--24 justify-content--space-between">
+          <ion-label class="text--content-1-a">
+            {{ 'profile.infPersonal.photo' | localize: 'ecommerce' }}
+          </ion-label>
+          <avatar-profile [src]="personalInformation.avatar ? personalInformation.avatar : defaultAvatarSrc"
+            [width]="40" [height]="40">
+          </avatar-profile>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.name','ecommerce')"
+            [sublabel]="personalInformation.name">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.email','ecommerce')"
+            [sublabel]="personalInformation.email">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.phone','ecommerce')"
+            [sublabel]="personalInformation.country.code + ' ' +personalInformation.phone">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.password','ecommerce')">
+          </item-navigation>
+        </div>
+        <item-navigation (clickEvent)="navigateTo('language')"
+          [label]="localization.localize('profile.setting.language','ecommerce')" [sublabel]="selectedLanguage">
+        </item-navigation>
+        <item-navigation (clickEvent)="navigateTo('change-mode')"
+          [label]="localization.localize('profile.setting.screenMode','ecommerce')" [sublabel]="selectedMode">
+        </item-navigation>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

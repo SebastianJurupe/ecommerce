@@ -1,0 +1,16 @@
+<section class="languages-container">
+
+  <div *ngFor="let option of options" (click)="selectLanguage(option)" class="option cursor-pointer">
+
+    <div *ngIf="option.code !== code" class="virtual-box">
+    </div>
+
+    <ion-icon *ngIf="option.code === code" slot="start" name="checkmark">
+    </ion-icon>
+
+    <ion-text class="text--primary">
+      {{ option.label }}
+    </ion-text>
+  </div>
+
+</section>

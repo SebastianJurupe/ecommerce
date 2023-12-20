@@ -1,0 +1,1261 @@
+<ion-content>
+
+  <!-- <header-title title="Canal" position="start" avatarSrc="/assets/images/test1.jpg" [avatarWidth]="200" classIconButton="icon icon--expand-2" [back]="true" (clearInputAction)="clearInput()"
+ (iconButtonEvent)="clickIconButton()"  (arrowDownAction)="clearInput()" (keyUp)="keyUp($event)" (backEvent)="back()">
+</header-title> -->
+
+  <!-- <header-input (clearInputEvent)="clearInput()" (arrowDownAction)="clearInput()" (inputEvent)="input($event)"
+  (closeEvent)="close()" (searchEvent)="search()" title="Canal" classIconButton="icon icon--expand-2" [close]="true"
+  [search]="true" [setHeader]="true">
+</header-input> -->
+
+  <header-extended (clearInputEvent)="clearInput()" (inputEvent)="input($event)" (closeEvent)="close()"
+    (menuClickEvent)="menuClick($event)" (brandButtonEvent)="brandClick($event)"
+    (basketClickEvent)="basketClick($event)" (inboxClickEvent)="inboxClick($event)"
+    (profileClickEvent)="profileClick($event)" badgeInbox="20" badgeProfile="30"
+    [srcBrand]="'/assets/home/renac-logo.jpg'" [setBasketIconButton]="true" [setInboxIconButton]="true"
+    [setProfileIconButton]="true" [close]="true" [search]="true">
+  </header-extended>
+
+
+  <header-messages [setHeader]="false" (clickAllEvent)="clickAll()" (clickCancelEvent)="clickCancel()">
+  </header-messages>
+
+
+  <!-- <header-input (backInputEvent)="back()" (iconButtonInputEvent)="clickIconButtonInput()" (clearInputEvent)="clearInput()"
+  (inputEvent)="input($event)" [backInput]="true" title="Canal" placeholder="Escribe una idea"
+  classIconButton="icon icon--expand-2" classIconButtonInput="icon icon--scan-code"></header-input> -->
+
+  <!--
+<header-avatar title="Canal 2w" classIconButton="icon icon--expand-2" [close]="true" (clearInputAction)="clearInput()"
+  (arrowDownAction)="clearInput()" (keyUp)="keyUp($event)" [avatars]="[]">
+</header-avatar> -->
+
+
+
+
+  <div class="container" [ngStyle]="{'background': device === 'desktop' ? 'red' : '' }">
+    <div class="content">
+      <ion-icon *ngIf="device === 'desktop'" class="icon icon--company icon--64"></ion-icon>
+      <ion-label *ngIf="device === 'tablet'"> Terminos y condiciones</ion-label>
+      <p id="index">Indice</p>
+      <ul>
+        <li><a href="app/preview#input-range-price">input-range-price</a><br /></li>
+        <li><a href="app/preview#box-title-date">box-title-date</a><br /></li>
+        <li><a href="app/preview#box-input-message">box-input-message</a><br /></li>
+        <li><a href="app/preview#box-output-message">box-output-message</a><br /></li>
+        <li><a href="app/preview#image-preview">image-preview</a><br /></li>
+        <li><a href="app/preview#box-preview-reply">box-preview-reply</a><br /></li>
+      </ul>
+
+      <div class="card-component__container ">
+
+        <input-flag (inputEvent)="input(value)" [(value)]="phoneString" (clickArrowEvent)="clickArrow()" code="+51"
+          mask="999 99 99 99 9" srcFlag="/assets/flags/pe.svg" label="Perú" floatLabel="País"></input-flag>
+        {{phoneString}}
+        <div id="input-range-price" class="card-component__container ">
+          <div class="card-component__title">
+            input-floating-label
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+        <input-floating-label label="Email" type="text" [setAutofocus]="true"></input-floating-label>
+        <input-floating-label label="Celular" type="number"
+          placeholder="Escribe tu número celular"></input-floating-label>
+
+        <div id="input-range-price" class="card-component__container ">
+          <div class="card-component__title">
+            header-messages
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+
+        <div id="input-range-price" class="card-component__container ">
+          <div class="card-component__title">
+            menu-messages
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+        <div class="display--flex justify-content--space-between">
+          <menu-messages (clickReplyEvent)="clickReply()" (clickDeleteEvent)="clickDelete()"></menu-messages>
+        </div>
+
+
+        <div id="input-range-price" class="card-component__container ">
+          <div class="card-component__title">
+            input-range-price
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+        <div class="display--flex justify-content--space-between">
+          <input-range-price label="Min" placeholder="S/ 0.00" (inputEvent)="input($event)"></input-range-price>
+          <input-range-price label="Max" placeholder="S/ 0.00" (inputEvent)="input($event)"></input-range-price>
+        </div>
+
+
+        <div id="box-input-message" class="card-component__container ">
+          <div class="card-component__title">
+            box-input-message
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+
+        <div id="box-title-date" class="card-component__container ">
+          <div class="card-component__title">
+            box-title-date
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+        <box-title-date date="10 ene 2023"></box-title-date>
+
+        <div id="box-input-message" class="card-component__container ">
+          <div class="card-component__title">
+            box-input-message
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+
+
+        <div class="box-input inner-spacing--8">
+          <div class="box-input__content display--flex flex--column">
+            <div class="box-input__data  text--content-1-a">
+              <div class="box-input__message">
+                <ion-label>Hola bienvenido 🙋🖐️</ion-label>
+              </div>
+            </div>
+            <div class="box-input__time text--tooltip-a text--disabled">
+              <ion-label>2:56 pm</ion-label>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div id="box-output-message" class="card-component__container ">
+          <div class="card-component__title">
+            box-output-message
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+
+        <div class="box-output inner-spacing--8">
+          <div class="box-output__content display--flex flex--column">
+            <div class="box-output__data  text--content-1-a">
+              <div class="box-output__message">
+                <ion-label>En nombre de todo el equipo de Renac Perú, queremos darte una cálida bienvenida a nuestra
+                  comunidad. Estamos emocionados de tenerte como parte de nuestra familia de compradores en línea.
+                  🛍️</ion-label>
+              </div>
+            </div>
+            <div class="box-output__time text--tooltip-a ">
+              <ion-label>2:56 am</ion-label>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div id="image-preview" class="card-component__container ">
+          <div class="card-component__title">
+            image-preview
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+        <image-preview src="/assets/images/test1.jpg" height="55" width="55" time="2 am"></image-preview>
+        <image-preview [setMore]="true" label="+10" height="55" width="55" time="2 am"></image-preview>
+
+        <image-preview src="/assets/images/test1.jpg" height="170" width="200" time="2 am"></image-preview>
+
+        <div id="box-preview-reply" class="card-component__container ">
+          <div class="card-component__title">
+            box-preview-reply
+          </div>
+          <a href="app/preview#index">Index</a>
+        </div>
+        <box-preview-reply></box-preview-reply>
+
+        <div class="box-output inner-spacing--8">
+          <div class="box-output__content display--flex flex--column">
+            <div class="box-output__data  text--content-1-a">
+              <div class="box-output__message">
+                <box-preview-reply></box-preview-reply>
+                <ion-label>
+                  Quisiera saber si puedo hacer cambios en las variantes de algunos productos.
+                </ion-label>
+              </div>
+            </div>
+            <div class="box-output__time text--tooltip-a ">
+              <ion-label>2:56 am</ion-label>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="box-output inner-spacing--8">
+          <div class="box-output__content display--flex flex--column">
+            <div class="box-output__data  text--content-1-a">
+              <div class="box-output__message">
+                <card-product (clickEvent)="click()" [buttonTrigger]="buttonToggle" [amountInput]="true"
+                  [addToCart]="true" [price]="1234" underprice="S/1ter23" [details]='
+            [
+            "Acrílico rugoso de pol itileno rugoso",
+            "SKU: aho90812",
+            "30 und. disponibles",
+            "3 und. pedido mín.",
+            "Tallas: XS, S, M, L"
+            ]' class="grid-item">
+                </card-product>
+                <ion-label>
+                  Quisiera saber si puedo hacer cambios en las variantes de algunos productos.
+                </ion-label>
+              </div>
+            </div>
+            <div class="box-output__time text--tooltip-a ">
+              <ion-label>2:57 am</ion-label>
+            </div>
+          </div>
+        </div>
+
+        <div id="box-file-details" class="card-component__container ">
+          <div class="card-component__title">
+            box-file-details
+          </div>
+        </div>
+
+        <box-file-details name="CATÁLOGO2022.pdf" details="120 KB pdf" classIcon="icon icon--file-pdf"
+          time="2:27am"></box-file-details>
+        <box-file-details name="CATÁLOGO2022.pdf" details="120 KB pdf" classIcon="icon icon--file-pdf" time="2:27am"
+          position="end"></box-file-details>
+
+
+        <div id="menu-input" class="card-component__container ">
+          <div class="card-component__title">
+            menu-input
+          </div>
+        </div>
+
+        <menu-input *ngIf="showMenuInput" (clickClearEvent)="clearInput()" (clickOkEvent)="clickOk()"></menu-input>
+
+        <div id="card-product" class="card-component__container ">
+          <div class="card-component__title">
+            card-product
+          </div>
+        </div>
+
+        <card-product *ngFor="let product of productsAux" (clickEvent)="click()" [buttonTrigger]="product.tootgle"
+          [amountInput]="true" [addToCart]="true" [price]="product.price" underprice="S/1ter23"
+          [(inputValue)]="product.amount" [details]='product.details' class="grid-item">
+
+        </card-product>
+
+
+        <div id="box-container" class="card-component__container ">
+          <div class="card-component__title">
+            box-container
+          </div>
+        </div>
+
+        <div class="box-container">
+          <div class="box-container__item">
+            <item-navigation (clickEvent)="click()" label="Correo electrónico"
+              sublabel="geor.admin@geor.com"></item-navigation>
+          </div>
+          <div class="box-container__item">
+            <item-navigation (clickEvent)="click()" label="Correo electrónico"
+              sublabel="geor.admin@geor.com"></item-navigation>
+          </div>
+          <div class="box-container__item">
+            <item-navigation (clickEvent)="click()" label="Correo electrónico"
+              sublabel="geor.admin@geor.com"></item-navigation>
+          </div>
+        </div>
+
+        <div class="box-container">
+          <div class="box-container__item">
+            <item-navigation (clickEvent)="click()" label="Correo electrónico"></item-navigation>
+          </div>
+        </div>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            radio button style
+          </div>
+        </div>
+
+
+        <div class="list-dateBilling" class="display--flex flex--column inner-spacing--24">
+          <ion-radio-group value="custom-checked">
+            <div class="item-dateBilling display--flex align-items--start inner-spacing--12"
+              *ngFor="let company of companies">
+              <ion-radio value="{{company.value}}"></ion-radio>
+              <div class="info-content display--flex flex--column inner-spacing--12">
+                <div class="info-box">
+                  <div class="name-company">
+                    <ion-label class="text--content-1-a text--gray-scale-1000">
+                      {{ company.name }}
+                    </ion-label>
+                  </div>
+                  <div class="ruc-company">
+                    <ion-label class="text--content-2-a text--gray-scale-700">
+                      {{ company.ruc }}
+                    </ion-label>
+                  </div>
+                </div>
+                <div class="button-edit">
+                  <ion-button class="c-button c-button--text-primary c-button--no-padding" [disabled]="true">
+                    cx
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-radio-group>
+
+          <div class="button-add">
+            <item-option [label]="localization.localize('basket.addBillingModal.buttonAdd', 'ecommerce')"
+              classIconButton="icon icon--plus-1 icon--24 icon--gray-scale-1000" class="width--100"></item-option>
+          </div>
+        </div>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            sliding-product-group
+          </div>
+        </div>
+
+        <sliding-product-group [(products)]='products'></sliding-product-group>
+
+
+
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            item-navigation
+          </div>
+
+        </div>
+        <div class="display--flex flex--column inner-spacing--10">
+
+          <item-navigation (clickEvent)="click()" label="CATEGORIAS 01"></item-navigation>
+          <item-navigation (clickEvent)="click()" label="CATEGORIAS 02" note="Papelería"
+            sublabel="geor.admin@geor.com"></item-navigation>
+          <item-navigation (clickEvent)="click()" label="Correo electrónico"
+            sublabel="geor.admin@geor.com"></item-navigation>
+          <item-navigation (clickEvent)="click()" label="CATEGORIAS 01"
+            classIconButton="icon icon--company"></item-navigation>
+          <item-navigation (clickEvent)="click()" arrowDirection="down" label="CATEGORIAS 01"
+            classIconButton="icon icon--company"></item-navigation>
+          <item-navigation (clickEvent)="click()" arrowDirection="down" label="CATEGORIAS 01" sublabel="Sublabel"
+            details="Details of category" classIconButton="icon icon--company"></item-navigation>
+          <item-navigation (clickEvent)="click()" arrowDirection="up" label="CATEGORIAS 01"
+            classIconButton="icon icon--company"></item-navigation>
+          <item-navigation (clickEvent)="click()" [setArrow]="false" label="CATEGORIAS 01"
+            classIconButton="icon icon--company "></item-navigation>
+
+
+          <item-navigation (clickEvent)="click()" [setArrow]="false" label="icon--46x32"
+            classIconButton="icon icon--logo-paypal icon--46x32 "></item-navigation>
+
+          <item-navigation (clickEvent)="click()" [setCheck]="true" label="Avatar"
+            avatarSrc="/assets/images/test1.jpg"></item-navigation>
+
+
+
+
+          <item-navigation (clickEvent)="click()" [setCheck]="true" label="Avatar" avatarSrc="/assets/images/test1.jpg"
+            [avatarRounded]="false" [avatarWidth]="50" [avatarHeight]="50"></item-navigation>
+
+
+
+          <item-navigation (clickEvent)="click()" [setCheck]="true"
+            label=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam debitis iste veritatis deleniti fugiat quasi illo? Saepe, illum repudiandae provident repellendus ratione earum maxime inventore odio accusamus illo in et?"
+            classIconButton="icon icon--profile" type="error"></item-navigation>
+          <item-navigation (clickEvent)="click()" [setCheck]="true"
+            label=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam debitis iste veritatis deleniti fugiat quasi illo? Saepe, illum repudiandae provident repellendus ratione earum maxime inventore odio accusamus illo in et?"
+            classIconButton="icon icon--profile icon--success"></item-navigation>
+          <item-navigation (clickEvent)="click()" [setCheck]="true" label="CATEGORIAS 01"
+            classIconButton="icon icon--profile icon--info"></item-navigation>
+          <item-navigation (clickEvent)="click()" [setCheck]="true" label="CATEGORIAS 01"
+            classIconButton="icon icon--profile icon--warning"></item-navigation>
+          <item-navigation (clickEvent)="click()" [setCheck]="true" label="CATEGORIAS 01"
+            classIconButton="icon icon--profile icon--error"></item-navigation>
+
+          <item-navigation (clickEvent)="click()" [setCheck]="false" label="CATEGORIAS 01"
+            classIconButton="icon icon--company" type="success"></item-navigation>
+          <item-navigation (clickEvent)="click()" [setCheck]="false" label="CATEGORIAS 01"
+            classIconButton="icon icon--company" type="error" shapeIconBackground="rectangle"
+            sublabel="Test sub"></item-navigation>
+
+          <item-navigation (clickEvent)="click()"
+            label="CATEGORIAS 01 background Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, impedit?"
+            [setBackground]="true" classIconButton="icon icon--company"> </item-navigation>
+          <item-navigation (clickEvent)="click()" label="CATEGORIAS 01 shadow" [setArrow]="false" [setShadow]="true"
+            classIconButton="icon icon--company"></item-navigation>
+          <item-navigation (clickEvent)="click()" label="CATEGORIAS 01" sublabel="Test sub" [setArrow]="false"
+            [setShadow]="true" classIconButton="icon icon--company" type="info"></item-navigation>
+          <item-navigation (clickEvent)="click()" label="CATEGORIAS 01" [setArrow]="false" [setShadow]="true"
+            classIconButton="icon icon--company" type="info" shapeIconBackground="rectangle"></item-navigation>
+          <item-navigation (clickEvent)="clickPop($event)"
+            label="CATEGORIAS 01 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, impedit?"
+            [setCheck]="true" [setShadow]="true" classIconButton="icon icon--company" type="info"
+            shapeIconBackground="rectangle" sublabel="Test sublabel"></item-navigation>
+
+
+        </div>
+
+        <!--
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            item-data
+          </div>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--12">
+          <item-data avatarSrc="/assets/images/test1.jpg" label="Wilfredo López, Jefe de logística"></item-data>
+          <item-data label="Wilfredo López, Jefe de logística"
+            classIconButton="icon icon--profile icon--success"></item-data>
+          <item-data
+            label="Wilfredo López, Jefe de logística Wilfredo López, Jefe de logística Wilfredo López, Jefe de logística Wilfredo López, Jefe de logísticaWilfredo López, Jefe de logísticaWilfredo López, Jefe de logística"
+            classIconButton="icon icon--profile icon--error"></item-data>
+          <item-data label="Wilfredo López, Jefe de logística"
+            classIconButton="icon icon--profile icon--info"></item-data>
+          <item-data label="Wilfredo López, Jefe de logística"
+            classIconButton="icon icon--profile icon--warning"></item-data>
+
+          <item-data label="Jr. Samaritanos 879 Miraflores, Lima, Lima, Perú"
+            classIconButton="icon icon--company"></item-data>
+          <item-data label="Wilfredo López, Jefe de logística" sublabel="Recibirá el pedido"
+            classIconButton="icon icon--company"></item-data>
+          <item-data label="Envio express" classIconButton="icon icon--company" type="success"></item-data>
+          <item-data label="Envio express" classIconButton="icon icon--company" type="warning"
+            shape="rectangle"></item-data>
+          <item-data [setBackground]="true" label="Envio express" classIconButton="icon icon--company"
+            type="warning"></item-data>
+          <item-data [setBackground]="true" label="Envio express" classIconButton="icon icon--company" type="info"
+            shapeIconBackground="rectangle"></item-data>
+
+          <item-data [setShadow]="true" label="Envio express" classIconButton="icon icon--company" type="warning"
+            shapeIconBackground="rectangle"></item-data>
+          <item-data [setShadow]="true" [setCheck]="true" label="Envio express" classIconButton="icon icon--company"
+            type="warning" shapeIconBackground="rectangle"></item-data>
+
+        </div> -->
+
+
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            title-section
+          </div>
+        </div>
+
+        <title-section title="Resumen del pedido"></title-section>
+        <title-section title="Resumen del pedido" note="Mi nota" [setDots]="true"></title-section>
+        <title-section title="Resumen del pedido" [setDots]="true" classTitle="text--content-3-b"></title-section>
+        <title-section (clickIconButtonEvent)="clickIconButton()" title="Resumen del pedido"
+          classIconButton="icon icon--chat"></title-section>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            item-order
+          </div>
+        </div>
+
+        <item-order label="Productos" data="S/12323.00"></item-order>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            title-total-order
+          </div>
+        </div>
+
+        <item-total-order label="Total" data="12323.00"></item-total-order>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            icon-background
+          </div>
+        </div>
+
+
+        <div class="display--flex flex--row inner-spacing--10">
+          <icon-background type="success" classIconButton="icon icon--company"></icon-background>
+          <icon-background type="warning" classIconButton="icon icon--check"></icon-background>
+          <icon-background type="info" classIconButton="icon icon--profile"></icon-background>
+          <icon-background type="error" classIconButton="icon icon--company"></icon-background>
+        </div>
+
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            label-box
+          </div>
+        </div>
+
+
+        <div class="display--flex flex--row inner-spacing--10">
+          <label-box type="success" label="success"></label-box>
+          <label-box type="success" label="successs" classLabel="text--content-1-c"></label-box>
+          <label-box type="warning" label="warning"></label-box>
+          <label-box type="info" label="info"></label-box>
+          <label-box type="error" label="error"></label-box>
+        </div>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            open modal
+          </div>
+        </div>
+
+
+        <div (click)="openModal()" style="display: flex; " class="icon icon--switch icon--20"> Open modal </div>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            item-navigation-avatar
+          </div>
+        </div>
+
+        <item-navigation-avatar (clickEvent)="click()" avatarSrc="/assets/images/test1.jpg" label="CATEGORIAS 02"
+          details="Jr. Tupac amaru II, Villa el salvador, Lima, lima"
+          sublabel="geor.admin@geor.com"></item-navigation-avatar>
+
+        <item-navigation-avatar (clickEvent)="click()" [check]="true" avatarSrc="/assets/images/test1.jpg"
+          label="CATEGORIAS 02" details="Jr. Tupac amaru II, Villa el salvador, Lima, lima"
+          sublabel="geor.admin@geor.com"></item-navigation-avatar>
+
+        <item-navigation-avatar (clickEvent)="click()" [check]="true" [is44Price]="true"
+          avatarSrc="/assets/images/test1.jpg" label="CATEGORIAS 02"
+          details="Jr. Tupac amaru II, Villa el salvador, Lima, lima"
+          sublabel="geor.admin@geor.com"></item-navigation-avatar>
+
+        <item-navigation-avatar (clickEvent)="click()" (clickSublabelEvent)="clickSublabel()" [price]="12.34"
+          [check]="true" [isBestPrice]="true" avatarSrc="/assets/images/test1.jpg" label="CATEGORIAS 02"
+          details="Jr. Tupac amaru II, Villa el salvador, Lima, lima"
+          sublabelButton="Como llegar"></item-navigation-avatar>
+
+        <item-navigation-avatar (clickEvent)="click()" (clickSublabelEvent)="clickSublabel()" [price]="12.00"
+          [check]="true" [isBestPrice]="true" classIconButton="icon icon--calendar" type="success"
+          shapeIconBackground="circle" label="CATEGORIAS 02" details="Jr. Tupac amaru II, Villa el salvador, Lima, lima"
+          sublabelButton="Como llegar"></item-navigation-avatar>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            footer-spacing
+          </div>
+        </div>
+        <footer-spacing height="80px"></footer-spacing>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            input-validate
+          </div>
+        </div>
+
+        <input-validate (inputValueChangeEvent)="inputValueChange($event)" labelButton="Validar"></input-validate>
+        <input-validate (inputValueChangeEvent)="inputValueChange($event)" placeholder="Escribe tu RUC"
+          labelButton="Validar"></input-validate>
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            input-prefix
+          </div>
+        </div>
+
+        <input-prefix (inputValueChangeEvent)="inputValueChange($event)" (inputEvent)="inputEventf($event)"
+          (clickArrowEvent)="clickArrow()" prefix="DNI" floatLabel="Documento de identificación" [maxlength]="12"
+          type="number"></input-prefix>
+        <hr>
+        <input-prefix (inputValueChangeEvent)="inputValueChange($event)" (inputEvent)="inputEventf($event)"
+          (clickArrowEvent)="clickArrow()" [setLine]="false" prefix="DNI" floatLabel="Documento de identificación"
+          placeholder="Mi placeholder"></input-prefix>
+
+
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            input-flag
+          </div>
+        </div>
+
+        <input-flag (inputEvent)="input(value)" (clickArrowEvent)="clickArrow()" code="+51"
+          srcFlag="/assets/flags/pe.svg" label="Perú" floatLabel="País"></input-flag>
+        <hr>
+        <input-flag (inputEvent)="input(value)" (clickArrowEvent)="clickArrow()" mask="999 99 99 999" code="+51"
+          srcFlag="/assets/flags/pe.svg" label="Perú" floatLabel="País"></input-flag>
+        <hr>
+
+        <input-flag (inputEvent)="input(value)" (clickArrowEvent)="clickArrow()" [setLine]="false" mask="" code="+51"
+          srcFlag="/assets/flags/pe.svg" label="Perú" floatLabel="País" placeholder="Mi placeholder"></input-flag>
+
+
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            input-message
+          </div>
+        </div>
+        <input-message [(value)]="value" placeholder="Escribe una idea" [more]="true" (moreEvent)="moreEvent($event)"
+          (sendMessageEvent)="sendMessage($event)" [search]="true"></input-message>
+        {{value}}
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            sliding-product-in-basket
+          </div>
+        </div>
+
+        <sliding-product-in-basket (deleteEvent)="delete()" [(value)]="valueBasket" [price]="23123"
+          details="asdasdasd asd asa asdas dasd asdsa">
+        </sliding-product-in-basket>
+
+        {{valueBasket}}
+        <div class="card-component__container ">
+          <div class="card-component__title">
+            item-navigation-line
+          </div>
+        </div>
+
+        <item-navigation-line (clickEvent)="click()" label="Español" floatLabel="Idioma"></item-navigation-line><br>
+        <item-navigation-line (clickEvent)="click()" [setArrow]="false" srcFlag="/assets/flags/pe.svg" label="Perú"
+          floatLabel="País"></item-navigation-line>
+        <item-navigation-line (clickEvent)="click()" (clickArrowEvent)="clickArrow()" srcFlag="/assets/flags/pe.svg"
+          label="Perú" floatLabel="País"></item-navigation-line>
+
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            Icon bagde
+          </div>
+
+          <div class="display--flex flex--row justify-content--center inner-spacing--12">
+            <div class="icon-bagde__item">
+              <ion-icon class="icon icon--company">
+              </ion-icon>
+              <div class="icon-bagde__info">
+                <ion-label class="text--content-3-b">+9</ion-label>
+              </div>
+            </div>
+
+            <div class="icon-bagde__item">
+              <ion-icon class="icon icon--company">
+              </ion-icon>
+              <div class="icon-bagde__info">
+                <ion-label class="text--content-3-b">+9</ion-label>
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+        <!-- <div class="width--full-page">
+          <img  style="width: 100%; height: auto; " src="/assets/images/test1.jpg" >
+        </div>
+         -->
+
+        <!-- <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input></ion-input>
+        </ion-item> -->
+
+
+
+
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            card-product-recommendation
+          </div>
+
+        </div>
+        <div class="display--flex set-scroll hide-scrollbar">
+          <card-product-recommendation (clickEvent)="click()" [price]="120"
+            src="/assets/images/test1.jpg"></card-product-recommendation>
+          <card-product-recommendation (clickEvent)="click()" [price]="120"
+            src="/assets/images/test1.jpg"></card-product-recommendation>
+          <card-product-recommendation (clickEvent)="click()" [price]="120"
+            src="/assets/images/test1.jpg"></card-product-recommendation>
+          <card-product-recommendation (clickEvent)="click()" [price]="120"
+            src="/assets/images/test1.jpg"></card-product-recommendation>
+          <card-product-recommendation (clickEvent)="click()" [price]="120"
+            src="/assets/images/test1.jpg"></card-product-recommendation>
+        </div>
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            modal-base
+          </div>
+
+        </div>
+        <modal-base (fillButtonClickEvent)="fillButtonClick()" (outlineButtonClickEvent)="outlineButtonClick()"
+          title="Eliminar mensajes"
+          subtitle="¿Quieres sdfsdfsdfsdf sdfsd fsdfsdfsdfsdfs fsdfsdf sdfsdfsdfsdfeliminar estos mensajes?"
+          fillLabel="Eliminar" outlineLabel="Cancelar"></modal-base>
+
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            modal-delete
+          </div>
+
+        </div>
+        <modal-delete (fillButtonClickEvent)="fillButtonClick()" (outlineButtonClickEvent)="outlineButtonClick()"
+          title="Eliminar mensajes" subtitle="¿Quieres eliminar estos mensajes?" fillLabel="Eliminar"
+          outlineLabel="Cancelar"></modal-delete>
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            input-label-floating
+          </div>
+
+        </div>
+        <div class="display--flex flex--column width--100">
+          <input-label-floating></input-label-floating>
+
+        </div>
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            input-search
+          </div>
+
+        </div>
+        <div class="display--flex flex--column inner-spacing--10">
+          <input-search (inputEvent)="input($event)" (searchEvent)="search()" (clearInputEvent)="clear()"
+            [search]="true" placeholder="Escribe una idea"></input-search>
+
+        </div>
+
+
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            item-search
+          </div>
+
+        </div>
+        <div class="display--flex flex--column inner-spacing--10">
+          <item-search (clickEvent)="click()" label="Acrilico"></item-search>
+        </div>
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            item-last-search
+          </div>
+
+        </div>
+        <div class="display--flex flex--column inner-spacing--10">
+          <item-last-search (clickEvent)="click()" label="Acrilico trasnparente"></item-last-search>
+        </div>
+
+        <div class="card-component__container ">
+
+          <div class="card-component__title">
+            avatar-profile
+          </div>
+
+        </div>
+        <div class="display--flex inner-spacing--10">
+          <avatar-profile (clickEvent)="click()" src="/assets/images/test1.jpg" [width]="128" [height]="128">
+          </avatar-profile>
+          <avatar-profile (clickEvent)="click()" src="/assets/images/test1.jpg" [width]="64" [height]="64">
+          </avatar-profile>
+          <avatar-profile (clickEvent)="click()" src="/assets/images/test1.jpg" [width]="48" [height]="48">
+          </avatar-profile>
+          <avatar-profile (clickEvent)="click()" src="/assets/images/test1.jpg" [width]="24" [height]="24">
+          </avatar-profile>
+          <avatar-profile (clickEvent)="click()" src="/assets/images/test1.jpg" [width]="12" [height]="12">
+          </avatar-profile>
+        </div>
+
+        <div class="card-component__title">
+          input-inline
+        </div>
+
+        <div class="card-component__details flex--column">
+          <input-inline (clickAction)="click()" [details]="[]" [disabled]="false" [(inputValue)]="value"
+            placeholder="Escribe tu coerreo" classIconButton="icon icon--company icon--gray-scale-1000"
+            [readonly]="true">
+          </input-inline>
+
+          <input-inline (clickAction)="click()" [details]="['Origen : peru', 'Sku : 23sdf']" [disabled]="false"
+            [(inputValue)]="value" placeholder="Escribe tu coerreo"
+            classIconButton="icon icon--company icon--gray-scale-1000" [readonly]="false">
+          </input-inline>
+
+          <input-inline (clickAction)="click()" [details]="[]" [(inputValue)]="value" placeholder="Escribe tu coerreo"
+            classIconButton="icon icon--company icon--gray-scale-1000">
+          </input-inline>
+          <p>
+            {{value}}
+          </p>
+        </div>
+
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          product-preview
+        </div>
+
+
+
+
+        <div class="card-component__details">
+          <product-preview></product-preview>
+          <product-preview [dots]="true"></product-preview>
+          <product-preview [src]="'/assets/images/test1.jpg'"></product-preview>
+          <product-preview [src]="'/assets/images/test1.jpg'" [bordered]="true"></product-preview>
+          <product-preview [width]="'80'" [height]="'104'" src="/assets/images/test1.jpg"></product-preview>
+          <product-preview [width]="'100'" [height]="'204'" src="/assets/images/test1.jpg"
+            [bordered]="true"></product-preview>
+        </div>
+
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          card-price
+        </div>
+
+        <div class="card-component__details inner-spacing--16">
+          <card-price currencySymbol="S/" [price]="790" [subprice]="189" stock="100 - 199 unidades"></card-price>
+          <card-price currencySymbol="S/" [price]="790" [psubprice]="189" [disabled]="true"
+            stock="100 - 199 unidades"></card-price>
+        </div>
+
+      </div>
+
+      <div class="card-component__container ">
+
+
+        <div class="card-component__title">
+          button-option
+        </div>
+
+        <div class="card-component__details inner-spacing--16 hide-bar-scroll" style="overflow: scroll;">
+          <button-option [amount]="0" label="200 x 100"></button-option>
+          <button-option [bordered]="true" [amount]="10" label="200x100"></button-option>
+          <button-option [bordered]="true" [amount]="10" label="20asdasdasdasdasdasdasasdasd0x100"></button-option>
+          <button-option [amount]="7" label="200x50" size="small"></button-option>
+          <button-option [amount]="1" label="200x10" size="small" [bordered]="true"></button-option>
+          <button-option [bordered]="true" [amount]="10" size="extra-small" label="2"></button-option>
+          <button-option [bordered]="true" [amount]="10" size="extra-small" label="200"></button-option>
+          <button-option background="#ff0000"></button-option>
+          <button-option background="#57C9BB" [bordered]="true"></button-option>
+        </div>
+
+      </div>
+
+
+      <!--
+      <button-incremental [(value)]="amount"></button-incremental>
+      {{amount}} -->
+
+      {{'home.welcome' | localize: 'ecommerce'}}
+
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          grid-container
+        </div>
+
+        <div class="card-component__details ">
+          <div class="grid-container">
+            <card-product *ngFor="let item of productsAux;let i = index " (clickEvent)="click()" [index]="i"
+              (focusEvent)="focus()" (blurEvent)="blur()" (indexSelected)="indexCardProductSelected($event)"
+              (clickInputCartShoppingEvent)="clickInputCartShopping($event)"
+              (clickCartShoppingEvent)="clickCartShopping($event)" [amountInput]="showInputCartShopping"
+              [addToCart]="showCartShopping" [price]="1234" underprice="S/1ter23" [(inputValue)]="item.amount"
+              [details]='
+          [
+          "Acrílico rugoso de pol itileno rugoso",
+          "SKU: aho90812",
+          "30 und. disponibles",
+          "3 und. pedido mín.",
+          "Tallas: XS, S, M, L"
+          ]' class="grid-item"></card-product>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          card-contact
+        </div>
+
+        <div class="card-component__details inner-spacing--16 " style="overflow: scroll; ">
+          <card-contact>
+          </card-contact>
+        </div>
+
+      </div>
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          card-chat
+        </div>
+
+        <div class="card-component__details ">
+          <card-chat>
+          </card-chat>
+        </div>
+
+      </div>
+
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          swiper
+        </div>
+        <div class="width--full-page">
+          <swiper-container class="width--full-page" [pagination]="true" [slidesPerView]="1.4"
+            [slidesOffsetBefore]="60">
+            <swiper-slide>
+              <div style="background-color: aqua; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: red; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: teal; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: aqua; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: red; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: teal; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: aqua; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: red; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+            <swiper-slide>
+              <div style="background-color: teal; width: 90%;height: 90%;"></div>
+            </swiper-slide>
+          </swiper-container>
+          <swiper-pagination></swiper-pagination>
+        </div>
+
+
+
+
+      </div>
+
+
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          button-incremental
+        </div>
+
+        <div class="card-component__details">
+          <button-incremental></button-incremental>
+        </div>
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          card-product-in-basket
+        </div>
+
+        <div class="card-component__details display--flex flex--column">
+          <card-product-in-basket [(value)]="valueBasket" details="mostaza lorem, 120x150 cm, 25 mm " [amount]="23"
+            [price]="123.34" class="width--100"></card-product-in-basket>
+
+
+
+
+
+        </div>
+        {{valueBasket}}
+      </div>
+      <ion-list>
+
+        <ion-item-sliding>
+          <ion-item>
+            <div class="display--flex">
+              <card-product-in-basket [(value)]="valueBasket" details="mostaza =" [amount]="23"
+                [price]="123.34"></card-product-in-basket>
+            </div>
+
+          </ion-item>
+          <ion-item-options>
+            <ion-item-option>Favorite</ion-item-option>
+            <ion-item-option color="danger">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+      </ion-list>
+
+      <ion-list>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label>Sliding Item with End Options</ion-label>
+          </ion-item>
+
+          <ion-item-options>
+            <ion-item-option>Favorite</ion-item-option>
+            <ion-item-option color="danger">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option color="success">Archive</ion-item-option>
+          </ion-item-options>
+
+          <ion-item>
+            <ion-label>Sliding Item with Start Options</ion-label>
+          </ion-item>
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option color="success">Archive</ion-item-option>
+          </ion-item-options>
+
+          <ion-item>
+            <ion-label>Sliding Item with Options on Both Sides</ion-label>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option>Favorite</ion-item-option>
+            <ion-item-option color="danger">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+      <ion-list>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label>Sliding Item with End Options</ion-label>
+          </ion-item>
+
+          <ion-item-options>
+            <ion-item-option>Favorite</ion-item-option>
+            <ion-item-option color="danger">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          item-option
+        </div>
+
+        <div class="card-component__details display--flex flex--column" style="width: 100%;">
+          <item-option (clickEvent)="click()" badge="99" label="Mis mepresas" classIconButton="icon icon--company"
+            class="width--100"></item-option>
+          <item-option (clickEvent)="click()" label="Miss" classIconButton="icon icon--company"
+            class="width--100"></item-option>
+
+        </div>
+
+      </div>
+
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          button-social-media
+        </div>
+
+      </div>
+      <div class="display--flex inner-spacing--10">
+        <button-social-media (clickEvent)="click()"
+          classIcon="icon icon--facebook-white icon--gray-scale-100"></button-social-media>
+        <button-social-media (clickEvent)="click()"
+          classIcon="icon icon--plus-2 icon--gray-scale-100"></button-social-media>
+        <button-social-media (clickEvent)="click()"
+          classIcon="icon icon--chat icon--gray-scale-100"></button-social-media>
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          buttons class
+        </div>
+
+      </div>
+
+      <div class="display--flex flex--column">
+        <ion-button class="c-button c-button--primary">My primary button</ion-button>
+        <ion-button [disabled]="true" class="c-button c-button--primary ">My primary button</ion-button>
+        <ion-button class="c-button c-button--primary c-button--outline c-button--bordered">My primary button
+          outline</ion-button>
+        <ion-button [disabled]="true" class="c-button c-button--primary c-button--outline">My primary button
+          outline</ion-button>
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          toogle class
+        </div>
+
+      </div>
+      <ion-toggle class="c-toggle c-toggle--primary">Default Toggle</ion-toggle>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          input class
+        </div>
+
+        <ion-item class="c-item-input--primary" mode="md">
+          <ion-label position="floating">
+            Email
+          </ion-label>
+          <ion-input debounce="350"></ion-input>
+        </ion-item>
+
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          New icons
+        </div>
+
+      </div>
+
+      <div style="background-color: black;padding: 5px;" class="display--flex inner-spacing--12">
+        <ion-icon class="icon icon--facebook-white"></ion-icon>
+        <ion-icon class="icon icon--instagram-white"></ion-icon>
+        <ion-icon class="icon icon--linkedin-white"></ion-icon>
+        <ion-icon class="icon icon--youtube-white"></ion-icon>
+        <ion-icon class="icon icon--twitter-white"></ion-icon>
+      </div>
+
+      <div style="padding: 5px;" class="display--flex inner-spacing--12">
+        <ion-icon class="icon icon--danger-circle"></ion-icon>
+        <ion-icon class="icon icon--ok-green"></ion-icon>
+        <ion-icon class="icon icon--box"></ion-icon>
+        <ion-icon class="icon icon--store"></ion-icon>
+        <ion-icon class="icon icon--truck"></ion-icon>
+      </div>
+      <div class="date">
+        @2023-09-11
+      </div>
+
+      <hr>
+
+      <div style="padding: 5px;" class="display--flex inner-spacing--12">
+        <ion-icon class="icon icon--avatar-company"></ion-icon>
+        <ion-icon class="icon icon--card-pay"></ion-icon>
+        <ion-icon class="icon icon--efect-pay"></ion-icon>
+        <ion-icon class="icon icon--filter-checked"></ion-icon>
+        <ion-icon class="icon icon--logo-bbva"></ion-icon>
+        <ion-icon class="icon icon--logo-bcp"></ion-icon>
+        <ion-icon class="icon icon--logo-payment-1"></ion-icon>
+        <ion-icon class="icon icon--logo-paypal"></ion-icon>
+        <ion-icon class="icon icon--logo-yape"></ion-icon>
+        <ion-icon class="icon icon--security-icon"></ion-icon>
+        <ion-icon class="icon icon--success-wave"></ion-icon>
+        <ion-icon class="icon icon--error-wave"></ion-icon>
+
+
+      </div>
+
+      <div>
+        <ion-icon class="icon icon--logo-visa"></ion-icon>
+        <ion-icon class="icon icon--logo-mastercard"></ion-icon>
+        <ion-icon class="icon icon--logo-dinners-club"></ion-icon>
+        <ion-icon class="icon icon--logo-amex"></ion-icon>
+        <ion-icon class="icon icon--logo-payoneer"></ion-icon>
+
+      </div>
+
+
+      <div style="padding: 5px;" class="display--flex inner-spacing--12">
+        <ion-icon class="icon icon--categories"></ion-icon>
+        <ion-icon class="icon icon--categories-fill-dark"></ion-icon>
+        <ion-icon class="icon icon--categories-gray"></ion-icon>
+        <ion-icon class="icon icon--order-car"></ion-icon>
+        <ion-icon class="icon icon--ray"></ion-icon>
+      </div>
+
+      <div class="date">
+        @2023-09-22
+      </div>
+
+
+      <div style="padding: 5px;" class="display--flex inner-spacing--12">
+        <ion-icon class="icon icon--pause-circle"></ion-icon>
+        <ion-icon class="icon icon--play-circle"></ion-icon>
+        <ion-icon class="icon icon--dots-fill"></ion-icon>
+        <ion-icon class="icon icon--order-car"></ion-icon>
+        <ion-icon class="icon icon--close-fill-gray"></ion-icon>
+      </div>
+
+      <div class="date">
+        @2023-09-27
+      </div>
+
+      <div class="card-component__container ">
+
+        <div class="card-component__title">
+          page-empty
+        </div>
+
+      </div>
+      <div class="card-component__title">
+        page-empty
+      </div>
+      <!-- <page-empty icon="😎" title="Aún no agregas productos a tu cesta"
+        subtitle="Comprar con tus amigos nuca fue mas genial."></page-empty>  -->
+
+
+      <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    </div>
+  </div>
+
+  <!-- <div class="footer-base ">
+    <div class="footer-base__container">
+
+    </div>
+  </div> -->
+
+
+  <!-- <div class="footer-base footer-base--no-line  footer-base--no-toolbar">
+    <div class="footer-base__container display--flex align-items--center justify-content--center">
+
+      <ion-label>
+        Hello footer
+      </ion-label>
+
+    </div>
+  </div> -->
+
+</ion-content>

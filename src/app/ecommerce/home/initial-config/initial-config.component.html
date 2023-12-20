@@ -1,0 +1,98 @@
+<ion-content>
+  <header-title
+    *ngIf="!isMobile"
+    [classIconButton]="isMobile ? '' : 'icon icon--close-right cursor-pointer'"
+    (iconButtonEvent)="dialog.dismiss('cancel')">
+  </header-title>
+
+  <header-title
+    *ngIf="isMobile"
+    [close]="usedAsModal"
+    (closeEvent)="dialog.dismiss('cancel')">
+  </header-title>
+
+  <div class="container" *ngIf="!isMobile">
+    <section class="welcome">
+      <ion-text class="welcome-title text--primary text--content-0-c">
+        {{ placeholders.welcome}}
+      </ion-text>
+      <ion-text class="welcome-label text--primary text--content-1-a">
+        {{ placeholders.welcomeLabel}}
+      </ion-text>
+    </section>
+
+    <section class="country-language">
+      <item-navigation-line [floatLabel]="placeholders.country"
+        [srcFlag]="country ? country.flag : 'https://geor-aplicaciones-demo.geor.io/images/pe.svg'"
+        [label]="country ? country.description : 'Perú'" (clickEvent)="openCountriesModal()">
+      </item-navigation-line>
+
+      <item-navigation-line
+          (clickEvent)="chooseLanguagePopover($event)"
+          [floatLabel]="placeholders.language"
+          [label]="selectedLanguage === 'en_US'
+            ? placeholders.english
+            : placeholders.spanish">
+      </item-navigation-line>
+    </section>
+
+    <div class="footer-base footer-base--no-line padding-bottom">
+      <div class="footer-base__container">
+        <section class="preferences-label-desktop">
+          <ion-text class="text--secondary text--content-1-a">
+            {{ placeholders.preferencesLabel}}
+          </ion-text>
+        </section>
+        <div class="display--flex align-items--start inner-spacing--16">
+          <ion-button class="c-button c-button--primary c-button--outline c-button--large width--50"
+            (click)="dialog.dismiss('cancel')">
+            Cancelar
+          </ion-button>
+
+          <ion-button class="c-button c-button--primary c-button--large width--50" (click)="confirm()">
+            {{ placeholders.confirm}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="isMobile">
+    <section class="welcome">
+      <ion-text class="welcome-title text--primary text--content-0-c">
+        {{ placeholders.welcome}}
+      </ion-text>
+      <ion-text class="welcome-label text--primary text--content-1-a">
+        {{ placeholders.welcomeLabel}}
+      </ion-text>
+    </section>
+
+    <section class="country-language">
+      <item-navigation-line
+        [floatLabel]="placeholders.country"
+        [srcFlag]="country ? country.flag : 'https://geor-aplicaciones-demo.geor.io/images/pe.svg'"
+        [label]="country ? country.description : 'Perú'">
+      </item-navigation-line>
+
+      <item-navigation-line
+        (clickEvent)="chooseLanguagePopover($event)"
+        [floatLabel]="placeholders.language"
+        [label]="selectedLanguage === 'en_US'
+            ? placeholders.english
+            : placeholders.spanish">
+      </item-navigation-line>
+    </section>
+
+    <ion-button (click)="confirm()"
+      class="confirm-button c-button--large c-button c-button--primary c-button--full-width">
+      {{ placeholders.confirm}}
+    </ion-button>
+
+    <section class="preferences-label">
+      <ion-text class="text--secondary text--content-1-a">
+        {{ placeholders.preferencesLabel}}
+      </ion-text>
+    </section>
+
+  </div>
+</ion-content>

@@ -1,0 +1,10 @@
+<div class="container">
+  <modal-delete
+    title="Anular pedido"
+    subtitle="¿Estás seguro de anular este pedido?"
+    outlineLabel="Cancelar"
+    fillLabel="Anular"
+    (outlineButtonClickEvent)="dialog.dismiss('cancel')"
+    (fillButtonClickEvent)="dialog.dismiss('delete')">
+  </modal-delete>
+</div>

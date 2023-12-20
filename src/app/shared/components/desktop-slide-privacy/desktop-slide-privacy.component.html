@@ -1,0 +1,15 @@
+<section class="card-component__details display--flex flex--column about">
+
+  <title-section [title]="localization.localize('profile.about.title.main','ecommerce')" />
+
+  <section class="options">
+
+    <div *ngFor="let resource of resources" (click)="resource.method()" class="option"
+      [ngClass]="{'selected': resource.id === selectedResource}">
+
+      <div class="width--100 cursor-pointer hovered">
+        <ion-label>{{resource.name}}</ion-label>
+      </div>
+    </div>
+  </section>
+</section>

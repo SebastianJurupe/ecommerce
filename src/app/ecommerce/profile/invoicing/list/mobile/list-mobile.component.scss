@@ -1,0 +1,21 @@
+.invoicings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+//SKELETON
+.name-skeleton {
+  width: 60%;
+  height: 24px;
+}
+
+.menu-skeleton {
+  width: 30px;
+  height: 15px;
+}
+
+.number-skeleton {
+  width: 30%;
+  height: 20px;
+}

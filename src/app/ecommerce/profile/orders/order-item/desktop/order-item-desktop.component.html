@@ -1,0 +1,29 @@
+<div (click)="orderDetails()" class="order cursor-pointer">
+
+  <ion-text class="text--primary text--content-1-c">
+    {{ 'profile.home.order' | localize: 'ecommerce' }} #{{ order.order }}
+  </ion-text>
+
+  <div class="order__time-left" *ngIf="order.status === 'PENDIENTE DE PAGO' && !timeLeftExpired">
+    <ion-icon class="icon icon--time-square icon--delete icon--20" />
+    <ion-text class="text--delete text--content-3-a">
+      {{ counter$ | async }}
+    </ion-text>
+  </div>
+
+  <div class="order__details">
+    <ion-text class="text--secondary text--content-2-a">
+      {{ createdAt }}
+    </ion-text>
+
+    <ion-icon class="icon icon--ellipse" />
+
+    <ion-text class="text--secondary text--content-2-a">
+      {{ order.items }} {{ order.items === 1 ? localization.localize('profile.home.product','ecommerce') : localization.localize('profile.home.products','ecommerce') }}
+    </ion-text>
+  </div>
+
+  <ion-text [ngClass]="status" class="order__status text--delete text--content-3-a pending-payment">
+    {{ order.status }}
+  </ion-text>
+</div>

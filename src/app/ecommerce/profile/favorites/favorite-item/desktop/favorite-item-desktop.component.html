@@ -1,0 +1,28 @@
+<article class="favorite-item">
+  <img
+    class="favorite-item-image"
+    [src]="favoriteItem.cover?.path || '/assets/general/empty-favorite-product.png'"
+    alt="Item Image">
+
+  <div class="favorite-item-content">
+    <div class="display--flex justify-content--space-between">
+      <ion-text class="text--primary text--content-1-c">
+        {{ favoriteItem.currency.symbol }} {{ favoriteItem.sale_unit_price | number: '1.2-2' }}
+      </ion-text>
+      <ion-icon
+        (click)="removeFromFavoritesClicked()"
+        class="icon icon--heart-fill icon--delete cursor-pointer"
+        >
+      </ion-icon>
+    </div>
+    <ion-text class="text--secondary text--content-1-a">
+      {{ favoriteItem.description | textSlice: 29 }}
+    </ion-text>
+    <ion-button
+      (click)="moveToBasketClicked()"
+      class="c-button c-button--large c-button--text-primary c-button--extra-small c-button--no-padding-x c-button--no-padding">
+        <ion-icon slot="start" class="icon icon--buy" />
+        {{ 'profile.favorites.moveToBasket' | localize: 'ecommerce' }}
+    </ion-button>
+  </div>
+</article>

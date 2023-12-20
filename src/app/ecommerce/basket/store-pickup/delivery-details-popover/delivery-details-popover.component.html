@@ -1,0 +1,16 @@
+<div class="popover-container display--flex width--100 delivery-details-container">
+
+  <item-navigation
+    class="display--flex width--100 cursor-pointer"
+    *ngFor="let option of options"
+    [label]="option.label"
+    [classIconButton]="option.classIconButton"
+    [setArrow]="option.setArrow"
+    [type]="option.shapeType"
+    (click)="viewElement(option)"
+    [shapeIconBackground]="option.shapeIconBackground"
+    [setCheck]="option.id === deliveryTypeId">
+  </item-navigation>
+
+
+</div>

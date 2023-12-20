@@ -1,0 +1,8 @@
+<inbox-chat-input-action icon="icon icon--smile-2">
+    <div options class="chat-input__dropdown-content">
+        <emoji-mart (click)="onClick($event)" (emojiSelect)="onEmojiSelected($event)" [darkMode]="mode == 'dark'"
+            [lang]="lang" [i18n]="texts" set="" [isNative]="true" [hideObsolete]="true" [perLine]="8" [showPreview]="false"
+            class="chat-input__dropdown-option" [title]="'inbox.dashboard.emoji.find' | localize : 'ecommerce'">
+        </emoji-mart>
+    </div>
+</inbox-chat-input-action>

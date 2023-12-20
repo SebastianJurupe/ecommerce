@@ -1,0 +1,40 @@
+<section *ngIf="resource" (click)="onAction()" class="resource {{ mediaType }}">
+
+  <!-- IMAGE -->
+  <img
+    *ngIf="mediaType === 'image'"
+    class="resource__img"
+    [ngClass]="{'multiple-resource': !hasUniqueResource}"
+    [src]="resource.url"
+    [alt]="resource.name"
+  >
+
+  <!-- FILE OR VIDEO -->
+  <div
+    *ngIf="mediaType === 'file' || mediaType === 'video'"
+    class="display--flex inner-spacing--12 align-items--center">
+
+    <ion-icon [class]="mediaType === 'video' ? 'icon icon--video' : fileIcon" />
+
+    <div class="display--flex flex--column inner-spacing--4">
+      <span class="text--primary text--content-3-a">
+        {{ resource.name | textSlice: 15 }}
+      </span>
+      <span class="text--disabled text--content-3-a">
+        {{ size }}
+      </span>
+    </div>
+  </div>
+
+  <div class="date-container {{ hasUniqueResource ? 'unique-resource' : 'multiple-resource' }}">
+    <span
+      class="text--tooltip-a text--disabled"
+      [ngStyle]="{
+        'text-shadow': mediaType === 'image' ? '-3px 1px 8px #000' : 'none',
+      }"
+      [ngClass]="mediaType === 'image' ? 'text--white' : 'text--disabled'">
+      {{ createdDate | luxonFormat: 'HH:mm a' | lowercase }}
+    </span>
+  </div>
+
+</section>

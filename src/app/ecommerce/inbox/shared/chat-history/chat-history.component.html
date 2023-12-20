@@ -1,0 +1,10 @@
+<ion-infinite-scroll class="mt-3 mb-5" threshold="100px" (ionInfinite)="getData($event)">
+    <ion-infinite-scroll-content class="invisible" loadingSpinner="bubbles" loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+<inbox-chat-history-item
+    *ngFor="let message of pagination.records"
+    [channel]="channel"
+    [message]="message"
+/>

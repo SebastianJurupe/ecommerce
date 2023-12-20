@@ -1,0 +1,77 @@
+<ion-content>
+
+  <section class="content--desktop container-desktop container-desktop-section">
+    <div class="content display--flex">
+
+      <app-desktop-slide />
+
+      <section *ngIf="addresses.length > 0 && !loading" class="addresses-list scroll-vertical">
+
+        <div class="address" *ngFor="let address of addresses">
+          <ion-label class="text--content-1 {{ address.default ? 'text--primary' : 'text--primary-a' }}">
+            {{ address.description }}
+          </ion-label>
+          <div class="item-address">
+            <ion-label class="text--content-1-a text--primary">
+              {{ address.address }}
+            </ion-label>
+            <ion-label *ngIf="address.default">
+              <span class="text--content-3-a">
+                {{ 'profile.invoice.formDefault' | localize: 'ecommerce' }}
+              </span>
+            </ion-label>
+          </div>
+          <div class="item-buttons">
+            <button (click)="onEdit(address.id)">
+              <ion-icon class="icon icon--edit-square icon--gray-scale-700" />
+              <ion-label class="text--content-1-a text--primary">
+                {{ 'profile.invoice.edit' | localize: 'ecommerce' }}
+              </ion-label>
+            </button>
+            <button (click)="onDelete(address.id)">
+              <ion-icon class="icon icon--trash icon--delete" />
+              <ion-label class="text--content-1-a text--delete">
+                {{ 'profile.invoice.delete' | localize: 'ecommerce' }}
+              </ion-label>
+            </button>
+          </div>
+        </div>
+
+        <div class="add-address" *ngIf="addresses.length > 0">
+          <button (click)="onNewAddress()">
+            <ion-icon class="icon icon--plus-1" />
+            <ion-label class="text--content-1-a">
+              {{ 'profile.address.newAddress' | localize: 'ecommerce' }}
+            </ion-label>
+          </button>
+        </div>
+
+      </section>
+
+      <div class="addresses-list" *ngIf="addresses.length=== 0 && loading">
+        <section class="skeletons-container display--flex flex--column inner-spacing--24">
+          <div class="address" *ngFor="let item of [1, 1, 1]">
+            <div>
+              <ion-skeleton-text animated class="order-skeleton" />
+            </div>
+            <div class="item-address">
+              <ion-skeleton-text animated class="name-skeleton" />
+            </div>
+            <div class="item-buttons">
+              <ion-skeleton-text animated class="edit-skeleton" />
+              <ion-skeleton-text animated class="cancel-skeleton" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <page-empty *ngIf="addresses.length === 0 && emptyAddress" icon="😊" [setDesktop]="true" class="width--100"
+        (clickButtonEvent)="onNewAddress()" [setButton]="true"
+        [labelButton]="localization.localize('profile.address.newAddress','ecommerce')"
+        classIconButton="icon icon--plus-1" [title]="localization.localize('profile.address.empty.title','ecommerce')"
+        [subtitle]="localization.localize('profile.address.empty.subtitle','ecommerce')">
+      </page-empty>
+    </div>
+  </section>
+
+</ion-content>

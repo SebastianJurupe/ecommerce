@@ -1,0 +1,7 @@
+.bg--content {
+  background: var(--p-background-gray);
+}
+
+ion-content {
+  --background: var(--p-background-gray) !important;
+}

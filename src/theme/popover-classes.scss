@@ -1,0 +1,113 @@
+.invoice-popover,
+.address-popover {
+  --offset-x: -1em;
+}
+
+.document-types-popover {
+  --offset-x: 1em;
+  --offset-y: 1.1em;
+  --width: calc(100% - 44px);
+}
+
+.document-types-popover-desktop {
+  --offset-x: 0em;
+  --offset-y: .7em;
+  --width: 237px;
+}
+
+.document-type-popover-desktop {
+  // --offset-x: 8.3em;
+  --offset-y: 1.9em;
+  --width: 342px;
+}
+
+.order-status-popover {
+  --width: calc(100% - 44px);
+  --offset-x: -1em;
+  --offset-y: 1em;
+}
+
+.documents {
+  --offset-y: -1em;
+  --offset-x: 1em;
+
+  &.ios {
+    --offset-y: -5.5em !important;
+
+    &.is-keyboard-showed {
+      --offset-y: -10em !important;
+    }
+  }
+
+  &.android {
+    &.is-keyboard-showed {
+      --offset-y: -5.6em !important;
+    }
+  }
+}
+
+.billing-info-popover {
+  --width: calc(100% - 48px);
+  --offset-x: -19px;
+  --offset-y: -.5em;
+
+  &-desktop {
+    --width: fit-content;
+  }
+}
+
+.choose-language-popover-initial-config {
+  --width: 200px !important;
+  --offset-x: -1em;
+  --offset-y: -5em;
+}
+
+.choose-language-popover-login {
+  --offset-x: 4em;
+  --offset-y: -4.7em;
+}
+
+.choose-language-popover-information {
+  --offset-x: -0.4em;
+  --offset-y: -0.8em;
+
+}
+
+.popover-profile-desktop {
+  --offset-y: 1em;
+  --width: 390px
+}
+
+.order-status-popover-desktop {
+  --width: 342px;
+  --offset-y: 1em;
+  // --offset-x: -9.9em;
+}
+
+.share-product-desktop {
+  --width: 25em !important;
+  --offset-x: -23.75em;
+  --offser-y: 5px;
+}
+
+.popover-search-desktop {
+  --offset-y: 0.5em;
+  --max-height: 70%;
+}
+
+.delivery-details-popover {
+  --offset-y: 10px;
+
+  &.desktop {
+    --width: 342px;
+  }
+}
+
+.order-details-popover {
+  --offset-x: -1em;
+  --offset-y: .7em;
+
+  &.desktop {
+    --offset-x: 0em;
+  }
+}

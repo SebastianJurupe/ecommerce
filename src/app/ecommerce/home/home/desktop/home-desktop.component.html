@@ -1,0 +1,127 @@
+<ion-content [scrollY]="true" class="position-relative">
+
+	<div class="container-desktop-1 content--desktop-1">
+		<div class="content">
+
+			<section [ngStyle]="{'gap' : slides.length === 0 ? '24px' : ''}" class="slides-banner-app">
+
+				<swiper-container *ngIf="slides.length !== 0" autoplay="true"
+					[autoplay]="{delay:3000,disableOnInteraction:false, pauseOnMouseEnter:false,waitForTransition:false}"
+					[pagination]="true" [spaceBetween]="10">
+
+					<swiper-slide *ngFor="let slide of slides" class="swiper-slide">
+
+						<img (click)="goToBannerProducts(slide.link_value)" [src]="slide.image_desktop" [alt]="slide.description">
+
+					</swiper-slide>
+					<swiper-pagination>
+					</swiper-pagination>
+				</swiper-container>
+
+				<div *ngIf="slides.length === 0" class="skeletons-container display--flex inner-spacing--16 width--100">
+
+					<div class="skeleton width--100" *ngFor="let item of [1]">
+						<ion-skeleton-text animated class="banner-skeleton" />
+					</div>
+				</div>
+
+				<div class="banner-download">
+					<ion-text class="banner-download-label text--primary text--content-1-b display--flex flex--column">
+						<span>
+							{{localization.localize('profile.home.download.title','ecommerce')}}
+						</span>
+						<span class="text--content-1-c">{{localization.localize('profile.home.download.subtitle','ecommerce')}}
+						</span>
+					</ion-text>
+
+					<section class="banner-download-buttons-container">
+						<button *ngFor="let button of downloadAppbuttons" class="banner-download-button"
+							[ngClass]="button.buttonClass">
+							<ion-icon class="banner-download-button-icon" [class]="button.icon" />
+							<div class="banner-download-button-content">
+								<ion-text class="text--white font-size-9">
+									{{localization.localize('profile.home.download.button','ecommerce')}}
+								</ion-text>
+								<ion-text class="text--white font-size-14">
+									{{ button.label }}
+								</ion-text>
+							</div>
+						</button>
+					</section>
+				</div>
+			</section>
+
+
+		</div>
+	</div>
+	<div class="container-desktop-2 content--desktop-2">
+		<section class="for-you">
+			<ion-text class="text--primary text--heading-a">
+				{{ placeholders.forYou }}
+			</ion-text>
+			<div class="button-control-slide-previous" *ngIf="forYouProducts.length > 0 && currentIndex !== 0">
+				<ion-button class="c-button c-button--circle c-button--contrast" (click)="showPreviousSix()">
+					<ion-icon class="icon icon--arrow-geor-left-large"></ion-icon>
+				</ion-button><br>
+			</div>
+			<div class="display--flex">
+
+				<div #forYouItems class="for-you-items-desktop" [ngClass]="{ 'banner-active': forYouProductsDesktop.length>0 }">
+					<card-product-recommendation *ngFor="let item of forYouProductsDesktop; let i = index"
+						[src]="item.files[0].path" [currencySymbol]="item.currency.symbol" [price]="item.price" height="171"
+						width="172"
+						(clickEvent)="item.has_variants ?  viewProductDetailDesktop(item.id,item.description) : viewProductDetailDesktop(item.id,item.description)">
+					</card-product-recommendation>
+				</div>
+
+			</div>
+
+			<div class="button-control-slide-next" *ngIf="this.currentIndex + 6 < this.forYouProducts.length">
+				<ion-button class="c-button c-button--circle c-button--contrast" (click)="showNextSix()">
+					<ion-icon class="icon icon--arrow-geor-right-large-center"></ion-icon>
+				</ion-button><br>
+			</div>
+
+			<div *ngIf="forYouProducts.length === 0" class="skeletons-container display--flex inner-spacing--20">
+
+				<div class="skeleton" *ngFor="let item of [1,1,1,1,1,1]">
+					<ion-skeleton-text animated class="forYouProduct-skeleton" />
+					<ion-skeleton-text animated class="forYouProductPrice-skeleton" />
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+
+	<section class="featured">
+		<ion-text class="text--primary text--heading-a">
+			{{ placeholders.featured }}
+		</ion-text>
+
+		<article *ngIf="featuredProducts" class="featured-products">
+			<card-product *ngFor="let product of featuredProducts ; let i = index" (blurEvent)="onProductCardBlur()"
+				(clickCartShoppingEvent)="onClickShoppingCartDesktop($event, product.has_variants, product.id,product.description)"
+				(clickEvent)="viewProductDetailDesktop(product.id,product.description)"
+				(clickInputCartShoppingEvent)="clickInputCartShoppingDesktop($event)" (focusEvent)="onProductCardFocus()"
+				(indexSelected)="setSelectedProductCardIndex($event)" [setLockInput]="!userIsAuthenticated"
+				[(inputValue)]="basketProductQuantity[i].quantity" [data]="product" [index]="product.id" height="300"
+				[setDesktop]="true">
+			</card-product>
+		</article>
+
+		<div class="featured-products skeleton-container" *ngIf="featuredProducts.length === 0">
+			<card-product-skeleton [desktopMode]="true" *ngFor="let item of [1,1,1,1,1,1,1,1]" />
+		</div>
+
+	</section>
+	<footer-spacing height="40px"></footer-spacing>
+	<div class="display--flex width--100 align-items--center justify-content--center">
+		<div class="button-seeMore" *ngIf="page <= totalPages">
+			<ion-button class="c-button c-button--secondary c-button--outline c-button--full-width"
+				(click)="nextGetFeaturedCategoryDetails()">{{localization.localize('profile.home.orders.seeMore','ecommerce')}}</ion-button>
+		</div>
+	</div>
+
+	<footer-spacing height="40px"></footer-spacing>
+</ion-content>

@@ -1,0 +1,12 @@
+<div class="content hide-scrollbar">
+
+  <modal-base [title]="localization.localize('basket.successPay.title.desktop','ecommerce')"
+    [subtitle]="localization.localize('basket.successPay.subtitle.desktop','ecommerce')"
+    [fillLabel]="localization.localize('basket.successPay.buttom','ecommerce')"
+    [outlineLabel]="localization.localize('basket.successPay.buttom2','ecommerce')"
+    (fillButtonClickEvent)="ordersTablet()"
+    (outlineButtonClickEvent)="goShoppingTablet()"
+    [setDesktop]="true"
+    classIcon="icon icon--ok-green icon--48">
+  </modal-base>
+</div>

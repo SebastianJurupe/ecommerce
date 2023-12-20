@@ -1,0 +1,22 @@
+.text-mes {
+  width: 100%;
+}
+
+.card-component__date-container {
+  display: flex;
+  overflow-x: scroll;
+  margin-top: 28px;
+  margin-bottom: 34px;
+  padding-inline: 24px;
+}
+
+.item-delivery-time ion-checkbox {
+  --background-checked: var(--p-primary-main);
+  --border-color-checked: transparent;
+  --border-color: var(--p-secondary-outline-border);
+  --size: 24px;
+  --checkmark-color: var(--p-gray-scale-0);
+  --checkmark-width: 2px;
+  opacity: 1;
+}
+

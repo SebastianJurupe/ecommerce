@@ -1,0 +1,23 @@
+<section class="status-container">
+
+  <div
+    *ngFor="let option of options"
+    (click)="filterBy(option.id)"
+    class="option cursor-pointer">
+
+    <div
+      *ngIf="option.id !== status"
+      class="virtual-box">
+    </div>
+
+    <ion-icon
+      *ngIf="option.id === status"
+      slot="start"
+      name="checkmark">
+    </ion-icon>
+
+    <ion-text class="text--primary text--content-1-a">
+      {{ option.name }}
+    </ion-text>
+  </div>
+</section>

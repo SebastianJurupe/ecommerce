@@ -1,0 +1,12 @@
+.documents-popover {
+  padding: 24px;
+  background: var(--p-background-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.items-popover {
+  display: flex;
+  gap: 12px;
+}

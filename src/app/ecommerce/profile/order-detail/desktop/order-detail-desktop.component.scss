@@ -1,0 +1,123 @@
+.content.tablet {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/*******************************************/
+.position-tablet {
+  border-left: solid;
+  border-left-width: 1px;
+  border-left-color: var(--p-gray-scale-200);
+  padding-left: 40px;
+}
+
+.button-fit-content {
+  width: fit-content;
+}
+
+.input {
+  border: 1px solid white;
+  width: 100px;
+  height: 20px;
+}
+
+/************ SKELETONS ************/
+.status-bar-skeleton {
+  width: 100%;
+  height: 88px;
+  border-radius: 10px;
+}
+
+.menu-skeleton {
+  height: 15px;
+  width: 10%;
+}
+
+.payment-skeleton {
+  height: 24px;
+  width: 45%;
+}
+
+.typePayment-skeleton,
+.titleBilling-skeleton,
+.titleProduct-skeleton,
+.detailProducto-skeleton,
+.order-skeleton{
+  height: 24px;
+  width: 30%;
+}
+
+.titleDelivery-skeleton {
+  height: 24px;
+  width: 25%;
+}
+
+.status-container-skeleton {
+  padding: 16px 24px;
+
+  .status-skeleton {
+    height: 8px;
+  }
+  .content-skeleton {
+    margin-top: 12px;
+
+    .nameStatus-skeleton {
+      height: 20px;
+      width: 20%;
+    }
+    .information-skeleton {
+      height: 20px;
+      width: 70%;
+    }
+  }
+}
+
+.contentDelivery-skeleton {
+  padding: 14px;
+  background-color: var(--p-gray-scale-100) !important;
+
+  .delivery-skeleton {
+    width: 100%;
+    height: 24px;
+  }
+
+  .iconAddress-skeleton {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+}
+
+.icon-skeleton,
+.logPayment-skeleton {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.address-skeleton {
+  width: 60%;
+  height: 24px;
+}
+
+.date-skeleton {
+  width: 40%;
+  height: 24px;
+}
+
+.billing-skeleton {
+  width: 100%;
+  height: 30px;
+}
+
+.order-skeleton {
+  width: 200px;
+  height: 24px;
+}
+
+.price-skeleton {
+  width: 80px;
+  height: 24px;
+}

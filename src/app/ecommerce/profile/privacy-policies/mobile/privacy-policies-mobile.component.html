@@ -1,0 +1,36 @@
+<ion-content>
+
+  <header-title
+    (backEvent)="onBackButtonPressed()"
+    [back]="true"
+    [title]="localization.localize('profile.about.privacy','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div [innerHTML]="privacyPolicies.content">
+      </div>
+
+      <div *ngIf="privacyPolicies.content === ''" class="skeleton">
+        <ion-skeleton-text animated class="skeleton-100" />
+        <ion-skeleton-text animated class="skeleton-80" />
+        <ion-skeleton-text animated class="skeleton-60" />
+        <ion-skeleton-text animated class="skeleton-40" />
+        <ion-skeleton-text animated class="skeleton-100" />
+        <ion-skeleton-text animated class="skeleton-80" />
+        <ion-skeleton-text animated class="skeleton-60" />
+        <ion-skeleton-text animated class="skeleton-40" />
+        <ion-skeleton-text animated class="skeleton-100" />
+        <ion-skeleton-text animated class="skeleton-80" />
+        <ion-skeleton-text animated class="skeleton-60" />
+        <ion-skeleton-text animated class="skeleton-40" />
+        <ion-skeleton-text animated class="skeleton-100" />
+        <ion-skeleton-text animated class="skeleton-80" />
+        <ion-skeleton-text animated class="skeleton-60" />
+        <ion-skeleton-text animated class="skeleton-40" />
+      </div>
+
+    </div>
+  </div>
+</ion-content>

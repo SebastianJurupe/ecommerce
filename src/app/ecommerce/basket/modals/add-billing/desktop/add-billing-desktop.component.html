@@ -1,0 +1,129 @@
+<ion-content>
+
+    <header-title [title]="localization.localize('basket.addBillingModal.title', 'ecommerce')" position="start"
+        (iconButtonEvent)="onBackButtonPressed()" position="start"
+        classIconButton="icon icon--close-right cursor-pointer">
+    </header-title>
+
+    <div class="content hide-scrollbar">
+        <div class="width--100 hide-scrollbar">
+
+            <section *ngIf="billingService.isLoading && invoices.length === 0"
+                class=" display--flex flex--column inner-spacing--24">
+
+                <div class="skeleton" *ngFor="let item of [1,1,1,1]">
+                    <div class="container-description display--flex flex--row inner-spacing--12">
+                        <ion-skeleton-text animated class="radio-check" />
+                        <div class="colum-info display--flex flex--column inner-spacing--12">
+                            <div class="container-labels">
+                                <ion-skeleton-text animated class="description-title mb-skeleton" />
+                                <ion-skeleton-text animated class="description-fiscal" />
+                            </div>
+                            <ion-skeleton-text animated class="edit-skeleton" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section *ngIf="invoices.length !== 0 || !billingService.isLoading"
+                class="list-dateBilling display--flex flex--column inner-spacing--24">
+                <!-- <ion-radio-group #radioGroup value="custom-checked" class="display--flex flex--column inner-spacing--24"
+                    [(ngModel)]="selectedBilling.id" [allowEmptySelection]="true">
+
+                    <div *ngFor="let invoice of invoices"
+                        class="item-dateBilling display--flex align-items--start inner-spacing--12">
+
+                        <ion-radio [id]="'radio_' + invoice.id" [value]="invoice.id" (click)="selectRadio(invoice)">
+                        </ion-radio>
+
+                        <section class="info-content display--flex flex--column inner-spacing--12  width--100">
+                            <div class="info-box cursor-pointer" (click)="selectRadio(invoice)">
+                                <div class="name-invoice">
+                                    <ion-label class="text--content-1-a text--gray-scale-1000"
+                                        [for]="'radio_' + invoice.id">
+                                        {{ invoice.business_name }}
+                                    </ion-label>
+                                </div>
+                                <div class="ruc-invoice">
+                                    <ion-label class="text--content-2-a text--gray-scale-700"
+                                        [for]="'radio_' + invoice.id">
+                                        {{ invoice.tax_identifier }}
+                                    </ion-label>
+                                </div>
+                            </div>
+
+                            <div class="button-edit cursor-pointer">
+                                <ion-button class="c-button c-button--text-primary c-button--no-padding"
+                                    (click)="editBilling(invoice.id)">
+                                    <ion-label class="text--gray-scale-700 ">
+                                        {{'basket.addBillingModal.buttonEdit' | localize: 'ecommerce'}}
+                                    </ion-label>
+                                </ion-button>
+                            </div>
+                        </section>
+                    </div>
+                </ion-radio-group> -->
+                <ion-list *ngIf="invoices && invoices.length > 0">
+                    <div class=" display--flex flex--column inner-spacing--24">
+                        <div *ngFor="let invoice of invoices">
+                            <ion-checkbox [checked]="invoice.id === selectedBilling.id" labelPlacement="end"
+                                class="width--100" justify="start" (ionChange)="selectCheckbox($event, invoice)"
+                                alignment="start">
+                                <div class="display--flex flex--column inner-spacing--12">
+                                    <div>
+                                        {{ invoice.business_name }}
+                                    </div>
+                                    <div>
+                                        {{ invoice.tax_identifier }}
+                                    </div>
+                                </div>
+                            </ion-checkbox>
+                            <div class="button-edit cursor-pointer">
+                                <ion-button class="c-button c-button--text-primary c-button--no-padding"
+                                    (click)="editBilling(invoice.id)">
+                                    <ion-label class="text--gray-scale-700 ">
+                                        {{'basket.addBillingModal.buttonEdit' | localize: 'ecommerce'}}
+                                    </ion-label>
+                                </ion-button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </ion-list>
+                <div class="button-add cursor-pointer" *ngIf="invoices && invoices.length > 0">
+                    <item-option
+                        [label]="localization.localize('basket.addBillingModal.buttonAdd.desktop', 'ecommerce')"
+                        classIconButton="icon icon--plus-1 icon--24 icon--gray-scale-1000" class="width--100"
+                        (clickEvent)="createBilling()">
+                    </item-option>
+                </div>
+
+                <page-empty *ngIf="invoices.length === 0 && emptyInvoice" icon="😊" [setDesktop]="true"
+                    (clickButtonEvent)="createBilling()" [setButton]="true"
+                    labelButton="{{ 'profile.invoice.newAccount' | localize: 'ecommerce' }}"
+                    classIconButton="icon icon--plus-1"
+                    [title]="localization.localize('profile.home.billingInformation.empty','ecommerce')"
+                    [subtitle]="localization.localize('profile.home.billingInformation.empty.subtitle','ecommerce')">
+                </page-empty>
+            </section>
+        </div>
+    </div>
+
+    <footer-spacing height="80px" />
+
+    <div class="footer-base" *ngIf="invoices.length !== 0">
+        <div class="footer-base__container display--flex  inner-spacing--16">
+            <ion-button
+                class="c-button c-button--primary  c-button--outline c-button--large c-button--full-width buttom-top"
+                (click)="onBackButtonPressed()">
+                {{'basket.calendarModal.buttonCancel' | localize: 'ecommerce'}}
+            </ion-button>
+
+            <ion-button (click)="save()"
+                class="c-button c-button--primary c-button--large c-button--full-width buttom-top">
+                {{'basket.orderReceiverModal.buttonConfirm' | localize: 'ecommerce'}}
+            </ion-button>
+        </div>
+    </div>
+</ion-content>

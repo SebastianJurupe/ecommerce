@@ -1,0 +1,130 @@
+.scroll-vertical {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.scroll-vertical::-webkit-scrollbar {
+  width: 15px;
+}
+
+.scroll-vertical::-webkit-scrollbar-track {
+  background-color: var(--background);
+}
+
+.scroll-vertical::-webkit-scrollbar-thumb {
+  background-color: var(--p-gray-scale-100);
+  border-radius: 10px;
+  padding: 10px;
+  border: 3px solid var(--background);
+}
+
+.addresses-list {
+  flex: 1;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 60px;
+
+  .address {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--p-gray-scale-200);
+    padding: 24px;
+
+    &:hover {
+      background-color: var(--p-gray-scale-100);
+    }
+
+    .item-address {
+      width: 100%;
+      max-height: 50px;
+
+      ion-label {
+        width: 100%;
+        height: 25px;
+        display: flex;
+        align-items: center;
+      }
+
+      ion-label:nth-child(2) {
+        span {
+          display: inline-block;
+          padding: 4px;
+          background-color: var(--p-success-low);
+          color: var(--p-success-shade);
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .item-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 24px;
+
+      button {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        background-color: unset;
+        height: 24px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.add-address {
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    background-color: var(--p-primary-main);
+
+    ion-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--p-primary-contrast);
+    }
+
+    ion-label {
+      color: var(--p-primary-contrast);
+    }
+  }
+}
+
+.favorite-items {
+  display: grid;
+  gap: 24px;
+}
+
+//SKELETON
+.order-skeleton,
+.name-skeleton,
+.edit-skeleton,
+.cancel-skeleton {
+  height: 24px;
+}
+
+.order-skeleton {
+  width: 20%;
+}
+
+.name-skeleton {
+  width: 50%;
+}
+
+.edit-skeleton {
+  width: 10%;
+}
+
+.cancel-skeleton {
+  width: 10%;
+}

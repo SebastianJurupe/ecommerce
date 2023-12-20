@@ -1,0 +1,81 @@
+<ion-content>
+  <header-title [close]="true" (closeEvent)="close()"
+    [title]="localization.localize('profile.register.title', 'ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <div class="content-form display--flex flex--column inner-spacing--40">
+        <div class="content-form-input display--flex flex--column inner-spacing--24">
+          <div class="content-name">
+
+            <input-floating-label [label]="localization.localize('profile.register.labelName', 'ecommerce')" type="text"
+              [(value)]="registerForm.name" (modelChangeEvent)="onValidateName()">
+            </input-floating-label>
+          </div>
+
+          <div class="content-phone">
+            <input-flag [mask]="country.mask"
+              [floatLabel]="localization.localize('profile.register.labelPhone', 'ecommerce')" [code]="country.code"
+              [srcFlag]="country.flag" [label]="country.description" (inputValueChangeEvent)="onSetPhoneValue($event)"
+              [(value)]="registerForm.phone" (onComplete)="handleInputComplete($event)">
+            </input-flag>
+          </div>
+
+          <div class="content-email">
+            <input-floating-label [label]="localization.localize('profile.register.labelEmail', 'ecommerce')"
+              type="text" [(value)]="registerForm.email" (modelChangeEvent)="onValidateEmail()">
+            </input-floating-label>
+          </div>
+          <div class="content-password">
+            <div class="content-input">
+              <input-floating-label [label]="localization.localize('profile.register.labelPassword', 'ecommerce')"
+                [type]="inputType" [(value)]="registerForm.password" (modelChangeEvent)="onCheckPasswordRequirements()">
+              </input-floating-label>
+
+              <ion-icon *ngIf="registerForm.password && inputType === 'password'" (click)="onToggleInput('text')"
+                class="icon icon--hide icon--no-padding input__icon-position">
+              </ion-icon>
+              <ion-icon *ngIf="registerForm.password && inputType === 'text'" (click)="onToggleInput('password')"
+                class="icon icon--eye-open icon--no-padding input__icon-position">
+              </ion-icon>
+            </div>
+
+            <ion-label *ngIf="showPasswordInstructions"
+              class="text--content-3-a text--gray-scale-700 text-align--justify">
+              {{ 'profile.register.instructions' | localize: 'ecommerce' }}
+            </ion-label>
+          </div>
+
+        </div>
+
+        <div class="content-button display--flex flex--column inner-spacing--24">
+          <ion-button class="c-button c-button--large c-button--primary c-button--full-width" (click)="next()"
+            [disabled]="validate()">
+
+            <ng-container *ngIf="isLoading">
+              <ion-spinner name="crescent" />
+            </ng-container>
+
+            <span *ngIf="!isLoading">
+              {{'profile.register.buttonNext' | localize: 'ecommerce'}}
+            </span>
+
+          </ion-button>
+
+          <div class="text-conditions display--flex text-align--center">
+            <ion-label class="text--content-2-a text--gray-scale-700">
+              {{'profile.register.labelText' | localize: 'ecommerce'}}
+              <span class="text--gray-scale-1000" (click)="termsConditions()">
+                {{'profile.register.labelTextTerms' | localize: 'ecommerce'}}
+              </span> {{'profile.register.labelTextAnd' | localize: 'ecommerce'}}
+              <span class="text--gray-scale-1000" (click)="privacyPolicies()">
+                {{'profile.register.labelTextPolicy' | localize: 'ecommerce'}}
+              </span>
+            </ion-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

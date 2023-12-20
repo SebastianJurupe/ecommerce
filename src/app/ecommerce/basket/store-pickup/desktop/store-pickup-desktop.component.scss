@@ -1,0 +1,58 @@
+.desktop {
+  display: flex;
+  gap: 44px;
+}
+
+.content,
+.skeletons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.basket-item {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.auto-size {
+  --height: calc(100% - var(--keyboard-height)) !important;
+  --keyboard-offset: 0 !important;
+}
+
+.line {
+  height: 740px;
+  border: 1px solid var(--p-gray-scale-200);
+}
+
+.content-detail {
+  width: 613px;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+.success {
+  color: var(--p-success-main);
+}
+
+.summary-container {
+  width: 467px !important;
+}
+
+.content-store {
+  background-color: var(--p-success-low);
+  text-align: center;
+  padding: 16px;
+  border-radius: 10px;
+  
+  .content {
+    color: var(--p-success-shade);
+  }
+}
+
+//SKELETON
+.price-skeleton {
+  width: 100px;
+  height: 15px;
+}

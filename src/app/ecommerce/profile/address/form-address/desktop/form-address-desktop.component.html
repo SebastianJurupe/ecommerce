@@ -1,0 +1,144 @@
+<ion-content scrollY="false">
+
+  <header-title
+    position="start"
+    [title]="this.edit ? localization.localize('profile.address.editAddress','ecommerce') : localization.localize('profile.address.newAddress','ecommerce')"
+    classIconButton="icon icon--close-right cursor-pointer"
+    (iconButtonEvent)="dialog.dismiss('cancel')">
+  </header-title>
+
+  <div class="content">
+    <section class="inputs-container display--flex flex--column inner-spacing--24 width-100">
+
+      <!-- NAME -->
+      <input-floating-label
+        [setAutofocus]="true"
+        [label]="localization.localize('profile.address.formName', 'ecommerce')"
+        [(value)]="addressForm.description">
+      </input-floating-label>
+
+      <!-- COUNTRY -->
+      <item-navigation-line
+        [setArrow]="false"
+        [srcFlag]="country.flag"
+        [label]="country.description"
+        [floatLabel]="localization.localize('general.country', 'ecommerce')">
+      </item-navigation-line>
+
+      <!-- ADDRESS -->
+      <input-floating-label
+        class="cursor-pointer"
+        [label]="localization.localize('profile.address.formAddress', 'ecommerce')"
+        [(value)]="addressForm.address"
+        [value]="addressForm.address | textSlice: 40"
+        (click)="showMap()"
+        [readonly]="true">
+      </input-floating-label>
+
+    </section>
+
+    <section class="display--flex flex--column inner-spacing--40 width-100 mt-24">
+      <article class="display--flex flex--column inner-spacing--24">
+
+        <ng-container *ngIf="country.id === 'PE'">
+          <!-- DEPARTMENT -->
+          <item-navigation-line
+            [floatLabel]="country.national_division[0]"
+            label="{{ addressForm.extra[0].value ? addressForm.extra[0].value : country.national_division[0] }}"
+            (clickEvent)="openDepartmentsModal()"
+            class="cursor-pointer">
+          </item-navigation-line>
+          <!-- DEPARTMENT -->
+
+          <!-- PROVINCE -->
+          <item-navigation-line
+            [floatLabel]="country.national_division[1]"
+            label="{{ addressForm.extra[1].value ? addressForm.extra[1].value : country.national_division[1] }}"
+            (clickEvent)="openProvincesModal()"
+            class="cursor-pointer">
+          </item-navigation-line>
+          <!-- PROVINCE -->
+
+          <!-- DISTRICT -->
+          <item-navigation-line
+            [floatLabel]="country.national_division[2]"
+            label="{{ addressForm.extra[2].value ? addressForm.extra[2].value : country.national_division[2] }}"
+            (clickEvent)="openDistrictsModal()"
+            class="cursor-pointer">
+          </item-navigation-line>
+          <!-- DISTRICT -->
+        </ng-container>
+
+        <ng-container *ngIf="country.id !== 'PE'">
+          <input-floating-label
+            [label]="country.national_division[0]"
+            [(value)]="addressForm.extra[0].value"
+            (modelChangeEvent)="handleShowCompleteForm()"
+            class="cursor-pointer">
+          </input-floating-label>
+
+          <input-floating-label
+            [label]="country.national_division[1]"
+            [(value)]="addressForm.extra[1].value"
+            (modelChangeEvent)="handleShowCompleteForm()"
+            class="cursor-pointer">
+          </input-floating-label>
+
+          <input-floating-label
+            *ngIf="country.national_division[2]"
+            [label]="country.national_division[2]"
+            [(value)]="addressForm.extra[2].value"
+            (modelChangeEvent)="handleShowCompleteForm()"
+            class="cursor-pointer">
+          </input-floating-label>
+
+        </ng-container>
+
+        <!-- POSTAL CODE -->
+        <input-floating-label
+          [label]="localization.localize('profile.address.formPostalCode', 'ecommerce')"
+          type="tel"
+          [(value)]="addressForm.postal_code">
+        </input-floating-label>
+        <!-- POSTAL CODE -->
+      </article>
+
+      <!-- DEFAULT -->
+      <article class="default display--flex align-items--center justify-content--space-between">
+        <ion-text class="text--primary text--content-1-a">
+          {{ 'profile.address.formDefault' | localize: 'ecommerce' }}
+        </ion-text>
+        <ion-toggle
+          [(ngModel)]="addressForm.is_default"
+          class="c-toggle c-toggle--primary">
+        </ion-toggle>
+      </article>
+    </section>
+  </div>
+
+  <footer-spacing height="80px"></footer-spacing>
+
+  <div class="footer-base ">
+    <div class="footer-base__container">
+      <div class="buttons-container display--flex align-items--start inner-spacing--16">
+        <ion-button class="c-button c-button--primary c-button--outline c-button--large width--50"
+          (click)="dialog.dismiss('cancel')">
+          {{ 'profile.modalLogout.outlineLabel' | localize: 'ecommerce' }}
+        </ion-button>
+        <ion-button
+          (click)="submit()"
+          [disabled]="disableSaveButton()"
+          class="c-button c-button--large c-button--primary c-button--full-width">
+
+          <ng-container *ngIf="isLoading">
+            <ion-spinner name="crescent" />
+          </ng-container>
+
+          <span *ngIf="!isLoading">
+            {{ 'profile.invoice.formSave' | localize: 'ecommerce' }}
+          </span>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

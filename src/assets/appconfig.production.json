@@ -1,0 +1,29 @@
+{
+  "services": {
+    "auth": {
+      "path": "https://auth.geor.cloud/v1",
+      "version": "v1"
+    },
+    "profile": {
+      "path": "https://profile.geor.cloud/v1",
+      "version": "v1"
+    },
+    "inbox": {
+      "path": "https://inbox.geor.cloud/v1",
+      "version": "v1"
+    },
+    "store": {
+      "path": "https://store.geor.cloud/v1",
+      "version": "v1"
+    },
+    "refresh": {
+      "path": "https://auth.geor.cloud/v1/api/TenantAuthentication/RefreshToken",
+      "version": "v1"
+    }
+  },
+  "multitenancy": {
+    "enabled": true,
+    "tenantId": 14
+  },
+  "appBaseUrl": "https://geor-basic.group-utility.com/"
+}

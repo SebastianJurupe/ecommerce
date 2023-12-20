@@ -1,0 +1,11 @@
+<div class="chat-input__resource">
+    <div class="chat-input__resource-content">
+        <img class="chat-input__resource-icon" aria-label="Upload Resource" [src]="resource.url">
+        <button (click)="onRemove.emit()" class="chat-input__resource-action" aria-label="Close Button" type="button">
+            <ion-icon class="chat-input__resource-action-icon icon icon--close-right" color="dark"></ion-icon>
+        </button>
+    </div>
+    <label class="chat-input__resource-label">
+        {{resource.name}}
+    </label>
+</div>

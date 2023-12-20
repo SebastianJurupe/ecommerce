@@ -1,0 +1,49 @@
+<ion-content>
+
+  <header-title [close]="true" (closeEvent)="onBackButtonPressed()"
+    [title]="localization.localize('basket.typeMethods.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--28 pt-20" >
+        <section class="advice">
+          <ion-text class="text--secondary text--content-2-a">
+            {{'basket.typeMethods.textMessage' | localize: 'ecommerce'}}
+          </ion-text>
+        </section>
+
+        <section class="cards-container">
+          <article class="method-pay" *ngFor="let card of cards">
+            <img class="method-pay-logo" src="/assets/general/logo-visa.svg" alt="Logo Method Pay">
+
+            <ion-text class="method-pay-description text--primary">
+              {{ card.description }}
+            </ion-text>
+          </article>
+        </section>
+
+        <section class="box-container">
+          <div class="card-form-field cvv">
+            <ion-input type="tel" maxlength="3" placeholder="CVV" [(ngModel)]="cvv"
+              (ngModelChange)="checkCvvCompletion()">
+            </ion-input>
+            <ion-icon (click)="openSecurityCodeModal()" class="icon icon--danger-circle icon--gray-scale-700 icon--20">
+            </ion-icon>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button (click)="payNotMade()" [disabled]="!cvvCompleted"
+        class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'basket.paymentMethods.buttomPayment' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

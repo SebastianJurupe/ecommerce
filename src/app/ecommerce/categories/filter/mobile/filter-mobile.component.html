@@ -1,0 +1,87 @@
+<ion-content>
+  <header-title (click)="closeModal()" [close]="true"
+    [title]="localization.localize('categories.filter.title','ecommerce')"></header-title>
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column  inner-spacing--40">
+
+        <section class="display--flex flex--column inner-spacing--16" *ngIf="!openedFromCategoryProducts">
+          <item-navigation classLabel="text--content-1-c" (click)="onToggleCategories()"
+            [arrowDirection]="showCategories ? 'down' : 'up'"
+            [label]="localization.localize('categories.filter.textCategory','ecommerce')">
+          </item-navigation>
+
+          <div *ngIf="showCategories"
+            class="display--flex align-items--start justify-content--start inner-spacing--10 category">
+            <button-option *ngFor="let category of categories" [label]="category.name"
+              [bordered]="selectedCategory === category.slug" size="small"
+              (click)="onSelectCategory(category.slug,category.id)">
+            </button-option>
+          </div>
+        </section>
+
+        <section *ngFor="let variant of variantsCommonsWithValues" class="display--flex flex--column inner-spacing--16">
+          <item-navigation classLabel="text--content-1-c" (click)="onToggleVariants(variant.name)"
+            [arrowDirection]="variantExpansionState[variant.name] ? 'down' : 'up'" [label]="variant.name">
+          </item-navigation>
+
+          <div *ngIf="variantExpansionState[variant.name]"
+            class="display--flex align-items--start justify-content--start inner-spacing--10 category">
+            <ng-container *ngIf="variant.name === 'Color'">
+              <button-option *ngFor="let value of variant.codes" [label]="''" [background]="value"
+                [bordered]="selectedColor === value" size="small" (click)="onToggleColorSelection(value)">
+              </button-option>
+            </ng-container>
+
+            <ng-container *ngIf="variant.name !== 'Color'">
+              <button-option *ngFor="let value of variant.values" [label]="value"
+                [bordered]="isVariantSelected(variant.name, value)" size="small"
+                (click)="onSelectVariant(variant.name, value)">
+              </button-option>
+
+
+            </ng-container>
+          </div>
+        </section>
+
+        <section class="display--flex flex--column  inner-spacing--16">
+          <item-navigation classLabel="text--content-1-c" (click)="onTogglePrice()"
+            [arrowDirection]="showPrice ? 'down' : 'up'"
+            [label]="localization.localize('categories.filter.textPrices','ecommerce')">
+          </item-navigation>
+
+          <div *ngIf="showPrice">
+
+            <div class="display--flex justify-content--space-between">
+              <input-range-price label="Min" placeholder="S/ 0.00" [value]="selectedMinPrice"
+                (inputEvent)="onInput($event, 'Min')">
+              </input-range-price>
+
+              <input-range-price label="Max" placeholder="S/ 0.00" [value]="selectedMaxPrice"
+                (inputEvent)="onInput($event, 'Max')">
+              </input-range-price>
+            </div>
+
+          </div>
+        </section>
+      </div>
+      <footer-spacing height="64px"></footer-spacing>
+      <div class="footer-base">
+        <div class="footer-base__container">
+
+          <div class="display--flex align-items--start inner-spacing--16">
+            <ion-button class="c-button c-button--primary c-button--outline c-button--large width--50"
+              (click)="onCleanFilters()">
+              {{'categories.filter.textClean' | localize: 'ecommerce'}}
+            </ion-button>
+
+            <ion-button class="c-button c-button--primary c-button--large width--50" (click)="onApply()">
+              {{'categories.filter.textFilter' | localize: 'ecommerce'}}
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

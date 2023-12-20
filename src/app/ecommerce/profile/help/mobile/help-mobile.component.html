@@ -1,0 +1,25 @@
+<ion-content>
+
+  <header-title
+   [back]="true"
+   (backEvent)="onBackButtonPressed()"
+   [title]="localization.localize('profile.help.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <section class="options">
+        <div
+          *ngFor="let option of options"
+          (click)="option.method()"
+          class="option">
+          <ion-text class="text--primary text--content-1-a">
+            {{ option.name }}
+          </ion-text>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</ion-content>

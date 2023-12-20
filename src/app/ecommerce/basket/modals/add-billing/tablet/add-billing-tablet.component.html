@@ -1,0 +1,53 @@
+<ion-content>
+  <header-title position="start" [title]="localization.localize('basket.addBillingModal.title', 'ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="content">
+      <div class="list-dateBilling" class="display--flex flex--column inner-spacing--24">
+        <ion-radio-group #radioGroup value="custom-checked" class="display--flex flex--column inner-spacing--24"
+          (ionChange)="changeRadio()">
+          <div class="item-dateBilling display--flex align-items--start inner-spacing--12"
+            *ngFor="let company of companies" (click)="selectRadio(company)">
+            <ion-radio [id]="'radio_' + company.value" value="{{company.value}}"></ion-radio>
+            <div class="info-content display--flex flex--column inner-spacing--12">
+              <div class="info-box">
+                <div class="name-company">
+                  <ion-label class="text--content-1-a text--gray-scale-1000" [for]="'radio_' + company.value">
+                    {{ company.name }}
+                  </ion-label>
+                </div>
+                <div class="ruc-company">
+                  <ion-label class="text--content-2-a text--gray-scale-700" [for]="'radio_' + company.value">
+                    {{ company.fiscalNumber }}
+                  </ion-label>
+                </div>
+              </div>
+              <div class="button-edit">
+                <ion-button class="c-button c-button--text-primary c-button--no-padding" (click)="billingForm()">
+                  <ion-label class="text--gray-scale-700 ">{{'basket.addBillingModal.buttonEdit' | localize:
+                    'ecommerce'}}</ion-label>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </ion-radio-group>
+        <div class="button-add">
+          <item-option [label]="localization.localize('basket.addBillingModal.buttonAdd', 'ecommerce')"
+            classIconButton="icon icon--plus-1 icon--24 icon--gray-scale-1000" class="width--100"
+            (clickEvent)="billingForm()"></item-option>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer-spacing height="80px"></footer-spacing>
+  <div class="footer-base">
+    <div class="footer-base__container display--flex flex--row inner-spacing--16">
+      <ion-button (click)="save()"
+      class="c-button c-button--secondary c-button--outline c-button--large c-button--full-width">
+      {{'basket.addBillingModal.buttonCancel' | localize: 'ecommerce'}}</ion-button>
+      <ion-button (click)="save()" class="c-button c-button--primary c-button--large c-button--full-width buttom-top">
+        {{'basket.addBillingModal.buttonConfirm' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

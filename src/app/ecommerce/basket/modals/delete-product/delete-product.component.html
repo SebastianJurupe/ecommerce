@@ -1,0 +1,11 @@
+<div class="content content--desktop">
+  <modal-delete
+    (fillButtonClickEvent)="deleteClick()"
+    (outlineButtonClickEvent)="cancelClick()"
+    [title]="localization.localize('basket.modal.deleteTitle','ecommerce')"
+    [subtitle]="localization.localize('basket.modal.deleteSubTitle','ecommerce')"
+    [fillLabel]="localization.localize('general.delete','ecommerce')"
+    [outlineLabel]="localization.localize('general.cancel','ecommerce')"
+    [setDesktop]="desktop">
+  </modal-delete>
+</div>

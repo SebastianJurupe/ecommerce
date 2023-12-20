@@ -1,0 +1,48 @@
+.container {
+    background: var(--p-background-gray);
+}
+
+.auto-size-content {
+    padding-bottom: 56px !important;
+}
+
+.featured-products-skeleton-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.for-you-skeleton {
+    width: 80px;
+    height: 80px;
+
+    &-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    &-price {
+        width: 80px;
+        height: 16px;
+        margin-top: 10px;
+    }
+}
+
+ion-content {
+    --background: var(--p-background-gray) !important
+}
+
+.header__branch {
+    height: auto;
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--p-background-primary)
+}
+
+.header__logo {
+    width: 140px;
+    height: 60px;
+}

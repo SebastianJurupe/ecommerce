@@ -1,0 +1,49 @@
+<ion-content>
+  <header-title
+    (backEvent)="onBackButtonPressed()" [back]="true"
+    [title]="localization.localize('profile.setting.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--24">
+
+        <item-navigation (clickEvent)="navigateToSection('personal-information')"
+          [label]="localization.localize('profile.setting.personalInf','ecommerce')">
+        </item-navigation>
+
+        <item-navigation (clickEvent)="navigateToSection('language')"
+          [label]="localization.localize('profile.setting.language','ecommerce')" [note]="selectedLanguage">
+        </item-navigation>
+
+        <item-navigation (clickEvent)="navigateToSection('change-mode')"
+          [label]="localization.localize('profile.setting.screenMode','ecommerce')" [note]="selectedMode">
+        </item-navigation>
+
+        <item-navigation (clickEvent)="navigateToSection('about')"
+          [label]="localization.localize('profile.setting.about','ecommerce')">
+        </item-navigation>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container display--flex justify-content--center align-items--center">
+
+      <ion-button class="c-button c-button--large c-button--text-delete c-button--extra-small c-button--no-padding-x"
+        (click)="onLogOut()">
+        <ion-icon slot="start" class="icon icon--logout icon--delete">
+        </ion-icon>
+
+        <ng-container *ngIf="isLoading">
+          <ion-spinner class="logout-spinner" name="crescent" />
+        </ng-container>
+
+        <span *ngIf="!isLoading">
+          {{'profile.setting.logout' | localize: 'ecommerce'}}
+        </span>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

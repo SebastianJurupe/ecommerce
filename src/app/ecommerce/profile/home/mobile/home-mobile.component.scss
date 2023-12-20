@@ -1,0 +1,46 @@
+.padding-35 {
+    padding-bottom: 35px
+}
+
+.item-popover {
+    display: flex;
+    padding-left: 0px;
+    align-items: center;
+    gap: 12px;
+}
+
+.popover {
+    --padding-top: 24px;
+    --padding-end: 24px;
+    --padding-bottom: 24px;
+    --padding-start: 24px;
+    --background: var(--p-background-secondary) !important
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.icon-profile-config {
+    display: flex;
+    justify-content: space-between;
+    min-height: 76px;
+}
+
+.skeleton-name {
+    width: 50%;
+    height: 24px;
+}
+
+.country-skeleton {
+    width: 24px;
+    height: 20px;
+}
+
+.country-name-skeleton {
+    width: 30px;
+    height: 16px;
+}

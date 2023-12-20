@@ -1,0 +1,15 @@
+<div class="content display--flex flex--column align-items--center 
+">
+
+  <modal-base 
+    [title]="localization.localize('home.addModal.added','ecommerce')" 
+    [subtitle]="localization.localize('home.addModal.message','ecommerce')" 
+    [fillLabel]="localization.localize('home.addModal.basket','ecommerce')"  
+    [outlineLabel]="localization.localize('home.addModal.buying','ecommerce')"
+    (fillButtonClickEvent)="handleOptions('viewBasket')"
+    (outlineButtonClickEvent)="handleOptions('keepBuying')"
+    [setDesktop]="false"
+    classIcon="icon icon--ok-green icon--48"
+  >
+  </modal-base>
+</div>

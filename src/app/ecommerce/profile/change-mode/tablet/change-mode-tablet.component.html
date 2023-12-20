@@ -1,0 +1,31 @@
+<section class="languages-container">
+
+    <div (click)="setTheme('system');selectMode(1)" class="option cursor-pointer">
+        <div *ngIf="mode !== 'system'" class="virtual-box">
+        </div>
+        <ion-icon class="icon icon--check" *ngIf="mode === 'system'"></ion-icon>
+        <ion-label class="text--content-1-a">
+            {{'profile.changeMode.automatic' | localize: 'ecommerce'}}
+        </ion-label>
+
+    </div>
+
+    <div (click)="setTheme('light');selectMode(2)" class="option cursor-pointer">
+        <div *ngIf="mode !== 'light'" class="virtual-box">
+        </div>
+        <ion-icon class="icon icon--check" *ngIf="mode === 'light'"></ion-icon>
+        <ion-label class="text--content-1-a">
+            {{'profile.changeMode.light' | localize: 'ecommerce'}}
+        </ion-label>
+    </div>
+
+    <div (click)="setTheme('dark');selectMode(3)" class="option cursor-pointer">
+        <div *ngIf="mode !== 'dark'" class="virtual-box">
+        </div>
+        <ion-icon class="icon icon--check" *ngIf="mode === 'dark'"></ion-icon>
+        <ion-label class="text--content-1-a">
+            {{'profile.changeMode.dark' | localize: 'ecommerce'}}
+        </ion-label>
+    </div>
+
+</section>

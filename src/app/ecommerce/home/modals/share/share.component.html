@@ -1,0 +1,34 @@
+<section class="popover-container display--flex flex--column width--100">
+  <div
+    class="display--flex flex--row justify-content--space-between text-header width--100"
+  >
+    <ion-text class="text--content-0-c">
+      {{ "home.ShareModal.title" | localize : "ecommerce" }}
+    </ion-text>
+    <ion-icon class="icon icon--close-right cursor-pointer" />
+  </div>
+
+  <!-- <div class="button-medias display--flex inner-spacing--14">
+    <button-social-media
+      *ngFor="let button of iconSocial"
+      [classIcon]="button.classIcon">
+    </button-social-media>
+  </div> -->
+
+  <div class="display--flex">
+    <div class="container-link display--flex align-items--center">
+      <ion-text class="text--content-1-a text--secondary">
+        {{ formattedPath | textSlice : 25 }}
+      </ion-text>
+    </div>
+    <ion-button
+      (click)="copy()"
+      class="button-copy c-button c-button--primary display--flex align-items--center cursor-pointer"
+    >
+      <ion-icon class="icon icon--copy" />
+      <ion-tex class="text-copy">
+        {{ "home.ShareModal.copy" | localize : "ecommerce" }}
+      </ion-tex>
+    </ion-button>
+  </div>
+</section>

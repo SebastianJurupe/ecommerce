@@ -1,0 +1,176 @@
+<ion-content>
+  <header-title [close]="true" (closeEvent)="onBackButtonPressed()" classIconButton="icon icon--buy"
+    [badge]="count$ | async" (iconButtonEvent)="goToBasket(product.id)">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <!-- SLIDES -->
+      <section class="slides-container image width--full-page">
+        <ion-skeleton-text *ngIf="product.files.length === 0" class="slide-skeleton" animated />
+
+        <swiper-container *ngIf="product.files.length !== 0" #swiperContainer [pagination]="true">
+          <swiper-slide class="slide" *ngFor="let file of product.files">
+            <img class="slide__image" [src]="file.path" alt="Slide" />
+          </swiper-slide>
+        </swiper-container>
+      </section>
+      <!-- SLIDES -->
+
+      <!-- DESCRIPTION -->
+      <section class="product-description display--flex justify-content--space-between">
+        <div *ngIf="product.description.length === 0" class="text-description-skeleton">
+          <ion-skeleton-text animated />
+        </div>
+
+        <div *ngIf="product.additional !== null" class="product-description__content text--content-1-a"
+          [innerHTML]="product.additional.value"></div>
+
+        <div *ngIf="product.additional === null">
+          <ion-text>{{ product.description }}</ion-text>
+        </div>
+
+        <ion-icon (click)="share()" class="icon icon--share"> </ion-icon>
+      </section>
+      <!-- DESCRIPTION -->
+
+      <!-- PRICES -->
+      <section *ngIf="product.prices.length !== 0"
+        class="prices display--flex inner-spacing--16 set-scroll hide-scrollbar width--full-page">
+        <ng-container *ngIf="product.id !== 0">
+          <card-price *ngFor="let price of product.prices" [currencySymbol]="product.currency.symbol"
+            [price]="+price.price" [subprice]="
+              +price.offer_price === 0 ? undefined : price.offer_price
+            " [stock]="
+              price.min_quantity +
+              ' - ' +
+              price.max_quantity +
+              ' ' +
+              product.unit_type.description
+            ">
+          </card-price>
+        </ng-container>
+      </section>
+
+      <section *ngIf="
+          (!product.prices || product.prices.length === 0) &&
+          product.price !== 0
+        " class="prices display--flex inner-spacing--16 set-scroll hide-scrollbar width--full-page">
+        <card-price [currencySymbol]="product.currency.symbol" [price]="product.price" [subprice]="
+            product.offer_price === 0 ? undefined : product.offer_price
+          ">
+        </card-price>
+      </section>
+      <!-- PRICES -->
+
+      <!-- VARIANTS -->
+      <section class="variants" (click)="openVariants(product.id,product.description)">
+        <div class="display--flex justify-content--space-between align-items--center">
+          <ion-text class="text--content-1-b">
+            {{ "home.detailProduct.variations" | localize : "ecommerce" }}
+          </ion-text>
+          <ion-icon class="icon icon--arrow-geor-right-large icon--14"></ion-icon>
+        </div>
+
+        <div class="variants-info">
+          <ng-container *ngFor="let attribute of attributeVariants; let last = last">
+            <ion-text class="text--content-1-a">{{ attribute }}</ion-text>
+            <ng-container *ngIf="!last">, </ng-container>
+          </ng-container>
+        </div>
+
+        <!-- <div
+          class="product-variants display--flex inner-spacing--12 set-scroll hide-scrollbar width--full-page"
+        >
+          <div
+            *ngIf="product.files.length === 0"
+            class="display--flex inner-spacing--16"
+          >
+            <div class="skeleton" *ngFor="let item of [1, 1, 1]">
+              <ion-skeleton-text animated class="image-skeleton-variants" />
+            </div>
+          </div>
+          <div
+            *ngFor="let variant of product.files; let i = index"
+            (click)="selectProduct(i)"
+          >
+            <product-preview
+              [src]="variant.path"
+              [bordered]="selectedProductIndex === i"
+            >
+            </product-preview>
+          </div>
+
+          <product-preview [dots]="true" (click)="openVariants(product.id)">
+          </product-preview>
+        </div> -->
+      </section>
+      <!-- VARIANTS -->
+
+      <!-- DETAILS -->
+      <section (click)="goToDetails(product.id,product.description)"
+        class="details display--flex flex--column justify-content--space-between">
+        <div class="display--flex justify-content--space-between">
+          <ion-text class="text--content-1-b">
+            {{ "home.detailProduct.details" | localize : "ecommerce" }}
+          </ion-text>
+
+          <ion-icon class="icon icon--arrow-geor-down-large icon--14" [class.rotate-90]="showDetailComponent">
+          </ion-icon>
+        </div>
+      </section>
+      <!-- DETAILS -->
+
+      <!-- DELIVERY TYPES -->
+      <section class="delivery-type">
+        <div class="title display--flex justify-content--space-between" (click)="toggleTypesVisibility()">
+          <ion-text class="text--content-1-b">
+            {{ "home.detailProduct.delivery" | localize : "ecommerce" }}
+          </ion-text>
+
+          <ion-icon class="icon icon--arrow-geor-up-large icon--14" [class.rotate-90]="isTypesHidden">
+          </ion-icon>
+        </div>
+
+        <div class="types" [ngClass]="{ hidden: isTypesHidden }">
+          <div (click)="goTodeliveryTypeMethod(deliveryType)" *ngFor="let deliveryType of deliveryTypes"
+            class="home display--flex inner-spacing--16">
+            <ion-icon [class]="deliveryType.icon" />
+            <ion-text class="text--content-1-a">
+              {{ deliveryType.description }}
+            </ion-text>
+          </div>
+        </div>
+      </section>
+      <!-- DELIVERY TYPES -->
+
+      <!-- EXCHANGES -->
+      <section class="exchanges display--flex justify-content--space-between" (click)="navigateToReturns()">
+        <ion-text class="text--content-1-b">
+          {{ "home.detailProduct.exchanges" | localize : "ecommerce" }}
+        </ion-text>
+        <ion-icon class="icon icon--arrow-geor-down-large icon--14"></ion-icon>
+      </section>
+      <!-- EXCHANGES -->
+    </div>
+  </div>
+  <footer-spacing height="85px"></footer-spacing>
+
+  <!-- FOOTER -->
+  <div class="footer-base footer-base--no-toolbar">
+    <div class="footer-base__container display--flex flex--row align-items--center inner-spacing--24">
+      <!-- <ion-icon class="icon icon--chat" (click)="openChat()"> </ion-icon> -->
+
+      <ion-icon (click)="isFavorite ? deleteFavorite() : addToFavorites()" class="hearth" [ngClass]="{
+          'icon icon--heart-outline': !isFavorite ,
+          'icon icon--heart-fill icon--delete': isFavorite,
+        }" />
+
+      <ion-button (click)="openVariants(product.id,product.description)"
+        class="button-buy c-button c-button--large c-button--primary width--100">
+        {{ "home.detailProduct.buy" | localize : "ecommerce" }}
+      </ion-button>
+    </div>
+  </div>
+  <!-- FOOTER -->
+</ion-content>

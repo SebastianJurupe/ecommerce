@@ -1,0 +1,33 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('profile.infPersonal.phone','ecommerce')" position="start"
+    (iconButtonEvent)="dismiss()" classIconButton="icon icon--close-right cursor-pointer">
+  </header-title>
+
+  <div class="container">
+    <div class="scroll-hide width--100">
+      <div>
+        <input-floating-label [label]="localization.localize('profile.infPersonal.modalPhone','ecommerce')"
+          type="number" [(value)]="phone">
+        </input-floating-label>
+      </div>
+
+      <div class="footer-base">
+        <div class="footer-base__container">
+
+          <div class="display--flex align-items--start inner-spacing--16">
+            <ion-button class="c-button c-button--primary c-button--outline c-button--large width--50"
+              (click)="dismiss()">
+              {{'profile.modalLogout.outlineLabel' | localize: 'ecommerce'}}
+            </ion-button>
+
+            <ion-button [disabled]="phone.length === 0 || isLoading"
+              class="c-button c-button--primary c-button--large width--50" (click)="submit()">
+              {{'profile.modalPassw.save' | localize: 'ecommerce'}}
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

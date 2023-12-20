@@ -1,0 +1,24 @@
+.skeleton {
+  display: flex;
+  flex-direction: column;
+
+  &-100 {
+    width: 100%;
+  }
+
+  &-80 {
+    width: 80%;
+  }
+
+  &-60 {
+    width: 60%;
+  }
+
+  &-40 {
+    width: 40%;
+  }
+}
+
+ion-skeleton-text {
+  margin-bottom: 5px;
+}

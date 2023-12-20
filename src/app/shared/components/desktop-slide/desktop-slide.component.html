@@ -1,0 +1,22 @@
+<div class="aside-container display--flex flex--column">
+
+  <title-section [title]="localization.localize('profile.setting.myAccount','ecommerce')" />
+
+  <section class="options">
+
+    <section
+      *ngFor="let resource of resources"
+      (click)="resource.method()"
+      class="option">
+      <item-option
+        [amount]="resource.badge"
+        [label]="resource.name"
+        [classIconButton]="resource.format"
+        class="width--100 cursor-pointer hovered"
+        [ngClass]="{
+          'selected': resource.id === selectedResource
+        }">
+      </item-option>
+    </section>
+  </section>
+</div>

@@ -1,0 +1,94 @@
+#container {
+  $day: 0px;
+  text-align: center;
+
+  .swiper-pagination-bullet {
+    background-color: yellow;
+  }
+
+
+  .card-component__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+  }
+
+  .card-component__title {
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--p-gray-scale-1000);
+    color: var(--p-background-primary);
+    ;
+    height: 50px;
+    width: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+  }
+
+  .card-component__details {
+    display: flex;
+
+    padding: 10px 0 10px 0;
+  }
+
+  .date {
+    padding: 10px;
+    font-size: 13px;
+    color: #8c8c8c;
+  }
+
+
+  .safe-area-bottom {
+
+    --safe-area-margin-bottom: 50px;
+
+  }
+
+
+  :root {
+    --safe-area-margin-bottom: 300px !important;
+
+    #aemc {
+      --safe-area-margin-bottom: 300px !important;
+      margin-bottom: 300px !important;
+    }
+  }
+
+  app-root {
+    --safe-area-margin-bottom: 300px !important;
+
+    :root {
+      --safe-area-margin-bottom: 50px;
+    }
+
+
+
+  }
+
+  ion-popover {
+    --width: 320px;
+  }
+
+  ion-radio {
+    width: 24px;
+    height: 24px;
+  }
+
+  li {
+    margin-top: 5px;
+
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #63002e;
+  }
+}

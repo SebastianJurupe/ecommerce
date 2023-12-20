@@ -1,0 +1,62 @@
+.chat-input__resource {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+
+    .chat-input__resource-content {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        min-height: 42px;
+        max-height: 42px;
+        min-width: 42px;
+        max-width: 42px;
+
+        .chat-input__resource-icon {
+            max-height: 100%;
+            max-width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .chat-input__resource-action {
+            position: absolute;
+            top: -5px;
+            right: -1.25rem;
+            background: none;
+
+            &:hover:not([disabled]) {
+                opacity: 0.75;
+            }
+
+            &:active:not([disabled]) {
+                opacity: 0.5;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            .chat-input__resource-action-icon {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .chat-input__resource-label {
+        font-size: 12px;
+        width: 65px;
+        overflow: hidden;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+}

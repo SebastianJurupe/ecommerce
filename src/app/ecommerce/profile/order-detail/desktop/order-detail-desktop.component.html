@@ -1,0 +1,387 @@
+<ion-content>
+
+  <div class="container content--desktop">
+    <div class="content tablet">
+      <div class="content-all display--flex flex--column inner-spacing--24">
+
+        <!-- ORDER ID | OPTIONS -->
+        <div *ngIf="!isLoading"
+          class="header-title-tablet display--flex justify-content--space-between align-items--center">
+          <ion-text class="text--heading-a">
+            {{ 'profile.home.order' | localize: 'ecommerce' }} #{{ order.order }}
+          </ion-text>
+          <ion-icon *ngIf="order.status === 'PENDIENTE DE PAGO'" class="icon icon--menu-dots cursor-pointer"
+            (click)="optionsPopover($event)" />
+        </div>
+
+        <!-- ORDER ID | OPTIONS- /  SKELETON -->
+        <div class="header-title-tablet display--flex justify-content--space-between align-items--center"
+          *ngIf="isLoading">
+          <ion-skeleton-text [animated]="true" class="order-skeleton"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true" class="menu-skeleton"></ion-skeleton-text>
+        </div>
+
+        <!-- ORDER STATUS -->
+        <div *ngIf="order.status !== ''" class="status-container status-container-tablet-desktop"
+          [class]="statusBackground">
+          <!-- BAR  -->
+          <div *ngIf="order.status !== 'ANULADO' && !isLoading" class="status-bar">
+            <span *ngFor="let state of statusBar" [class]="state">
+            </span>
+          </div>
+
+          <!-- LABELS -->
+          <div class="labels-container display--flex flex--column"
+            [ngStyle]="{'margin-top': order.status === 'ANULADO' ? '0' : '12px'}">
+            <ion-text class="text--primary text--content-1-a text--black"
+              [ngClass]="{'text--gray-scale-1000':order.status === 'ANULADO'}">
+              {{ orderStatusLabels.label }}
+            </ion-text>
+            <ion-text class="text--content-2-a text--gray-scale-700 ">
+              {{ orderStatusLabels.sublabel }}
+            </ion-text>
+          </div>
+        </div>
+
+        <!-- ORDER STATUS / SKELETON -->
+        <div *ngIf="order.status === ''" class=" status-container-skeleton" [class]="statusBackground">
+          <!-- BAR  -->
+          <ion-skeleton-text [animated]="true" class="status-skeleton"></ion-skeleton-text>
+
+          <!-- LABELS -->
+          <div class="labels-container display--flex flex--column inner-spacing--4 content-skeleton ">
+            <ion-skeleton-text [animated]="true" class="nameStatus-skeleton"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" class="information-skeleton"></ion-skeleton-text>
+          </div>
+        </div>
+
+        <!-- PAYMENT METHOD -->
+        <section *ngIf="!isLoading" class="display--flex flex--column inner-spacing--24">
+          <div class="container-payment-error display--flex flex--column inner-spacing--16">
+
+            <title-section [title]="localization.localize('profile.orderDetail.titlePaymentMethod','ecommerce')" />
+
+            <item-navigation [setArrow]="false"
+              [label]="localization.localize('profile.orderDetail.deposit','ecommerce')"
+              classIconButton="icon icon--payment icon--46x32">
+            </item-navigation>
+          </div>
+
+          <ion-button *ngIf="order.status === 'PENDIENTE DE PAGO'" (click)="showInstructions()"
+            class="c-button c-button--primary c-button--large button-fit-content">
+            {{ localization.localize('profile.orderDetail.instructions','ecommerce') }}
+          </ion-button>
+        </section>
+
+        <!-- PAYMENT METHOD / SKELETON -->
+        <section class="display--flex flex--column inner-spacing--24" *ngIf="isLoading">
+          <div class=" container-payment-error display--flex flex--column inner-spacing--16">
+            <ion-skeleton-text [animated]="true" class="payment-skeleton"></ion-skeleton-text>
+            <div class=" display--flex inner-spacing--16">
+              <ion-skeleton-text [animated]="true" class="logPayment-skeleton"></ion-skeleton-text>
+              <ion-skeleton-text [animated]="true" class="typePayment-skeleton"></ion-skeleton-text>
+            </div>
+          </div>
+        </section>
+
+        <!-- DELIVERY DETAILS -->
+        <section class="delivery-details-container display--flex flex--column inner-spacing--16">
+          <title-section *ngIf="!isLoading"
+            [title]="localization.localize('profile.orderDetail.detailsDelivery','ecommerce')" />
+
+          <!-- DELIVERY DETAILS / SKELETON -->
+          <ion-skeleton-text *ngIf="isLoading" [animated]="true" class="titleDelivery-skeleton"></ion-skeleton-text>
+
+          <div *ngIf="isLoading " class="display--flex inner-spacing--20 width--100 contentDelivery-skeleton ">
+            <ion-skeleton-text animated class="iconAddress-skeleton" />
+            <ion-skeleton-text animated class="delivery-skeleton" />
+          </div>
+
+          <div *ngIf="isLoading" class="display--flex inner-spacing--12">
+            <ion-skeleton-text animated class="icon-skeleton" />
+            <ion-skeleton-text animated class="address-skeleton" />
+          </div>
+
+          <div *ngIf="isLoading" class="display--flex inner-spacing--12">
+            <ion-skeleton-text animated class="icon-skeleton" />
+            <ion-skeleton-text animated class="date-skeleton" />
+          </div>
+          <!-- -->
+
+          <item-navigation *ngIf="order.shipment.type === 'DOMICILIO'" [setArrow]="false" [setBackground]="true"
+            classIconButton="icon icon--location icon--success"
+            [label]="localization.localize('profile.orderDetail.homeDelivery','ecommerce')"
+            shapeIconBackground="rectangle" type="success">
+          </item-navigation>
+
+          <item-navigation *ngIf="order.shipment.type === 'AGENCIA'" [setArrow]="false" [setBackground]="true"
+            classIconButton="icon icon--truck icon--error"
+            [label]="localization.localize('profile.orderDetail.chargeAgency','ecommerce')"
+            shapeIconBackground="rectangle" type="error">
+          </item-navigation>
+
+          <item-navigation *ngIf="order.shipment.type === 'TIENDA'" [setArrow]="false" [setBackground]="true"
+            classIconButton="icon icon--store icon--info"
+            [label]="localization.localize('home.detailProduct.store','ecommerce')" shapeIconBackground="rectangle"
+            type="info">
+          </item-navigation>
+
+          <!-- DELIVERY DETAILS HOME DELIVERY -->
+          <section *ngIf="order.shipment.type === 'DOMICILIO'" class="display--flex flex--column inner-spacing--16">
+
+            <div class="display--flex inner-spacing--12 align-items--center">
+              <ion-icon class="icon icon--location" />
+              <ion-text class="text--primary">
+                {{ order.shipment.address }}
+              </ion-text>
+            </div>
+
+            <div class="display--flex inner-spacing--12 align-items--center">
+              <ion-icon class="icon icon--calendar" />
+              <ion-text class="text--primary">
+
+                {{this.localization.localize("basket.storePickup.arrives", "ecommerce")}}
+                {{ order.shipment.arrives_from | formatDateRange: order.shipment.arrives_to }}
+
+              </ion-text>
+            </div>
+
+            <div *ngIf="order.shipment.receives_name"
+              class="receiver display--flex inner-spacing--12 align-items--center">
+              <ion-icon class="icon icon--profile" />
+              <div class="receiver-detais display--flex flex--column">
+                <ion-text class="text--primary">
+                  {{ order.shipment.receives_name }}
+                </ion-text>
+                <ion-text class="text--secondary text--content-2-a">
+                  {{ localization.localize('profile.orderDetail.receiveOrder','ecommerce') }}
+                </ion-text>
+              </div>
+            </div>
+
+            <div *ngIf="order.shipment.requirements" class="display--flex inner-spacing--12 align-items--center">
+              <ion-icon class="icon icon--paper-negative" />
+              <ion-text class="text--primary">
+                {{ order.shipment.requirements }}
+              </ion-text>
+            </div>
+          </section>
+
+          <!-- DELIVERY DETAILS AGENCY -->
+          <section *ngIf="order.shipment.type === 'AGENCIA'" class="display--flex flex--column inner-spacing--16">
+
+            <div class="agency">
+              <img [src]="order.shipment.agency!.logo" alt="Agency Icon" class="agency-img">
+              <div class="agency-details">
+                <ion-text class="text--primary text--content-1-a">
+                  {{ order.shipment.agency!.name }}
+                </ion-text>
+                <ion-text class="text--secondary">
+                  {{ localization.localize('basket.storePickup.addressAgency','ecommerce') }} {{
+                  order.shipment.agency!.lead_time }} {{
+                  localization.localize('basket.storePickup.addresItArrivesDay','ecommerce') }}
+                </ion-text>
+              </div>
+            </div>
+
+            <div *ngIf="order.shipment.receives_name"
+              class="receiver display--flex inner-spacing--12 align-items--center">
+              <ion-icon class="icon icon--profile" />
+              <div class="receiver-detais display--flex flex--column">
+                <ion-text class="text--primary">
+                  {{ order.shipment.receives_name }}
+                </ion-text>
+                <ion-text class="text--secondary text--content-2-a">
+                  {{ localization.localize('profile.orderDetail.receiveOrder','ecommerce') }}
+                </ion-text>
+              </div>
+            </div>
+          </section>
+
+          <!-- DELIVERY DETAILS STORE -->
+          <section *ngIf="order.shipment.type === 'TIENDA'" class="display--flex flex--column inner-spacing--16">
+
+            <div class="store">
+              <img [src]="order.shipment.establishment![0].logo" alt="Store Icon" class="store-img">
+              <div class="store-details">
+                <ion-text class="text--primary text--content-1-a">
+                  {{ order.shipment.establishment![0].description }}
+                </ion-text>
+                <ion-text class="text--secondary">
+                  {{ order.shipment.establishment![0].address }}
+                </ion-text>
+              </div>
+            </div>
+            <div *ngIf="order.shipment.receives_name"
+              class="receiver display--flex inner-spacing--12 align-items--center">
+              <ion-icon class="icon icon--profile" />
+              <div class="receiver-detais display--flex flex--column">
+                <ion-text class="text--primary">
+                  {{ order.shipment.receives_name }}
+                </ion-text>
+                <ion-text class="text--secondary text--content-2-a">
+                  {{ localization.localize('profile.orderDetail.receiveOrder','ecommerce') }}
+                </ion-text>
+              </div>
+            </div>
+          </section>
+
+          <div *ngIf="order.shipment.type === 'TIENDA'"
+            class="pickup-date-container display--flex flex--column inner-spacing--20">
+
+            <div class="success-container pickup-date display--flex align-items--center justify-content--center">
+              <ion-text class="success text--content-1-b text-align--center">
+                {{ localization.localize('profile.orderDetail.pickUp','ecommerce') }} {{ order.shipment.arrives_from |
+                formatDateRange: order.shipment.arrives_to }}
+              </ion-text>
+            </div>
+
+            <div class="pickup-information display--flex flex--column inner-spacing--12">
+              <item-navigation
+                [label]="localization.localize('basket.storePickup.pickupInformationLabel1', 'ecommerce')"
+                classIconButton="icon icon--check-circle icon--success" class="text--content-2-a width--100"
+                [setArrow]="false">
+              </item-navigation>
+              <item-navigation
+                [label]="localization.localize('basket.storePickup.pickupInformationLabel2', 'ecommerce')"
+                classIconButton="icon icon--check-circle icon--24 icon--success" class="text--content-2-a width--100"
+                [setArrow]="false">
+              </item-navigation>
+              <item-navigation
+                [label]="localization.localize('basket.storePickup.pickupInformationLabel3', 'ecommerce')"
+                classIconButton="icon icon--check-circle icon--24 icon--success"
+                class="text--content-2-a text--gray-scale-1000  width--100" [setArrow]="false">
+              </item-navigation>
+            </div>
+          </div>
+        </section>
+
+        <!-- BILLING -->
+        <section class="billing-container display--flex flex--column inner-spacing--16" *ngIf="order.document===null">
+          <div *ngIf="!isLoading" class="display--flex justify-content--space-between align-items--center">
+            <ion-text class="text--primary text--content-1-c">
+              {{ localization.localize('profile.orderDetail.billingDetails','ecommerce') }}
+            </ion-text>
+            <ion-icon *ngIf="order.status === 'PENDIENTE DE PAGO' && order.billing"
+              (click)="openBillingInfoPopover($event)"
+              class="icon icon--danger-circle icon--gray-scale-700 icon--16 cursor-pointer" />
+          </div>
+          <div class="billing-item">
+            <item-navigation *ngIf="order.billing && !isLoading" [label]="order.billing.business_name"
+              [sublabel]="order.billing.tax_identifier" [setBackground]="true" classIconButton="icon icon--check-circle"
+              [setArrow]="false" type="info" shapeIconBackground="rectangle">
+            </item-navigation>
+
+            <item-navigation *ngIf="!order.billing && !isLoading"
+              [label]="localization.localize('profile.orderDetail.noDateFacturaction','ecommerce')"
+              [setBackground]="true" [setArrow]="false" classLabel="text--secondary text--content-2-a">
+            </item-navigation>
+
+            <div *ngIf="isLoading" class="billing-container display--flex flex--column inner-spacing--16">
+              <ion-skeleton-text animated class="titleBilling-skeleton" />
+              <ion-skeleton-text animated class="billing-skeleton" />
+            </div>
+          </div>
+        </section>
+        <!-- BILLING PDF -->
+        <section class="billing-container display--flex flex--column inner-spacing--16" *ngIf="order.document!=null">
+          <div *ngIf="!isLoading" class="display--flex justify-content--space-between align-items--center">
+            <ion-text class="text--primary text--content-1-c">
+              {{ localization.localize('profile.orderDetail.billingDetails','ecommerce') }}
+            </ion-text>
+            <ion-icon *ngIf="order.status === 'PENDIENTE DE PAGO' && order.billing"
+              (click)="openBillingInfoPopover($event)"
+              class="icon icon--danger-circle icon--gray-scale-700 icon--16 cursor-pointer" />
+          </div>
+          <div class="billing-item">
+            <item-navigation *ngIf="order.document && !isLoading" [label]="order.document.customer.name"
+              [sublabel]="order.document.customer.number" classIconButton="icon icon--file-pdf" [setArrow]="false"
+              type="info" shapeIconBackground="rectangle" (click)="openNewTab()" class="cursor-pointer">
+            </item-navigation>
+
+            <item-navigation *ngIf="!order.document && !isLoading"
+              [label]="localization.localize('profile.orderDetail.noDateFacturaction','ecommerce')" [setArrow]="false"
+              classLabel="text--secondary text--content-2-a">
+            </item-navigation>
+
+            <div *ngIf="isLoading" class="billing-container display--flex flex--column inner-spacing--16">
+              <ion-skeleton-text animated class="titleBilling-skeleton" />
+              <ion-skeleton-text animated class="billing-skeleton" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="position-tablet display--flex flex--column inner-spacing--24">
+        <!-- SUMMARY DETAILS -->
+        <section class="summary-container display--flex flex--column inner-spacing--16">
+          <title-section *ngIf="!isLoading"
+            [title]="localization.localize('profile.orderDetail.titleSummary', 'ecommerce')" />
+          <div class="summary-details display--flex flex--column inner-spacing--12">
+            <ng-container *ngFor="let summaryDetail of summaryDetails">
+              <item-order *ngIf="summaryDetail.value !== 0" [label]="summaryDetail.description"
+                [data]="'S/ ' + (summaryDetail.value | number: '1.2-2')">
+              </item-order>
+            </ng-container>
+            <!-- SUMMARY DETAILS / SKELETON -->
+
+            <section *ngIf="isLoading" class="summary-container display--flex flex--column inner-spacing--16">
+              <ion-skeleton-text animated class="detailProducto-skeleton" />
+              <div class="display--flex flex--column inner-spacing--12">
+                <div class="display--flex justify-content--space-between" *ngFor="let item of [1,1,1,1]">
+                  <ion-skeleton-text animated class="order-skeleton" />
+                  <ion-skeleton-text animated class="price-skeleton" />
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="products-container display--flex flex--column inner-spacing--24">
+          <title-section *ngIf="!isLoading" [title]="productsQuantity"
+            [classIconButton]="isProductsListExpanded ? 'icon icon--arrow-geor-up-large' : 'icon icon--arrow-geor-down-large'"
+            (click)="toggleProductsListExpansion()" class="cursor-pointer">
+          </title-section>
+
+          <ion-skeleton-text *ngIf="isLoading" animated class="titleProduct-skeleton" />
+
+          <div *ngIf="isProductsListExpanded" class="products-container">
+
+            <section *ngFor="let product of order.items;let i = index">
+
+              <ion-text class="text--primary text--content-1-b">
+                {{ product.item.description }}
+              </ion-text>
+
+              <div class="product-variants-container">
+                <ng-container *ngIf="!product.item.has_variants">
+                  <product-in-basket class="display--flex width--100" [index]="product.item.id" [setDelete]="false"
+                    [unitTypeDescription]="product.item.unit_type.description" [price]="product.subtotal"
+                    [(value)]="product.data.quantity"
+                    [srcImage]="product.item.files.length > 0 ? product.item.files[0].path : ''" [readonly]="true"
+                    [setDelete]="false">
+                  </product-in-basket>
+                </ng-container>
+
+                <ng-container *ngIf="product.item.has_variants">
+                  <product-in-basket *ngFor="let variant of product.data.variants" [value]="variant.quantity"
+                    [srcImage]="product.data | productVariantSrc: product.item.variants : variant.id"
+                    [price]="product.item.price"
+                    [details]="product.data | productVariantsDetail: product.item.variants : variant.id"
+                    [readonly]="true" [setDelete]="false">
+                  </product-in-basket>
+                </ng-container>
+              </div>
+            </section>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <footer-spacing height="40px" />
+</ion-content>

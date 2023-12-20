@@ -1,0 +1,62 @@
+.status-container-skeleton {
+  width: 100%;
+  height: 88px;
+  position: fixed;
+}
+.status-container-skeleton {
+  padding: 16px 24px;
+
+  .status-skeleton {
+    height: 8px;
+  }
+  .content-skeleton {
+    margin-top: 12px;
+
+    .nameStatus-skeleton {
+      height: 20px;
+      width: 20%;
+    }
+    .information-skeleton {
+      height: 20px;
+      width: 70%;
+    }
+  }
+}
+
+.contentDelivery-skeleton {
+  padding: 14px;
+  background-color: var(--p-gray-scale-100) !important;
+
+  .delivery-skeleton {
+    width: 100%;
+    height: 24px;
+  }
+
+  .iconAddress-skeleton {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+}
+
+.icon-skeleton {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.order-skeleton {
+  width: 200px;
+  height: 24px;
+}
+
+.price-skeleton {
+  width: 80px;
+  height: 24px;
+}
+
+.billing-skeleton {
+  width: 100%;
+  height: 30px;
+}

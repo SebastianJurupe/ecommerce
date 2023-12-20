@@ -1,0 +1,34 @@
+item-navigation-line {
+  position: relative;
+  z-index: 999;
+  cursor: pointer;
+}
+
+item-navigation {
+  margin-top: 24px !important;
+  position: relative;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 40px;
+}
+//SKELETON
+.logo-skeleton {
+  --border-radius: 50%;
+  width: 50px;
+  height: 40px;
+}
+
+.name-skeleton {
+  width: 80%;
+  height: 15px;
+}
+
+.address-skeleton {
+  width: 60%;
+}

@@ -1,0 +1,49 @@
+<ion-content>
+  <header-title position="start" [title]="localization.localize('basket.calendarModal.title', 'ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="content">
+
+      <div class="calendar-container">
+        <div class="content-mes widht-100 display--flex align-items--center inner-spacing--24">
+          <ion-icon class="icon icon--arrow-geor-left-large icon--24"></ion-icon>
+          <ion-label class="text-mes text--content-1-b text--gray-scale-1000 text-align--center">Jun 2022</ion-label>
+          <ion-icon class="icon icon--arrow-geor-right-large icon--24"></ion-icon>
+        </div>
+      </div>
+
+      <div class="card-component__date-container width--full-page inner-spacing--16 hide-scrollbar">
+        <button-option [bordered]="date.selected === 'true' ? true : false" *ngFor="let date of dates" size="small"
+          [label]="date.date">
+        </button-option>
+      </div>
+
+
+      <ion-radio-group #radioGroup value="custom-checked"
+        class="list-delivery-time display--flex flex--column  inner-spacing--24">
+        <div class="item-delivery-time" *ngFor="let option of options" (click)="selectRadio(option.value)">
+          <div class="content-option display--flex align-items--start justify-content--space-between">
+            <div class="info-delivery-time display--flex align-items--center inner-spacing--10">
+              <ion-text>{{option.time}}</ion-text>
+              <div class="price-tag">
+                <label-box classLabel="text--content-2-c" type="success" label="S/ {{option.price}}"></label-box>
+              </div>
+            </div>
+            <ion-radio [id]="'radio_' + option.value" value="{{option.value}}"  class="width-24"></ion-radio>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+  </div>
+  <footer-spacing height="80px"></footer-spacing>
+  <div class="footer-base">
+    <div class="footer-base__container display--flex flex--row inner-spacing--16">
+      <ion-button
+      class="c-button c-button--secondary c-button--outline c-button--large c-button--full-width">
+      {{'basket.addBillingModal.buttonCancel' | localize: 'ecommerce'}}</ion-button>
+      <ion-button class="c-button c-button--primary c-button--large c-button--full-width buttom-top">
+        {{'basket.calendarModal.button' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,224 @@
+<ion-content class="content-no-header remove-content-safe-area-top">
+  <div class="container content--desktop">
+    <div class="content">
+      <div class="product-container display--flex">
+        <div class="display--flex width-62">
+          <section class="variants">
+            <div class="product-variants display--flex flex--column inner-spacing--12 set-scroll hide-scrollbar">
+              <div *ngIf="product.files.length === 0" class="display--flex flex--column inner-spacing--12">
+                <div class="skeleton-product-preview" *ngFor="let item of [1, 1, 1, 1]">
+                  <ion-skeleton-text animated class="image-skeleton-variants" />
+                </div>
+              </div>
+
+              <product-preview *ngFor="let variant of product.files; let i = index" (click)="selectProduct(i)"
+                [height]="'102'" [width]="'79'" [src]="variant.path" [bordered]="selectedProductIndex === i"
+                class="cursor-pointer">
+              </product-preview>
+            </div>
+          </section>
+
+          <section class="images-banner-tablet">
+            <ion-skeleton-text *ngIf="product.files.length === 0" class="swiper-slide-skeleton" animated />
+
+            <swiper-container *ngIf="product.files.length !== 0" #swiperContainer>
+              <swiper-slide class="slide" *ngFor="let file of product.files">
+                <img class="slide__image" [src]="file.path" alt="Slide" />
+              </swiper-slide>
+            </swiper-container>
+          </section>
+        </div>
+
+        <section class="container-flex" *ngIf="detailsContainer">
+          <!-- header -->
+          <div *ngIf="headerDetailProduct" class="display--flex justify-content--space-between">
+            <img (click)="goToHome()" class="cursor-pointer" src="/assets/config/resources/logo-horizontal.svg"
+              alt="Logo" />
+
+            <div class="display--flex align-items--center inner-spacing--36">
+              <div class="icon-header-container cursor-pointer" (click)="goToBasket(product.id)">
+
+
+                <div class="position-relative">
+                  <span *ngIf="(count$ | async) as state" class="badge">
+                    <div *ngIf="state !== 0">
+                      {{count$ | async}}
+                    </div>
+                  </span>
+                  <ion-icon class="icon icon--buy"></ion-icon>
+                </div>
+
+              </div>
+              <ion-icon class="icon icon--chat cursor-pointer" (click)="goToChat()">
+              </ion-icon>
+            </div>
+          </div>
+
+          <div class="elements container-scroll-desktop-vertical">
+            <section class="product-description display--flex justify-content--space-between inner-spacing--24">
+              <div *ngIf="product.description.length === 0" class="text-description-skeleton">
+                <ion-skeleton-text animated />
+              </div>
+
+              <!-- <div *ngIf="product.additional !== null" class="product-description__content text--content-1-a"
+                [innerHTML]="product.additional.value"></div> -->
+
+              <div>
+                <ion-text>{{ product.description }}</ion-text>
+              </div>
+
+              <ion-icon (click)="shareProduct($event)" class="icon icon--share cursor-pointer" />
+            </section>
+
+            <section *ngIf="product.prices.length !== 0" class="prices display--prices">
+              <ng-container *ngIf="product.id !== 0">
+                <card-price *ngFor="let price of product.prices" [currencySymbol]="product.currency.symbol"
+                  [price]="+price.price" [subprice]="
+                    +price.offer_price === 0 ? undefined : price.offer_price
+                  " [stock]="
+                    price.min_quantity +
+                    ' - ' +
+                    price.max_quantity +
+                    ' ' +
+                    product.unit_type.description
+                  ">
+                </card-price>
+              </ng-container>
+            </section>
+
+            <section *ngIf="
+                (!product.prices || product.prices.length === 0) &&
+                product.price !== 0
+              " class="prices display--flex inner-spacing--16 set-scroll hide-scrollbar">
+              <card-price [currencySymbol]="product.currency.symbol" [price]="product.price" [subprice]="
+                  product.offer_price === 0 ? undefined : product.offer_price
+                ">
+              </card-price>
+            </section>
+
+            <section class="variants-preview cursor-pointer" (click)="openVariantsDesktop()">
+              <div class="display--flex justify-content--space-between align-items--center">
+                <ion-text class="text--content-1-b">
+                  {{ "home.detailProduct.variations" | localize : "ecommerce" }}
+                </ion-text>
+                <ion-icon class="icon icon--arrow-geor-right-large icon--14"></ion-icon>
+              </div>
+
+              <div class="variants-info">
+                <ng-container *ngFor="let attribute of attributeVariants; let last = last">
+                  <ion-text class="text--content-1-a">{{ attribute }}</ion-text>
+                  <ng-container *ngIf="!last">, </ng-container>
+                </ng-container>
+              </div>
+
+              <!-- <div class="product-variants-preview display--flex inner-spacing--12 set-scroll hide-scrollbar">
+
+                <div *ngIf="product.files.length === 0" class="display--flex inner-spacing--16">
+                  <div class="skeleton" *ngFor="let item of [1,1,1]">
+                    <ion-skeleton-text animated class="product-variants-skeleton" />
+                  </div>
+                </div>
+
+                <product-preview
+                  *ngFor="let variant of product.files; let i = index"
+                  (click)="selectProduct(i)"
+                  [src]="variant.path"
+                  [bordered]="selectedProductIndex === i"
+                  class="cursor-pointer">
+                </product-preview>
+
+                <product-preview
+                  [dots]="true"
+                  (click)="openVariantsDesktop()"
+                  class="cursor-pointer">
+                </product-preview>
+              </div> -->
+            </section>
+
+            <section class="details-preview">
+              <div class="display--flex justify-content--space-between cursor-pointer" (click)="openDetailsDesktop()">
+                <ion-text class="text--content-1-b">
+                  {{ "home.detailProduct.details" | localize : "ecommerce" }}
+                </ion-text>
+
+                <ion-icon class="icon icon--arrow-geor-down-large icon--14" [style.transform]="
+                    showDetailComponent ? 'rotate(180deg)' : 'rotate(0deg)'
+                  ">
+                </ion-icon>
+              </div>
+
+              <div *ngIf="showDetailComponent" class="container-more display--flex flex--column inner-spacing--24">
+                <div *ngFor="let detail of details()" class="display--flex inner-spacing--12">
+                  <ion-text class="text--content-1-a">
+                    {{ detail.specification }}:
+                  </ion-text>
+                  <ion-text class="text--content-1-a text--secondary">
+                    {{ detail.value }}
+                  </ion-text>
+                </div>
+              </div>
+            </section>
+
+            <section class="delivery-type">
+              <div class="display--flex justify-content--space-between cursor-pointer" (click)="openDelivery()">
+                <ion-text class="text--content-1-b">{{
+                  "home.detailProduct.delivery" | localize : "ecommerce"
+                  }}</ion-text>
+
+                <ion-icon class="icon icon--arrow-geor-down-large icon--14" [style.transform]="
+                    showDelivery ? 'rotate(180deg)' : 'rotate(0deg)'
+                  ">
+                </ion-icon>
+              </div>
+
+              <div class="types display--flex flex--column inner-spacing--24" *ngIf="showDelivery">
+                <div (click)="goTodeliveryTypeMethod(deliveryType)" *ngFor="let deliveryType of deliveryTypes"
+                  class="home display--flex inner-spacing--16 cursor-pointer">
+                  <ion-icon [class]="deliveryType.icon" />
+                  <ion-text class="text--content-1-a">
+                    {{ deliveryType.description }}
+                  </ion-text>
+                </div>
+              </div>
+            </section>
+
+
+
+            <footer-spacing height="50px"></footer-spacing>
+          </div>
+
+          <div>
+            <div class="footer-base__container display--flex flex--row align-items--center inner-spacing--24 mb-0">
+              <ion-icon class="icon icon--chat cursor-pointer" (click)="goToChat()">
+              </ion-icon>
+
+              <ion-icon (click)="isFavorite ? deleteFavorite() : addToFavorites()" class="hearth cursor-pointer"
+                [ngClass]="{
+                  'icon icon--heart-outline': !isFavorite ,
+                  'icon icon--heart-fill icon--delete': isFavorite,
+                }" />
+
+              <ion-button (click)="openVariantsDesktop()"
+                class="button-buy c-button c-button--large c-button--primary width--100">
+                {{ "home.detailProduct.buy" | localize : "ecommerce" }}
+              </ion-button>
+            </div>
+          </div>
+        </section>
+
+        <section class="container-flex-1 width-38 " *ngIf="variantsDesktop">
+          <div *ngIf="headerVariantsProduct" class="display--flex align-items--center padding--header">
+            <ion-icon (click)="backDetail()" class="icon icon--arrow-left cursor-pointer" slot="start"></ion-icon>
+            <div class="text-wrapper">
+              <ion-text class="text--heading-a">{{
+                "home.detailProduct.selectVariants" | localize : "ecommerce"
+                }}</ion-text>
+            </div>
+            <div></div>
+          </div>
+          <variants-desktop></variants-desktop>
+        </section>
+      </div>
+    </div>
+  </div>
+</ion-content>

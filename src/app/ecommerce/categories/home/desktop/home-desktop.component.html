@@ -1,0 +1,77 @@
+<ion-content class="content-no-header remove-content-safe-area-top">
+
+  <header-extended #headerExtended [srcBrand]="headerDesktopService.logoSrc" [setDesktop]="true" class="header--desktop"
+    (brandButtonEvent)="headerDesktopService.goToHome()" (basketClickEvent)="headerDesktopService.goToShoppingCart()"
+    (menuClickEvent)="headerDesktopService.viewMenu()" (inboxClickEvent)="headerDesktopService.goToInbox()"
+    (inputEvent)="onSearch($event)" (keyDownEnterEvent)="onSaveSearch($event)"
+    [placeholder]="localization.localize('categories.home.placeholder', 'ecommerce')" (searchEvent)="onSearchResult()"
+    [badgeBasket]="count$ | async" [search]="true" (onBlurEvent)="onBlur()" [inputValue]="value |async">
+  </header-extended>
+
+  <div class="container">
+    <div class="content">
+
+      <div *ngIf="searching" class="cursor-pointer display--flex justify-content--center">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+
+      <div *ngIf="searchResults.length > 0 && searchValue !== ''; else normalView"
+        class="cursor-pointer display--flex flex--column inner-spacing--24 categories">
+        <item-search *ngFor="let product of allProducts" [label]="product.description"
+          (click)="navigateToSearchResult(product)">
+        </item-search>
+      </div>
+
+      <ng-template #normalView>
+        <div class="display--flex flex--column inner-spacing--40">
+
+          <div class="display--flex flex--column justify-content--start inner-spacing--16 pad-24">
+
+            <section class="title" *ngIf="allSearches.length > 0">
+
+              <title-section class="width--100"
+                [title]="localization.localize('categories.home.textSearch', 'ecommerce')">
+              </title-section>
+
+              <ion-text (click)="onDeleteAllRecentSearchesButton()" class="cursor-pointer text--secondary">
+                {{ "categories.filter.textClean" | localize : "ecommerce" }}
+              </ion-text>
+            </section>
+
+            <div class="display--flex flex--column inner-spacing--16">
+
+              <div *ngFor="let searchText of showAllRecentSearches ? allSearches : allSearches.slice(0, 3)">
+                <item-last-search class="cursor-pointer" (clickEvent)="navigateToSearch(searchText)"
+                  (clickCloseEvent)="onClear(searchText)" [label]="searchText.text">
+                </item-last-search>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <div *ngIf="allSearches.length > 0 || searchResults.length > 0" class="pt-20 pb-20">
+        <div class="utils-line--all-width"></div>
+      </div>
+
+      <div class="display--flex flex--column inner-spacing--24 categories">
+
+        <title-section [title]="localization.localize('categories.home.desktop.category', 'ecommerce')" />
+
+        <item-navigation *ngFor="let category of categories" class="cursor-pointer" [label]="category.name"
+          (click)="onSelectCategories(category)">
+        </item-navigation>
+
+        <section *ngIf="categories.length === 0" class="skeleton-category-container">
+
+          <div *ngFor="let item of [1,1,1,1]" class="skeleton-category">
+            <ion-skeleton-text animated class="skeleton-category-name" />
+            <div class="skeleton-category-arrow">
+              <ion-icon class="icon icon--arrow-geor-right-large-center" />
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</ion-content>

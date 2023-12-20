@@ -1,0 +1,22 @@
+.document-types {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: var(--p-background-secondary) !important;
+
+  .document-type {
+    display: flex;
+    gap: 12px;
+
+    .virtual-box {
+      width: 24px;
+      height: 24px;
+    }
+
+    ion-icon[name="checkmark"] {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

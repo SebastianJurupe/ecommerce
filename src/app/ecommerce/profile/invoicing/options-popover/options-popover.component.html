@@ -1,0 +1,20 @@
+<section class="options">
+  <div
+    (click)="selectOption('edit')"
+    class="option">
+    <ion-icon class="icon icon--edit-square icon--gray-scale-700">
+    </ion-icon>
+    <ion-text class="text--primary">
+      {{ 'general.edit' | localize: 'ecommerce' }}
+    </ion-text>
+  </div>
+  <div
+    (click)="selectOption('delete')"
+    class="option">
+    <ion-icon class="icon icon--trash icon--delete">
+    </ion-icon>
+    <ion-text class="text--primary text--delete">
+      {{ 'general.delete' | localize: 'ecommerce' }}
+    </ion-text>
+  </div>
+</section>

@@ -1,0 +1,259 @@
+<ion-content class="content-no-header remove-content-safe-area-top">
+  <div class="container">
+    <div class="content">
+      
+      <div class="header-container display--flex justify-content--space-between">
+        <img src="/assets/home/renac-logo.png" alt="Logo">
+
+        <div class="container-icons-header inner-spacing--35">
+          <div (click)="goBasket()">
+            <div class="icon-bagde__item">
+              <ion-icon class="icon icon--buy">
+              </ion-icon>
+              <div class="icon-bagde__info">
+                <ion-label class="text--content-3-b">4</ion-label>
+              </div>
+            </div>
+          </div>
+          <div (click)="openChat()">
+            <div class="icon-bagde__item">
+              <ion-icon class="icon icon--chat">
+              </ion-icon>
+              <div class="icon-bagde__info">
+                <ion-label class="text--content-3-b">4</ion-label>
+              </div>
+            </div>
+          </div>
+          <ion-icon
+            class="icon icon--close-center"
+            (click)="back()">
+          </ion-icon>
+        </div>
+
+      </div>
+
+      <div class="container-images-banner">
+
+        <div class="variations-tablet">
+          <div class="product-variants-tablet display--flex inner-spacing--12
+          set-scroll hide-scrollbar width--full-page">
+            <ng-container *ngFor="let variant of product.variants; let i = index ; let isFirst = first">
+                <product-preview
+                  [height]="'102'"
+                  [width]="'79'"
+                  (click)="selectProduct(i)"
+                  [src]="variant.path"
+                  [bordered]="selectedProductIndex === i"
+                  [ngClass]="{'first': isFirst}">
+                </product-preview>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="images-banner-tablet image width--full-page">
+          <swiper-container *ngIf="showSwiper"
+            #swiperContainer
+            [pagination]="false" >
+            <swiper-slide (click)="openImgProduct()" 
+            *ngFor="let slide of product.images">
+              <ng-container>
+                <img [src]="slide.path" alt="Slide">
+              </ng-container>
+            </swiper-slide>
+          </swiper-container> 
+        </div>
+      </div>
+
+      <div class="description-product display--flex">
+        <ion-text class="text--content-1-a">
+          {{ product.description }}
+        </ion-text>
+        <ion-icon
+          (click)="share()"
+          class="icon icon--share">
+        </ion-icon>
+      </div>
+
+      <div
+        class="prices display--flex inner-spacing--16 set-scroll hide-scrollbar width--full-page">
+        <card-price
+          *ngFor="let price of product.prices"
+          [price]="price.price"
+          [subprice]="price.subprice"
+          [disable]="price.disable"
+          [stock]="price.stock">
+        </card-price>
+      </div>
+
+      <div class="variations">
+        <ion-text class="text--content-1-b">
+          {{"home.detailProduct.variations" | localize : "ecommerce"}}
+        </ion-text>
+
+        <div class="product-variants display--flex inner-spacing--12
+        set-scroll hide-scrollbar width--full-page">
+          <ng-container *ngFor="let variant of product.variants; let i = index ; let isFirst = first">
+              <product-preview
+                [height]="'77.5'"
+                [width]="'60'"
+                (click)="selectProduct(i)"
+                [src]="variant.path"
+                [bordered]="selectedProductIndex === i"
+                [ngClass]="{'first': isFirst}">
+              </product-preview>
+          </ng-container>
+
+          <product-preview
+            [height]="'77.5'"
+            [width]="'60'"
+            class="variants-more"
+            [dots]="true"
+            (click)="openVariants()">
+          </product-preview>
+        </div>
+      </div>
+
+      <div
+        (click)="openDetailsTablet()"
+        class="details display--flex flex--column justify-content--space-between">
+
+        <div class="display--flex justify-content--space-between">
+          <ion-text class="text--content-1-b">
+            {{ "home.detailProduct.details" | localize : "ecommerce"}}
+          </ion-text>
+  
+          <ion-icon
+            class="icon icon--arrow-geor-down-large icon--14" [class.rotate-90]="showDetailComponent">
+          </ion-icon>
+        </div>
+      
+        <detail-component [onlyContent]="true" *ngIf="showDetailComponent"></detail-component>
+      </div>
+
+      <div
+
+        class="delivery-type">
+
+        <div class="title display--flex justify-content--space-between">
+          <ion-text class="text--content-1-b" (click)="toggleTypesVisibility()">
+            {{ "home.detailProduct.delivery" | localize : "ecommerce"}}
+          </ion-text>
+
+          <ion-icon
+            class="icon icon--arrow-geor-up-large icon--14"
+            [class.rotate-90]="isTypesHidden">
+          </ion-icon>
+        </div>
+
+        <div
+          class="types"
+          [ngClass]="{ 'hidden': isTypesHidden }">
+
+          <div (click)="homeDelivery()" class="home display--flex inner-spacing--16">
+
+            <ion-icon class="icon icon--location"></ion-icon>
+            <div class="inner-spacing--4">
+              <ion-text class="text--content-1-a">
+                {{ "home.detailProduct.home" | localize : "ecommerce"}}
+              </ion-text>
+              <div
+                *ngIf="selectedProductIndex === 2"
+                class="display--flex inner-spacing--4">
+
+                <ion-text
+                  class="text--content-1-a text--secondary">
+                  desde
+                </ion-text>
+                <ion-text
+                  class="text--content-1-a">
+                  S/.13.00
+                </ion-text>
+                <ion-text
+                  class="text--content-1-a text--secondary">
+                  a Chadín
+                </ion-text>
+              </div>
+            </div>
+          </div>
+
+          <div
+            (click)="freightForwardersDelivery()"
+            class="burden display--flex inner-spacing--16">
+            <ion-icon class="icon icon--bag"></ion-icon>
+            <div class="inner-spacing--4">
+              <ion-text class="text--content-1-a">
+                {{ "home.detailProduct.agency" | localize : "ecommerce"}}
+              </ion-text>
+              <div
+                *ngIf="selectedProductIndex === 2"
+                class="display--flex inner-spacing--4">
+                <ion-text class="text--content-1-a">3</ion-text>
+                <ion-text class="text--content-1-a text--secondary">
+                  agencias disponibles a Chadín
+                </ion-text>
+              </div>
+            </div>
+
+          </div>
+
+          <div
+            (click)="storesDelivery()"
+            class="shop display--flex inner-spacing--16">
+            <ion-icon class="icon icon--print"></ion-icon>
+            <div class="inner-spacing--4">
+              <ion-text class="text--content-1-a">
+                {{ "home.detailProduct.store" | localize : "ecommerce"}}
+              </ion-text>
+              <div
+                *ngIf="selectedProductIndex === 2"
+                class="display--flex inner-spacing--4">
+                <ion-text class="text--content-1-a">3</ion-text>
+                <ion-text class="text--content-1-a text--secondary">
+                  tiendas disponibles a Chadín
+                </ion-text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="changes display--flex flex--column justify-content--space-between" (click)="navigateToReturns()">
+        <div class="display--flex justify-content--space-between">
+          <ion-text class="text--content-1-b">
+            {{ "home.detailProduct.exchanges" | localize : "ecommerce"}}
+          </ion-text>
+          <ion-icon class="icon icon--arrow-geor-down-large icon--14"></ion-icon>
+        </div>
+
+        <exchanges-returns *ngIf="showExchanges"></exchanges-returns>
+      </div>
+
+    </div>
+    
+    <footer-spacing height="185px"></footer-spacing>
+
+    <!-- FOOTER -->
+    <div class="footer-base footer-base--no-toolbar">
+      <div class="footer-base__container display--flex flex--row align-items--center inner-spacing--24">
+
+        <ion-icon
+          class="icon icon--chat"
+          (click)="openChat()">
+        </ion-icon>
+
+        <ion-icon
+          (click)="changeIcon()"
+          class="hearth"
+          [ngClass]="hearthIconClass">
+        </ion-icon>
+
+        <ion-button
+          (click)="openVariants()"
+          class="buy c-button c-button--large c-button--primary width--100">
+            {{ "home.detailProduct.buy" | localize : "ecommerce"}}
+        </ion-button>
+      </div>
+    </div>
+    <!-- FOOTER -->
+  </div>
+</ion-content>

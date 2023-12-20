@@ -1,0 +1,79 @@
+ion-footer {
+  padding-inline: 24px;
+}
+
+/************************************/
+.container {
+  height: calc(100% - 48px);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+.advice {
+  background: var(--p-gray-scale-50);
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.card-form {
+  border-radius: 10px;
+  border: 1px solid var(--p-gray-scale-200);
+  margin-top: 28px;
+
+  &-field {
+    padding: 12px;
+    border-bottom: 1px solid var(--p-gray-scale-200);
+
+    &.cvv {
+      border-left: 1px solid var(--p-gray-scale-200);
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  &-date-cvv {
+    display: flex;
+
+    .date,
+    .cvv {
+      padding: 12px !important;
+      width: 50%;
+    }
+  }
+}
+
+.save-card {
+  margin-top: 28px;
+}
+
+.safety-label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 4em;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .method-pay {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+
+    &-description {
+      flex: 1;
+    }
+  }
+}
+
+.pt-20 {
+  padding-top: 20px;
+}

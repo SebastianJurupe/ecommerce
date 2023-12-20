@@ -1,0 +1,173 @@
+<ion-content>
+
+  <header-title [back]="true" (backEvent)="back()"
+    [title]="localization.localize('basket.storePickup.title', 'ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content display--flex flex--column inner-spacing--40">
+      <section class="details-container display--flex flex--column inner-spacing--24">
+        <title-section [title]="localization.localize('basket.storePickup.detailsLabelTitle', 'ecommerce')">
+        </title-section>
+        <item-navigation [label]="deliveryType.label" [setBackground]="deliveryType.setBackground"
+          [classIconButton]="deliveryType.classIconButton" [setArrow]="deliveryType.setArrow"
+          [type]="deliveryType.shapeType" [shapeIconBackground]="deliveryType.shapeIconBackground"
+          (clickEvent)="deliveryDetailsPopover($event)">
+        </item-navigation>
+
+        <item-navigation *ngIf="deliveryType.type === 'DOMICILIO'" [label]="typeOfShipment.label"
+          [type]="typeOfShipment.type" [setArrow]="false" [classIconButton]="typeOfShipment.classIconButton"
+          (clickEvent)="typeOfShipment.method()">
+        </item-navigation>
+
+        <item-navigation *ngIf="deliveryType.type === 'DOMICILIO'" [label]="selectAddressOption.label"
+          [setArrow]="false" [classIconButton]="selectAddressOption.classIconButton"
+          [classLabel]="selectAddressOption.classLabel" (clickEvent)="selectAddressOption.method()">
+        </item-navigation>
+
+        <item-navigation *ngIf="deliveryType.type === 'DOMICILIO'" [label]="selectDateOfReceiveOption.label"
+          [setArrow]="false" [classIconButton]="selectDateOfReceiveOption.classIconButton"
+          (clickEvent)="selectDateOfReceiveOption.method()">
+        </item-navigation>
+
+        <item-navigation *ngIf="deliveryType.type === 'AGENCIA'" [label]="selectAgencyOption.label" [setArrow]="false"
+          [classIconButton]="selectAgencyOption.classIconButton" (clickEvent)="selectAgencyOption.method()">
+        </item-navigation>
+
+        <item-navigation *ngIf="deliveryType.type === 'TIENDA'" [label]="selectShopOption.label"
+          [classLabel]="selectShopOption.classLabel" [setArrow]="false"
+          [classIconButton]="selectShopOption.classIconButton" (clickEvent)="selectShopOption.method()">
+        </item-navigation>
+
+        <item-navigation [label]="selectReceiverOption.label" [classLabel]="selectReceiverOption.classLabel"
+          [setArrow]="false" [classIconButton]="selectReceiverOption.classIconButton"
+          (clickEvent)="selectReceiverOption.method()">
+        </item-navigation>
+
+        <item-navigation *ngIf="deliveryType.type === 'AGENCIA' || deliveryType.type === 'DOMICILIO'"
+          [label]="deliveryRequirementsOption.label" [classLabel]="deliveryRequirementsOption.classLabel"
+          [setArrow]="false" [classIconButton]="deliveryRequirementsOption.classIconButton"
+          (clickEvent)="deliveryRequirementsOption.method()">
+        </item-navigation>
+
+        <div
+          *ngIf="deliveryType.type === 'TIENDA' && (selectReceiverOption.label === 'Wilfredo Lopez, Jefe de logistica')"
+          class="pickup-date-container display--flex flex--column inner-spacing--20">
+
+          <div class="success-container pickup-date display--flex align-items--center justify-content--center">
+            <ion-text class="success text--content-1-b text-align--center">
+              Recoge a partir del <span>24 de agosto</span> de 08:00am a 06:00pm
+            </ion-text>
+          </div>
+
+          <div class="pickup-information display--flex flex--column inner-spacing--12">
+            <item-navigation [label]="localization.localize('basket.storePickup.pickupInformationLabel1', 'ecommerce')"
+              classIconButton="icon icon--check-circle icon--success" class="text--content-2-a width--100"
+              [setArrow]="false">
+            </item-navigation>
+            <item-navigation [label]="localization.localize('basket.storePickup.pickupInformationLabel2', 'ecommerce')"
+              classIconButton="icon icon--check-circle icon--24 icon--success" class="text--content-2-a width--100"
+              [setArrow]="false">
+            </item-navigation>
+            <item-navigation [label]="localization.localize('basket.storePickup.pickupInformationLabel3', 'ecommerce')"
+              classIconButton="icon icon--check-circle icon--24 icon--success"
+              class="text--content-2-a text--gray-scale-1000  width--100" [setArrow]="false">
+            </item-navigation>
+          </div>
+        </div>
+      </section>
+
+      <section class="payment-container display--flex flex--column inner-spacing--24">
+        <title-section [title]="localization.localize('basket.storePickup.paymentLabelTitle', 'ecommerce')">
+        </title-section>
+        <div class="payment-item" *ngIf="device === 'mobile'">
+
+          <!-- <item-navigation *ngIf="paymentMethod.type === null"
+            [label]="localization.localize('basket.storePickup.paymentItemPlaceholder', 'ecommerce')"
+            classIconButton="icon icon--plus-circle icon--24 icon--gray-scale-1000"
+            class="text--content-1-a text--gray-scale-500" [setArrow]="false">
+          </item-navigation>
+
+          <item-navigation *ngIf="paymentMethod.type !== null" label="Visa Débito * 4115" [setBackground]="true"
+            classIconButton="icon icon--logo-paypal icon--46x32" [avatarRounded]="false">
+          </item-navigation> -->
+          <item-option *ngIf="!selectedPaymentMethod"
+            [label]="localization.localize('basket.storePickup.paymentItemPlaceholder', 'ecommerce')"
+            classIconButton="icon icon--plus-circle icon--24 icon--gray-scale-1000"
+            class="text--content-1-a text--gray-scale-500" (click)="payMethods()">
+          </item-option>
+          <item-navigation *ngIf="selectedPaymentMethod" (clickEvent)="payMethods()" [label]="selectedPaymentMethod"
+            [setShadow]="true" [setBackground]="true" [classIconButton]="paymentMethodIcons[selectedPaymentMethod]"
+            shapeIconBackground="rectangle">
+          </item-navigation>
+        </div>
+
+        <div class="payment-item" *ngIf="device === 'tablet'">
+          <item-option *ngIf="!selectedPaymentMethod"
+            [label]="localization.localize('basket.storePickup.paymentItemPlaceholder', 'ecommerce')"
+            classIconButton="icon icon--plus-circle icon--24 icon--gray-scale-1000"
+            class="text--content-1-a text--gray-scale-500" (click)="payMethodsModal()">
+          </item-option>
+          <item-navigation *ngIf="selectedPaymentMethod" (clickEvent)="payMethodsModal()"
+            [label]="selectedPaymentMethod" [setShadow]="true" [setBackground]="true"
+            [classIconButton]="paymentMethodIcons[selectedPaymentMethod]" shapeIconBackground="rectangle">
+          </item-navigation>
+        </div>
+      </section>
+
+      <section class="summary-container display--flex flex--column inner-spacing--24">
+        <title-section [title]="localization.localize('basket.storePickup.summaryLabelTitle', 'ecommerce')">
+        </title-section>
+        <div class="summary-details display--flex flex--column inner-spacing--12">
+          <!-- TODO: check for item-total-order component -->
+          <item-order *ngFor="let summaryDetail of summaryDetails" [label]="summaryDetail.label"
+            [data]="summaryDetail.data">
+          </item-order>
+        </div>
+
+        <ion-button (click)="selectCoupon()"
+          class="c-button c-button--primary c-button--outline c-button--bordered c-button--full-width">
+          <ion-icon slot="start" class="icon icon--ticket" [ngClass]="{
+              'icon--gray-scale-700' : coupon === '',
+              'icon--success' : coupon !== ''
+             }" />
+          <span [ngClass]="{
+            'text--gray-scale-700' : coupon === '',
+            'success' : coupon !== ''
+          }">
+            {{ coupon === '' ? localization.localize('basket.storePickup.couponsButton','ecommerce') : coupon }}
+          </span>
+        </ion-button>
+      </section>
+
+      <section class="billing-container display--flex flex--column inner-spacing--24">
+        <title-section [title]="localization.localize('basket.storePickup.billingLabelTitle', 'ecommerce')"
+          [note]="localization.localize('basket.storePickup.billingSpanTitle', 'ecommerce')">
+        </title-section>
+
+        <div class="billing-item">
+          <item-navigation *ngIf="billingData.name === undefined" (click)="selectBilling()"
+            [label]="localization.localize('basket.storePickup.billingItemPlaceholder', 'ecommerce')"
+            classLabel="text--secondary" classIconButton="icon icon--plus-circle icon--24 icon--gray-scale-1000"
+            class="text--content-1-a text--gray-scale-500" [setArrow]="false">
+          </item-navigation>
+
+          <item-navigation *ngIf="billingData.name !== undefined" (click)="selectBilling()" label={{billingData.name}}
+            sublabel={{billingData.fiscalNumber}} [setBackground]="true" classIconButton="icon icon--paper"
+            [setArrow]="true" type="info" shapeIconBackground="rectangle">
+          </item-navigation>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer-spacing height="80px"></footer-spacing>
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button (click)="navigateToPayment()"
+        class="c-button c-button--primary c-button--large c-button--full-width buttom-top">
+        {{'basket.storePickup.buttonTotal' | localize: 'ecommerce'}} (S/12,589.00)
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

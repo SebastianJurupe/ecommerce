@@ -1,0 +1,176 @@
+<ion-content [ngClass]="{ 'auto-size': isKeyboardOpen }">
+  <div class="content--desktop container-desktop container-desktop-section desktop">
+    <div class="cart-content container-scroll-desktop-vertical">
+      <div class="content">
+        <page-empty *ngIf="cartItems.length === 0 && !isLoading" icon="😊" [setDesktop]="true" [title]="
+            localization.localize('basket.home.empty.title', 'ecommerce')
+          " [subtitle]="
+            localization.localize('basket.home.empty.subtitle', 'ecommerce')
+          ">
+        </page-empty>
+
+        <!-- SKELETONS -->
+        <section class="skeletons-container" *ngIf="isLoading === true">
+          <ng-container>
+            <div class="skeleton" *ngFor="let item of [1, 1]">
+              <div class="display--flex flex--column inner-spacing--24">
+                <div class="display--flex justify-content--space-between">
+                  <ion-skeleton-text [animated]="true" class="title-product-skeleton" />
+                  <ion-skeleton-text [animated]="true" class=" icon-skeleteon" />
+                </div>
+
+
+                <div class="display--flex justify-content--space-between">
+                  <div class="display--flex">
+                    <ion-skeleton-text class="product-preview-skeleton" />
+                    <div class="display--flex flex--column inner-spacing--12 mt-12">
+                      <ion-skeleton-text [animated]="true" class="description-text height--24px" />
+                      <ion-skeleton-text [animated]="true" class="details-content" />
+                    </div>
+                  </div>
+
+                  <div class="display--flex mt-12">
+                    <ion-skeleton-text [animated]="true" class="price-product-skeleton" />
+                  </div>
+                </div>
+
+                <ion-skeleton-text [animated]="true" class="line-skeleton"></ion-skeleton-text>
+              </div>
+            </div>
+          </ng-container>
+        </section>
+        <!-- SKELETONS -->
+
+        <section *ngFor="let cartItem of cartItems" class="basket-item">
+          <div class="display--flex width--100 flex--column inner-spacing--24">
+            <div class="display--flex justify-content--space-between inner-spacing--16">
+              <div>
+                <ion-label class="text--content-1-c">
+                  {{ cartItem.item.description }}
+                </ion-label>
+              </div>
+              <ion-icon (click)="presentPopover(cartItem.id, $event)"
+                class="icon icon--menu-dots icon--gray-scale-500 icon--24" />
+            </div>
+
+            <div *ngIf="!cartItem.item.has_variants">
+              <product-in-basket (indexSelected)="indexSelectedNow($event)" (focusEvent)="focus()"
+                (blurEvent)="blur(cartItem.item.id)" class="display--flex width--100" (onDelete)="delete(cartItem.id)"
+                [index]="cartItem.item.id" [setDelete]="false"
+                [unitTypeDescription]="cartItem.item.unit_type.description" [price]="
+                  calculatePriceToPayWithoutVariant(
+                    cartItem.item,
+                    cartItem.data.quantity
+                  )
+                " [(value)]="cartItem.data.quantity" [srcImage]="
+                  cartItem.item.files.length > 0
+                    ? cartItem.item.files[0].path
+                    : ''
+                " [readonly]="false">
+              </product-in-basket>
+            </div>
+
+            <div *ngIf="cartItem.item.has_variants">
+              <product-in-basket *ngFor="let variant of cartItem.data.variants; let i = index"
+                (indexSelected)="indexSelectedNow($event)" (focusEvent)="focus()"
+                (blurEvent)="blurVariant(cartItem.item.id, variant.id)" class="display--flex width--100"
+                (onDelete)="deleteVariant(cartItem.item.id, variant.id,true)"
+                [unitTypeDescription]="cartItem.item.unit_type.description" [index]="cartItem.data.variants[i].id"
+                [details]="
+                  getVariantDetails(cartItem.item, cartItem.data.variants[i].id)
+                " [srcImage]="
+                  getVariantData(cartItem.item, cartItem.data.variants[i].id)
+                    .files.length > 0
+                    ? getVariantData(
+                        cartItem.item,
+                        cartItem.data.variants[i].id
+                      ).files[0].path
+                    : ''
+                " [price]="
+                  calculatePriceToPayWithVariant(
+                    cartItem.item.variants,
+                    cartItem.data.variants[i].id,
+                    cartItem.data.variants[i].quantity
+                  )
+                " [(value)]="+cartItem.data.variants[i].quantity" [readonly]="false">
+              </product-in-basket>
+            </div>
+
+            <div class="line-product"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div *ngIf="cartData && cartData.length !== 0" class="footer-base--no-safe-area width--400">
+      <section class="summary-container display--flex flex--column inner-spacing--24">
+        <title-section [title]="
+            localization.localize(
+              'basket.storePickup.summaryLabelTitle',
+              'ecommerce'
+            )
+          ">
+        </title-section>
+        <div class="summary-details display--flex flex--column inner-spacing--12">
+          <item-order [label]="'Subtotal'" [data]="'S/' + ' ' + (cartData?.subtotal | number: '1.2-2')">
+          </item-order>
+          <item-order [label]="'Impuestos'" [data]="'S/' + ' ' + (cartData?.total_taxes | number: '1.2-2')">
+          </item-order>
+          <item-order [label]="
+              this.localization.localize(
+                'basket.storePickup.totalBoxTitle',
+                'ecommerce'
+              )
+            " [data]="'S/' + ' ' + (cartData?.total | number: '1.2-2')">
+          </item-order>
+        </div>
+        <div class="footer-base__container">
+          <ion-button (click)="deliveryDesktop()" [disabled]="cartItems.length === 0"
+            class="c-button c-button--large c-button--primary c-button--full-width">
+            {{ "basket.home.empty.goToPay" | localize : "ecommerce" }}
+            (S/ {{ this.total | number: '1.2-2' }})
+          </ion-button>
+        </div>
+      </section>
+    </div>
+    <div *ngIf="cartData && cartData.length === 0 && !isLoading" class="footer-base--no-safe-area width--400">
+      <section class="summary-container display--flex flex--column inner-spacing--24">
+        <title-section [title]="
+            localization.localize(
+              'basket.storePickup.summaryLabelTitle',
+              'ecommerce'
+            )
+          ">
+        </title-section>
+        <div class="summary-details display--flex flex--column inner-spacing--12">
+          <item-order [label]="'Subtotal'" [data]="'S/' + ' ' + '0.00'">
+          </item-order>
+          <item-order [label]="'Impuestos'" [data]="'S/' + ' ' + '0.00'">
+          </item-order>
+          <item-order [label]="
+              this.localization.localize(
+                'basket.storePickup.totalBoxTitle',
+                'ecommerce'
+              )
+            " [data]="'S/' + ' ' + '0.00'">
+          </item-order>
+        </div>
+        <div class="footer-base__container">
+          <ion-button (click)="deliveryDesktop()" [disabled]="cartItems.length === 0"
+            class="c-button c-button--large c-button--primary c-button--full-width">
+            {{ "basket.home.empty.goToPay" | localize : "ecommerce" }}
+            (S/ {{ "0.00" }})
+          </ion-button>
+        </div>
+      </section>
+    </div>
+
+    <!-- <menu-input [ngClass]="{
+        'keyboard-animation-top-menu':keyboardWillShow && platform === 'ios',
+        'keyboard-animation-bottom-menu':!keyboardWillShow && platform === 'ios'
+        }" (clickOkEvent)="clickOk()" *ngIf="showMenuInput">
+        </menu-input> -->
+  </div>
+</ion-content>

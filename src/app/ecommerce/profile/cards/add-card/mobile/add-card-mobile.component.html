@@ -1,0 +1,69 @@
+<ion-content>
+
+  <header-title [back]="true" (backEvent)="back()" [title]="localization.localize('profile.cards.newCard','ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="content">
+
+      <div class="advice-form-save-card">
+        <section class="advice">
+          <ion-text class="text--secondary text--content-2-a">
+            {{ 'profile.addCard.advice' | localize: 'ecommerce' }}
+          </ion-text>
+        </section>
+
+        <section class="card-form">
+
+          <div class="card-form-field card-form-number">
+            <ion-input #cardNumberInput [ngClass]="{
+                'text--primary' : !isInvalidNumber,
+                'text--delete' : isInvalidNumber && card.number.length === 19
+              }" class="card-form-input" [autofocus]="true" autofocus type="tel" maxlength="19"
+              [(ngModel)]="card.number" (ionInput)="onCardNumberInput($event)" placeholder="0000 0000 0000 0000">
+            </ion-input>
+
+            <ion-icon *ngIf="cardProviderImage !== '' && card.number.length === 19" class="card-form-field__icon"
+              [class]="cardProviderImage">
+            </ion-icon>
+          </div>
+
+          <div class="card-form-field card-form-owner">
+            <ion-input class="card-form-input" type="text" [(ngModel)]="card.titular" placeholder="Nombre del titular">
+            </ion-input>
+          </div>
+
+          <div class="card-form-date-cvv">
+            <ion-input class="card-form-input date" type="tel" maxlength="5" (ionInput)="onDateInput($event)"
+              placeholder="00/00">
+            </ion-input>
+          </div>
+        </section>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="footer-base extra-animation footer-base--no-line">
+    <div class="footer-base__container">
+      <div class="safety-label">
+        <img src="/assets/profile/security-icon.svg" alt="Icon Safe">
+        <ion-text class="text--secondary text--content-2-a">
+          {{ 'profile.addCard.safetyLabel' | localize: 'ecommerce' }}
+        </ion-text>
+      </div>
+      <div class="footer-line"></div>
+      <ion-button [disabled]="disableButton()" (click)="saveMobile()"
+        class="button-save c-button c-button--large c-button--primary c-button--full-width">
+
+        <ng-container *ngIf="isLoading">
+          <ion-spinner name="crescent" />
+        </ng-container>
+
+        <span *ngIf="!isLoading">
+          {{ 'profile.addCard.buttonSave' | localize: 'ecommerce' }}
+        </span>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

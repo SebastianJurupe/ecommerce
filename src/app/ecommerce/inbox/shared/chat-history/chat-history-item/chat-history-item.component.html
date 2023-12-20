@@ -1,0 +1,69 @@
+<div class="chat-history-item__container {{message.isCurrentUserMessage ? 'from' : 'to'}}">
+    <div class="chat-history-item__content">
+
+        <ng-container *ngIf="message.formatedMsg.hasMultipleResource && !message.formatedMsg.isAudio">
+            <div
+                class="chat-history-item__resources"
+                [ngClass]="{
+                    'files': message.formatedMsg.mediaType === 'file',
+                }">
+
+            <div class="chat-history-item__resource" *ngFor="let resource of message.fileMsg">
+                <inbox-chat-history-resource
+                    [resource]="resource"
+                    [createdDate]="message.createdDate"
+                    [hasUniqueResource]="false"
+                    [mediaType]="message.formatedMsg.mediaType"
+                />
+
+            </div>
+
+            </div>
+            <div *ngIf="message.msg !== ''" class="chat-history-item__body multiple">
+                {{ message.msg }}
+            </div>
+        </ng-container>
+
+        <div
+            *ngIf="message.formatedMsg.hasUniqueResource && !message.formatedMsg.isAudio"
+            class="chat-history-item__resource">
+            <inbox-chat-history-resource
+                [resource]="message.fileMsg[0]"
+                [createdDate]="message.createdDate"
+                [hasUniqueResource]="true"
+                [mediaType]="message.formatedMsg.mediaType"
+            />
+
+            <div *ngIf="message.msg !== ''" class="chat-history-item__body">
+                {{ message.msg }}
+            </div>
+        </div>
+
+        <div *ngIf="message.formatedMsg.isAudio">
+            <inbox-chat-history-audio
+                [resource]="message.fileMsg[0]"
+                [createdDate]="message.createdDate"
+            />
+        </div>
+
+        <div *ngIf="message.formatedMsg.hasMessage" class="chat-history-item__body">
+            <label class="chat-history-item__message">
+                {{message.formatedMsg.message}}
+            </label>
+            <label class="chat-history-item__time">
+                {{message.createdDate | luxonFormat: 'HH:mm a' | lowercase}}
+            </label>
+        </div>
+
+        <div class="chat-history-item__footer">
+            <label class="chat-history-item__referer">
+                {{
+                message.isCurrentUserMessage ?
+                ('inbox.channel.me' | localize: 'ecommerce' ) :
+                message.formatedMsg.name
+                }}
+            </label>
+        </div>
+
+    </div>
+</div>

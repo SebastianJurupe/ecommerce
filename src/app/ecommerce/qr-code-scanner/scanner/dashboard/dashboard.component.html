@@ -1,0 +1,74 @@
+<ion-content
+  [scrollY]="false"
+  [scrollX]="false"
+  class="content-padding-mobile sub-padding content-list-responsive">
+
+  <div class="scanner__container">
+    <div class="scanner__content">
+
+      <div class="scanner__body">
+
+        <div class="scanner_body-actions">
+
+          <div class="scanner__body-control">
+
+            <ion-button
+              class="scanner__action"
+              fill="clear"
+              (click)="onBackButtonPressed()">
+              <ion-icon
+                class="scanner__action-icon icon icon--close-center"
+                slot="icon-only">
+              </ion-icon>
+            </ion-button>
+
+          </div>
+
+          <div class="scanner__body-control">
+
+            <ion-button
+              *ngIf="qrScannerService.torchEnabled"
+              class="scanner__action"
+              [ngClass]="{ 'power-on' : qrScannerService.torchIsPowerOn }"
+              fill="clear"
+              (click)="qrScannerService.toggleTorch()">
+              <ion-icon
+                class="scanner__action-icon icon icon--flashlight"
+                slot="icon-only">
+              </ion-icon>
+            </ion-button>
+
+          </div>
+
+        </div>
+
+        <div class="scanner_body-actions">
+
+          <div class="scanner__body-control gallery">
+
+            <ion-button
+              (click)="showGalleryScan()"
+              class="scanner__action"
+              id="scanner-gallery-action"
+              fill="clear">
+              <ion-icon class="scanner__action-icon icon icon--image-2">
+              </ion-icon>
+            </ion-button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+<app-scanned-product
+  *ngIf="showScannedProduct"
+  [product]="productScannedResult"
+  (onProductAdded)="onProductAdded($event)"
+/>

@@ -1,0 +1,38 @@
+.content-input{
+  position: relative;
+
+}
+
+.input__icon-position {
+position: absolute;
+ right: 0px;
+ top: 30%;
+z-index: 99999
+}
+
+.language-popover {
+  --offset-x: 4em;
+
+  .list {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .item-popover {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+}
+
+.icon-perfil {
+  display: flex;
+  justify-content: space-between
+}
+
+.utils-line--full {
+  margin-bottom: 8px;
+  margin-inline: 0;
+}

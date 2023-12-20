@@ -1,0 +1,58 @@
+.content {
+  background-color: var(--p-background-secondary);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.category {
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.selected-color {
+  border: 2px solid red;
+}
+
+.prices {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border-radius: 10px;
+
+  &:hover {
+    background: var(--p-gray-scale-100);
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon--trash {
+  width: 20px;
+  height: 20px;
+}
+
+.filter-container {
+  margin-top: 4px;
+}
+
+.color-text {
+  color: #1588f2;
+}
+
+button-option {
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  align-items: flex-start;
+  display: flex;
+}

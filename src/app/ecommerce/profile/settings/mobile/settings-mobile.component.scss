@@ -1,0 +1,8 @@
+ion-icon {
+    transform: rotate(180deg);
+    margin-left: 0 !important;
+}
+
+.logout-spinner {
+    --color: var(--p-delete);
+}

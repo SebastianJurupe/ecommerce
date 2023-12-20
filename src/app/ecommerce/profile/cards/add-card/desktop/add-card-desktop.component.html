@@ -1,0 +1,78 @@
+<ion-content>
+    <header-title [title]="localization.localize('profile.cards.newCard','ecommerce')" (iconButtonEvent)="cancel()"
+        position="start" classIconButton="icon icon--close-right">
+    </header-title>
+
+    <div class="container justify-content--start">
+        <div class="width--100 hide-scrollbar">
+
+            <div class="advice-form-save-card">
+                <section class="advice">
+                    <ion-text class="text--secondary text--content-2-a">
+                        😊 Por favor, rellena los campos con los datos de tu tarjeta y tu próxima compra será mucho más
+                        rápida. 💁
+                    </ion-text>
+                </section>
+
+                <section class="card-form">
+
+                    <div class="card-form-field card-form-number">
+                        <ion-input #cardNumberInput [ngClass]="{
+                  'text--primary' : !isInvalidNumber,
+                  'text--delete' : isInvalidNumber && card.number.length === 19
+                }" class="card-form-input" [autofocus]="true" autofocus type="tel" maxlength="19"
+                            [(ngModel)]="card.number" (ionInput)="onCardNumberInput($event)"
+                            placeholder="0000 0000 0000 0000">
+                        </ion-input>
+
+                        <ion-icon *ngIf="cardProviderImage !== '' && card.number.length === 19"
+                            class="card-form-field__icon" [class]="cardProviderImage">
+                        </ion-icon>
+                    </div>
+
+                    <div class="card-form-field card-form-owner">
+                        <ion-input class="card-form-input" type="text" [(ngModel)]="card.titular"
+                            placeholder="Nombre del titular">
+                        </ion-input>
+                    </div>
+
+                    <div class="card-form-date-cvv">
+                        <ion-input class="card-form-input date" type="tel" maxlength="5"
+                            (ionInput)="onDateInput($event)" placeholder="00/00">
+                        </ion-input>
+                    </div>
+
+                </section>
+                <div class="safety-label">
+                    <img src="/assets/profile/security-icon.svg" alt="Icon Safe">
+                    <ion-text class="text--secondary text--content-2-a">
+                        {{ 'profile.addCard.safetyLabel' | localize: 'ecommerce' }}
+                    </ion-text>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="footer-base extra-animation footer-base--no-line">
+        <div class="footer-base__container">
+            <div class="display--flex align-items--start inner-spacing--16">
+                <ion-button class="c-button c-button--primary c-button--outline c-button--large width--50"
+                    (click)="dialog.dismiss('cancel')">
+                    Cancelar
+                </ion-button>
+                <ion-button [disabled]="disableButton()" (click)="saveDesktop()"
+                    class="button-save c-button c-button--large c-button--primary width--50">
+                    <ng-container *ngIf="isLoading">
+                        <ion-spinner name="crescent" />
+                    </ng-container>
+                    <span *ngIf="!isLoading">
+                        {{ 'profile.addCard.buttonSave' | localize: 'ecommerce' }}
+                    </span>
+                </ion-button>
+            </div>
+
+        </div>
+    </div>
+</ion-content>

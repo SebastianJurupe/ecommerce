@@ -1,0 +1,99 @@
+<ion-content>
+  <div class="container-flex">
+
+    <div>
+      <header-title (closeEvent)="close()" [close]="true">
+      </header-title>
+      <!-- <div class="width--100 padding--inline ">
+        <div class="utils-line--all-width "></div>
+      </div> -->
+    </div>
+
+    <div class="container-menu elements container-scroll-desktop-vertical">
+
+      <div class="content hide-scrollbar">
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <title-section [title]="placeholders.help">
+          </title-section>
+          <div class="display--flex flex--column inner-spacing--10">
+
+            <item-option [label]="placeholders.talkToSales" classIconButton="icon icon--headphones icon--gray-scale-700"
+              class="width--100 cursor-pointer hovered">
+            </item-option>
+            <item-option (clickEvent)="goToBook()" [label]="placeholders.bookOfClaims"
+              classIconButton="icon icon--book icon--gray-scale-700" class="width--100 cursor-pointer hovered">
+            </item-option>
+          </div>
+
+          <!-- <div class="utils-line--all-width"></div> -->
+          <title-section [title]="placeholders.aboutTitle">
+          </title-section>
+          <div class="display--flex flex--column inner-spacing--10">
+
+            <item-option [label]="placeholders.about" classIconButton="icon icon--company icon--gray-scale-700"
+              (clickEvent)="goToRoute('/app/ecommerce/profile/about-us')" class="width--100 cursor-pointer hovered">
+            </item-option>
+            <item-option [label]="placeholders.terms"
+              (clickEvent)="goToRoute('/app/ecommerce/profile/terms-conditions')"
+              classIconButton="icon icon--paragraph icon--gray-scale-700" class="width--100 cursor-pointer hovered">
+            </item-option>
+            <item-option [label]="placeholders.privacy"
+              (clickEvent)="goToRoute('/app/ecommerce/profile/privacy-policies')"
+              classIconButton="icon icon--lock icon--gray-scale-700" class="width--100 cursor-pointer hovered">
+            </item-option>
+            <item-option [label]="placeholders.exchanges"
+              (clickEvent)="goToRoute('/app/ecommerce/profile/exchanges-returns')"
+              classIconButton="icon icon--num icon--gray-scale-700" class="width--100 cursor-pointer hovered">
+
+            </item-option>
+          </div>
+        </div>
+      </div>
+      <div class="width--100 padding--inline">
+        <div class="utils-line--full"></div>
+      </div>
+
+      <div class="display--flex flex--column inner-spacing--40 margin--auto ">
+
+        <div class="display--flex inner-spacing--24">
+
+          <button-social-media *ngFor="let button of iconSocial" [classIcon]="button.classIcon"
+            (clickEvent)="button.method()">
+          </button-social-media>
+        </div>
+
+        <div class="items display--flex inner-spacing--12 align-items--center footer-base__options">
+
+          <ion-note
+            class="text--content-1-a display--flex inner-spacing--8 align-items--center footer-base__options cursor-pointer">
+
+            <img class="flag" [src]="country.flag" />
+            {{ country.description }}
+          </ion-note>
+
+          <div>
+            <ion-label class="text--content-1-a">|</ion-label>
+          </div>
+
+          <div class="option footer-base__options">
+
+            <div class="option result d-flex cursor-pointer">
+              <ion-text (click)="chooseLanguagePopover($event)" id="choose-language-login" class="text--content-1-a">
+                {{ selectedLanguage === 'en_US'
+                ? placeholders.english
+                : placeholders.spanish}}
+              </ion-text>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+
+    </div>
+
+  </div>
+
+</ion-content>

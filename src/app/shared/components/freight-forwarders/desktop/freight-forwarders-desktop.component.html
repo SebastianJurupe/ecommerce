@@ -1,0 +1,54 @@
+<ion-content [scrollY]="!agencies">
+
+  <header-title position="start" [title]="localization.localize('basket.storePickup.freightAgencies', 'ecommerce')" classIconButton="icon icon--close-right cursor-pointer"
+    (iconButtonEvent)="back()">
+  </header-title>
+
+  <div class="content hide-scrollbar">
+
+    <item-navigation-line [floatLabel]="localization.localize('general.country', 'ecommerce')" [srcFlag]="country.flag"
+      [label]="country.description" [setArrow]="false">
+    </item-navigation-line>
+
+    <item-navigation classIconButton="icon icon--location"
+      [label]="address.description === '' ? localization.localize('profile.address.select', 'ecommerce') : address.address" [setBackground]="true"
+      (clickEvent)="chooseAddress()">
+    </item-navigation>
+
+    <section class="options">
+      <div *ngIf="loading">
+        <item-navigation-avatar *ngFor="let agency of agencies" [avatarSrc]="agency.logo" [label]="agency.name"
+          [price]="agency.price" [isBestPrice]="true" (clickEvent)="confirmAgency(agency)"
+          [sublabel]=" localization.localize('basket.storePickup.addressAgency', 'ecommerce') + agency.lead_time +  localization.localize('basket.storePickup.addresItArrivesDay', 'ecommerce')">
+        </item-navigation-avatar>
+      </div>
+
+      <div *ngIf="!loading" lines="none" class=" display--flex align-items--center inner-spacing--24 width--100">
+        <ion-thumbnail slot="start" class="logo-skeleton">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label class="width--100">
+          <h3>
+            <ion-skeleton-text [animated]="true"  class="name-skeleton"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text [animated]="true"  class="address-skeleton" ></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </div>
+      <ion-button (click)="termsAndConditions()"
+        class="c-button c-button--text-primary c-button--extra-small c-button--no-padding-x text--secondary">
+        <ion-text class="text--secondary text--content-2-a">
+          <ion-text class="text--secondary text--content-2-a">
+            {{localization.localize('basket.storePickup.seeTerms','ecommerce')}}
+          </ion-text>
+        </ion-text>
+      </ion-button>
+    </section>
+
+    <page-empty *ngIf="!available" icon="😊" title="No hay agencias"
+      subtitle="No encontramos ninguna agencia para esta dirección">
+    </page-empty>
+
+  </div>
+</ion-content>

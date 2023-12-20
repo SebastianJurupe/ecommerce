@@ -1,0 +1,10 @@
+<div class="content">
+  <modal-delete
+    [title]="localization.localize('profile.cards.deleteCard.title','ecommerce')"
+    [subtitle]="localization.localize('profile.cards.deleteCard.subtitle','ecommerce')"
+    [outlineLabel]="localization.localize('profile.cards.deleteCard.outlineLabel','ecommerce')"
+    [fillLabel]="localization.localize('profile.cards.deleteCard.fillLabel','ecommerce')"
+    (outlineButtonClickEvent)="handleCancelEvent()"
+    (fillButtonClickEvent)="handleDeleteEvent()">
+  </modal-delete>
+</div>

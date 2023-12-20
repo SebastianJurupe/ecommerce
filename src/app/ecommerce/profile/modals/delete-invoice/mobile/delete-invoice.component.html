@@ -1,0 +1,10 @@
+<div class="container">
+  <modal-delete
+    [title]="localization.localize('profile.invoice.deleteInvoice.title','ecommerce')"
+    [subtitle]="localization.localize('profile.invoice.deleteInvoice.subtitle','ecommerce')"
+    [outlineLabel]="localization.localize('general.cancel','ecommerce')"
+    [fillLabel]="localization.localize('general.delete','ecommerce')"
+    (outlineButtonClickEvent)="dialog.dismiss('cancel')"
+    (fillButtonClickEvent)="dialog.dismiss('delete')">
+  </modal-delete>
+</div>

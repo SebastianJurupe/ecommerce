@@ -1,0 +1,44 @@
+<ion-content>
+
+  <header-title [back]="true" (backEvent)="onBackButtonPressed()"
+    [title]="localization.localize('profile.address.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <page-empty *ngIf="addresses.length === 0 && emptyAddress" icon="😊"
+        [title]="localization.localize('profile.address.empty.title','ecommerce')"
+        [subtitle]="localization.localize('profile.address.empty.subtitle','ecommerce')">
+      </page-empty>
+
+      <section class="addresses-list" *ngIf="addresses.length > 0 && !loading">
+        <address-item-mobile *ngFor="let address of addresses" [address]="address"
+          (optionClicked)="onOpenPopover($event)">
+        </address-item-mobile>
+      </section>
+
+      <section *ngIf=" addresses.length===0 && loading"
+        class="skeletons-container display--flex flex--column inner-spacing--24 ">
+        <ng-container *ngFor="let item of [1,1,1]">
+          <div class="skeleton display--flex inner-spacing--40 justify-content--space-between">
+            <ion-skeleton-text animated class="name-skeleton"  />
+            <ion-skeleton-text animated  class="menu-skeleton" />
+          </div>
+        </ng-container>
+      </section>
+
+    </div>
+  </div>
+
+  <footer-spacing height="80px" />
+
+  <div class="footer-base ">
+    <div class="footer-base__container">
+      <ion-button (click)="onAddAddress()" class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'profile.address.newAddress' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

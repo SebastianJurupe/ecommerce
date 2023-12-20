@@ -1,0 +1,88 @@
+.chat-input__dropdown {
+    position: relative;
+    display: inline-block;
+
+    .chat-input__action.show~.chat-input__dropdown-content {
+        visibility: initial !important;
+    }
+
+    .chat-input__dropdown-content {
+        visibility: hidden;
+        display: block;
+        position: absolute;
+        bottom: 30px;
+        background-color: var(--ion-color-light);
+        min-width: 180px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+
+        .chat-input__dropdown-option {
+            cursor: pointer;
+        }
+    }
+}
+
+.emoji-mart .emoji-mart-emoji {
+    padding: 6px 12px 10px 4px !important;
+}
+
+ngx-emoji[ng-reflect-emoji="smiling_face_with_tear"],
+ngx-emoji[ng-reflect-emoji="melting_face"],
+ngx-emoji[ng-reflect-emoji="index_pointing_at_the_viewer"],
+ngx-emoji[ng-reflect-emoji="face_with_peeking_eye"],
+ngx-emoji[ng-reflect-emoji="1FAE0"],
+ngx-emoji[ng-reflect-emoji="1F972"],
+ngx-emoji[ng-reflect-emoji="1FAE2"],
+ngx-emoji[ng-reflect-emoji="1FAE3"],
+ngx-emoji[ng-reflect-emoji="1FAE1"],
+ngx-emoji[ng-reflect-emoji="1FAE5"],
+ngx-emoji[ng-reflect-emoji="1F978"],
+ngx-emoji[ng-reflect-emoji="1FAE4"],
+ngx-emoji[ng-reflect-emoji="1F979"],
+ngx-emoji[ng-reflect-emoji="1FAF1"],
+ngx-emoji[ng-reflect-emoji="1FAF2"],
+ngx-emoji[ng-reflect-emoji="1FAF3"],
+ngx-emoji[ng-reflect-emoji="1FAF4"],
+ngx-emoji[ng-reflect-emoji="1F90C"],
+ngx-emoji[ng-reflect-emoji="1FAF0"],
+ngx-emoji[ng-reflect-emoji="1FAF5"],
+ngx-emoji[ng-reflect-emoji="1FAF6"],
+ngx-emoji[ng-reflect-emoji="1FAC1"],
+ngx-emoji[ng-reflect-emoji="1FAC0"],
+ngx-emoji[ng-reflect-emoji="1FAE6"],
+ngx-emoji[ng-reflect-emoji="1F9D1-200D-1F527"],
+ngx-emoji[ng-reflect-emoji="1F9D1-200D-1F680"],
+ngx-emoji[ng-reflect-emoji="1F977"],
+ngx-emoji[ng-reflect-emoji="1FAC5"],
+ngx-emoji[ng-reflect-emoji="1F935-200D-2640-FE0F"],
+ngx-emoji[ng-reflect-emoji="1FAC3"],
+ngx-emoji[ng-reflect-emoji="1FAC4"],
+ngx-emoji[ng-reflect-emoji="1F468-200D-1F37C"],
+ngx-emoji[ng-reflect-emoji="1F469-200D-2696-FE0F"],
+ngx-emoji[ng-reflect-emoji="1F9D1-200D-1F37C"],
+ngx-emoji[ng-reflect-emoji="1F9CC"],
+ngx-emoji[ng-reflect-emoji="1FAC2"],
+ngx-emoji[ng-reflect-emoji="1F9AC"],
+ngx-emoji[ng-reflect-emoji="1F9A3"],
+ngx-emoji[ng-reflect-emoji="1F9AB"],
+ngx-emoji[ng-reflect-emoji="1F935-200D-2642-FE0F"],
+ngx-emoji[ng-reflect-emoji="2764-FE0F-200D-1FA79"],
+ngx-emoji[ng-reflect-emoji="1F9A4"],
+ngx-emoji[ng-reflect-emoji="1F9A4"],
+ngx-emoji[ng-reflect-emoji="1F9AD"],
+ngx-emoji[ng-reflect-emoji="1FAB8"],
+ngx-emoji[ng-reflect-emoji="1FAB2"],
+ngx-emoji[ng-reflect-emoji="1F9D1-200D-1F9BD"],
+ngx-emoji[ng-reflect-emoji="1F9D1-200D-1F4BB"],
+ngx-emoji[ng-reflect-emoji="1FAB6"],
+ngx-emoji[ng-reflect-emoji="1FAB3"],
+ngx-emoji[ng-reflect-emoji="1FAB2"],
+ngx-emoji[ng-reflect-emoji="1FAB0"],
+ngx-emoji[ng-reflect-emoji="1FAB1"],
+ngx-emoji[ng-reflect-emoji="1FAB7"],
+ngx-emoji[ng-reflect-emoji="1FAB4"],
+ngx-emoji[ng-reflect-emoji="1FAB9"],
+ngx-emoji[ng-reflect-emoji="1FABA"] {
+    visibility: hidden;
+    display: none;
+}

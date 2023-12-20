@@ -1,0 +1,298 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+@import "./theme//popover-classes.scss";
+@import "./theme/inbox.scss";
+
+:root {
+  --header-heigth: 44px;
+}
+
+.native-input.sc-ion-input-ios {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+ion-toggle {
+  height: 24px !important;
+  width: 40px !important;
+
+  --handle-width: 24px !important;
+  --handle-height: 24px !important;
+}
+
+.keyboard-animation-top {
+  transform: translateY(calc(var(--keyboard-height) * -1)) !important;
+  transition: transform 190ms linear !important;
+}
+
+.keyboard-animation-bottom {
+  transform: translateY(var(--keyboard-height)) !important;
+  transition: transform 125ms linear !important;
+}
+
+.keyboard-animation-top-menu {
+  transform: translateY(calc((var(--keyboard-height) * -1) + 300px)) !important;
+  transition: transform 10s linear !important;
+}
+
+.keyboard-animation-bottom-menu {
+  transform: translateY(var(--keyboard-height)) !important;
+  transition: transform 2s linear !important;
+}
+
+ion-spinner {
+  --color: var(--p-gray-scale-1000);
+}
+
+.footer-base {
+  transform: translateY(calc(var(--keyboard-height) * 1)) !important;
+  transition: transform .5s linear !important;
+
+  &.extra-animation {
+    transform: translateY(calc((var(--keyboard-height) * 1) + 120px)) !important;
+    transition: transform .5s linear !important;
+  }
+
+  &.no-animation {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  &.negative-index {
+    z-index: -999 !important;
+  }
+}
+
+
+
+ion-input {
+  caret-color: var(--p-gray-scale-1000) !important;
+  --highlight-color-focused: var(--p-gray-scale-1000) !important;
+  --highlight-color-invalid: var(--p-gray-scale-1000) !important;
+  --highlight-color-valid: var(--p-gray-scale-1000) !important;
+}
+
+input {
+  caret-color: var(--p-gray-scale-1000) !important;
+}
+
+ion-modal.modal-custom--in-center-medium-1 {
+  color: var(--p-gray-scale-1000);
+  --background: var(--p-background-secondary) !important;
+  --width: 324px;
+  --min-width: 250px;
+  --height: 100%;
+  --max-width: 324px;
+  --max-height: 100%;
+  justify-content: start;
+  overflow-y: hidden !important;
+  --border-radius: 0px !important;
+}
+
+ion-modal.modal-custom--in-center-small {
+  color: var(--p-gray-scale-1000);
+  --background: var(--p-background-secondary) !important;
+  --width: 464px;
+  --min-width: 250px;
+  --height: auto;
+  --width: 464px;
+  --max-height: 100%;
+  justify-content: center;
+  overflow-y: hidden !important;
+  --border-radius: 10px !important
+}
+
+.product-description__content {
+  p {
+    margin-block-start: 0 !important;
+    margin-block-end: 0 !important;
+  }
+}
+
+.flag {
+  width: 24px !important;
+  height: 16px !important;
+}
+
+// desktop
+.container-scroll-desktop-vertical {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.container-scroll-desktop-vertical::-webkit-scrollbar {
+  width: 1px;
+}
+
+.container-scroll-desktop-vertical::-webkit-scrollbar-track {
+  background-color: var(--background);
+}
+
+.container-scroll-desktop-vertical::-webkit-scrollbar-thumb {
+  background-color: var(--background);
+  border-radius: 10px;
+  padding: 10px;
+  border: 3px solid var(--background);
+}
+
+.container-desktop-section {
+  width: 100%;
+  height: calc(100vh - calc(60px + var(--ion-safe-area-top)));
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.container-desktop {
+  overflow: hidden;
+  padding: 20px 24px 0px 0px;
+  width: 100%;
+  background: var(--p-background-primary);
+}
+
+ion-skeleton-text {
+  margin: 0;
+  padding: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.hovered:hover {
+  background-color: var(--p-gray-scale-100) !important;
+  border-radius: 5px;
+}
+
+//Tablet
+@media screen and (min-width: 744px) and (max-width: 1134px) {
+  .container-desktop {
+    padding: 28px 32px 0px 16px;
+  }
+}
+
+ion-popover {
+  &::part(content) {
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  --box-shadow: none !important;
+}
+
+
+ion-popover.delete {
+  &::part(content) {
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  --width: auto;
+  --box-shadow: none !important;
+}
+
+
+.emoji-mart-scroll,
+.theme-scroll-bar {
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(var(--ion-color-dark-rgb), 0.5);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(var(--ion-color-dark-rgb), 0.4);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--ion-color-dark-rgb), 0.3);
+  }
+}
+
+.popover-options {
+  ::part(scroll) {
+    padding: 0 !important;
+  }
+}
+
+ngx-emoji {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: pointer !important;
+
+  span {
+    cursor: pointer !important;
+  }
+}
+
+emoji-search {
+  input {
+    background: none;
+  }
+}
+
+.content--desktop {
+  max-width: 1200px !important;
+  margin: auto !important;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.width-24 {
+  width: 24px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+// ion-modal {
+//   ion-content {
+//     --overflow: auto;
+//     overflow: auto;
+//     background-color: var(--p-background-primary);
+
+//     &::-webkit-scrollbar {
+//       display: none;
+//       width: 0px;
+//     }
+//   }
+// }

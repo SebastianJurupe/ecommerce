@@ -1,0 +1,99 @@
+<ion-content class="content-no-header">
+  <div class="box-tap"></div>
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--16 padding-35">
+        <div class="icon-profile-config">
+          <avatar-profile
+            [src]="personalInformation.avatar ? personalInformation.avatar : defaultAvatar"
+            [width]="76"
+            [height]="76">
+          </avatar-profile>
+          <ion-icon
+            (click)="settingProfile()"
+            class="icon icon--setting icon--24">
+          </ion-icon>
+        </div>
+
+        <ion-label class="text--h5-a">
+          {{ personalInformation.name | textSlice: 20 }}
+        </ion-label>
+
+        <ion-skeleton-text
+          *ngIf="personalInformation.name === ''"
+          animated
+          class="skeleton-name"
+        />
+      </div>
+
+      <div class="card-component__details display--flex flex--column inner-spacing--24 ">
+
+        <item-option
+          *ngFor="let resource of resources"
+          (clickEvent)="resource.method()"
+          [badge]="resource.badge === '0' ? '' : resource.badge"
+          [label]="resource.name"
+          [classIconButton]="resource.format"
+          class="width--100">
+        </item-option>
+
+
+        <div class="utils-line--all-width"></div>
+
+        <div class="display--flex flex--column inner-spacing--48">
+          <div class="display--flex inner-spacing--24">
+            <button-social-media
+              *ngFor="let button of socialOptions"
+              [classIcon]="button.classIcon"
+              (clickEvent)="button.method()">
+            </button-social-media>
+          </div>
+
+          <div class="items display--flex inner-spacing--12 align-items--center">
+
+            <ion-note
+              class="text--content-1-a display--flex inner-spacing--8 align-items--center">
+
+              <img
+                *ngIf="country.id !== ''"
+                class="country-flag flag"
+                [src]="country.flag">
+              <ion-skeleton-text
+                *ngIf="country.id === ''"
+                animated
+                class="country-skeleton">
+              </ion-skeleton-text>
+              <ion-skeleton-text
+                *ngIf="country.id === ''"
+                animated
+                class="country-name-skeleton">
+              </ion-skeleton-text>
+              {{ country.description }}
+            </ion-note>
+
+            <div>
+              <ion-label class="text--content-1-a">|</ion-label>
+            </div>
+
+            <div class="option">
+              <div class="option result d-flex ">
+                <ion-text
+                  id="choose-language-login"
+                  class="text--content-1-a"
+                  (click)="countryLanguage()">
+                  {{ selectedLanguage === 'en_US'
+                  ? placeholders.english
+                  : placeholders.spanish}}
+                </ion-text>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</ion-content>

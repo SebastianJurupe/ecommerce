@@ -1,0 +1,38 @@
+<ion-content>
+
+  <header-title [back]="true" (backEvent)="onBackButtonPressed()"
+    [title]="localization.localize('profile.orders.title','ecommerce')" classIconButton="icon icon--filter"
+    (iconButtonEvent)="openFilterPopover($event)">
+  </header-title>
+
+  <!-- EMPTY STATE -->
+  <page-empty *ngIf="orders.length === 0 && !isLoading" icon="😊"
+    [title]="localization.localize('profile.home.orders.empty','ecommerce')"
+    [subtitle]="localization.localize('profile.home.orders.subtitle','ecommerce')" classIconButton="icon icon--plus-1">
+  </page-empty>
+
+  <div class="container" [ngStyle]="{'justify-content': orders.length === 0 ? 'center' : 'start'}">
+    <div class="content">
+      <section class="orders-list">
+
+        <order-item-mobile *ngFor="let order of orders" [order]="order" (click)="navigateToOrderDetail(order.code)">
+        </order-item-mobile>
+
+        <!-- SKELETON -->
+        <ng-container *ngIf="isLoading" >
+            <div class="order-skeleton border-radius-skeleton" *ngFor="let item of [1, 1, 1,1,1,1]">
+              <ion-skeleton-text animated class="number-skeleton"></ion-skeleton-text>
+              <ion-skeleton-text animated class="date-skeleton"></ion-skeleton-text>
+              <ion-skeleton-text animated class="state-skeleton"></ion-skeleton-text>
+            </div>
+        </ng-container>
+      </section>
+
+    </div>
+  </div>
+
+  <ion-infinite-scroll *ngIf="orders.length > 0" threshold="10%" position="bottom"
+    (ionInfinite)="loadMoreOrders($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" />
+  </ion-infinite-scroll>
+</ion-content>

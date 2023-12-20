@@ -1,0 +1,51 @@
+<ion-content>
+
+  <header-title [close]="true" (click)="onBackButtonPressed()"
+    [title]="localization.localize('basket.paymentMethods.title','ecommerce')" *ngIf="device==='mobile'">
+  </header-title>
+
+  <header-title [title]="localization.localize('basket.paymentMethods.title','ecommerce')" position="start"
+    (iconButtonEvent)="buttonClose()" classIconButton="icon icon--close-right" *ngIf="device==='tablet'">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <div class="display--flex flex--column inner-spacing--28">
+
+        <!-- <item-navigation (clickEvent)="click('Nueva tarjeta')" [label]="localization.localize('basket.paymentMethods.newCard','ecommerce')"
+        [setCheck]="selectedPaymentMethod === 'Nueva tarjeta'" [setArrow]="false" [setShadow]="true"
+        classIconButton="icon icon--card-pay icon--46x32" shapeIconBackground="rectangle">
+      </item-navigation> -->
+
+        <!-- <item-navigation (click)="click('Visa Débito *** 4115')" label="Visa Débito *** 4115"
+          [setCheck]="selectedPaymentMethod === 'Visa Débito *** 4115'" [setArrow]="false" [setShadow]="true"
+          classIconButton="icon icon--logo-visa icon--46x32" shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation> -->
+
+        <!-- [label]="localization.localize('basket.paymentMethods.deposit','ecommerce')" -->
+        <item-navigation (click)="click('Depósito o transferencia')" label="Depósito o transferencia"
+          [setCheck]="selectedPaymentMethod === 'Depósito o transferencia'" [setArrow]="false"
+          classIconButton="icon icon--payment icon--46x32" shapeIconBackground="rectangle"
+          [setBackground]="true">
+        </item-navigation>
+
+        <!-- <item-navigation (click)="click('Yape')" label="Yape" [setCheck]="selectedPaymentMethod === 'Yape'"
+          [setArrow]="false" [setShadow]="true" classIconButton="icon icon--logo-yape icon--46x32"
+          shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation> -->
+
+        <!-- <item-navigation (click)="click('Pago efectivo')" label="Pago efectivo"
+          [setCheck]="selectedPaymentMethod === 'Pago efectivo'" [setArrow]="false" [setShadow]="true"
+          classIconButton="icon icon--efect-pay icon--46x32"  shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation>
+
+        <item-navigation (click)="click('Paypal')" label="Paypal" [setCheck]="selectedPaymentMethod === 'Paypal'"
+          [setArrow]="false" [setShadow]="true" classIconButton="icon icon--logo-paypal icon--46x32"
+          shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation> -->
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

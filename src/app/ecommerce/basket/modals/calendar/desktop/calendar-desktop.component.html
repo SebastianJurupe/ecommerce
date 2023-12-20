@@ -1,0 +1,78 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('basket.calendarModal.title', 'ecommerce')" position="start"
+    (iconButtonEvent)="close()" position="start" classIconButton="icon icon--close-right cursor-pointer"
+    class="user-select">
+  </header-title>
+
+  <div class="container">
+    <div class="width--100 hide-scrollbar">
+
+      <div class="calendar-container">
+        <div *ngIf="currentDate">
+          <div
+            class="content-mes widht-100 display--flex align-items--center inner-spacing--24 justify-content--space-between">
+            <div class="cursor-pointer" (click)="lastMonth()">
+              <ion-icon class="icon icon--arrow-geor-left-large icon--24 "></ion-icon>
+            </div>
+            <ion-label class="disabled-select">{{
+              currentDate
+              .toLocaleString("es-ES", { month: "short", year: "numeric" })
+              .slice(0, 1)
+              .toUpperCase() +
+              currentDate
+              .toLocaleString("es-ES", { month: "short", year: "numeric" })
+              .slice(1)
+              }}</ion-label>
+
+            <div class="cursor-pointer" (click)="nextMonth()">
+              <ion-icon class="icon icon--arrow-geor-right-large icon--24"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section #dateContainer class="card-component__date-container width--full-page inner-spacing--16 hide-scrollbar"
+        (mousedown)="onDateContainerMouseDown($event)" (mouseleave)="onDateContainerMouseLeave()">
+        <div *ngFor="let item of dates" [class.selected]="item.date === selectedDate">
+          <div class="text-start date-content">
+            <div class="cost" (click)="onDateSelected(item.date)">
+              <ion-label class="text--content-2-a disabled-select">
+                {{ item.date }}
+              </ion-label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <ion-radio-group #radioGroup value="custom-checked"
+        class="list-delivery-time display--flex flex--column  inner-spacing--24">
+        <div *ngFor="let option of options" (click)="selectRadio(option.value)"
+          class="item-delivery-time cursor-pointer">
+          <div class="content-option display--flex align-items--start justify-content--space-between">
+            <div class="info-delivery-time display--flex align-items--center inner-spacing--10">
+              <ion-text class="disabled-select">{{option.time}}</ion-text>
+              <div class="price-tag user-select">
+                <label-box classLabel="text--content-2-c disabled-select" type="success"
+                  label="S/ {{costDelivery}}"></label-box>
+              </div>
+            </div>
+            <ion-radio [id]="'radio_' + option.value" value="{{option.value}}" class="width-24"></ion-radio>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container display--flex gap-3">
+      <ion-button class="c-button c-button--primary  c-button--outline c-button--large c-button--full-width buttom-top"
+        (click)="close()">
+        {{'basket.calendarModal.buttonCancel' | localize: 'ecommerce'}}
+      </ion-button>
+
+      <ion-button class="c-button c-button--primary c-button--large c-button--full-width buttom-top" (click)="save()">
+        {{'basket.calendarModal.button' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

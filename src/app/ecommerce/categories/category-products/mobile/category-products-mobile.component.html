@@ -1,0 +1,72 @@
+<ion-content>
+
+  <header-input (backInputEvent)="onBackButtonPressed()" (keyDownEnterEvent)="onSearch($event)"
+    (clearInputEvent)="onClearInput()" [placeholder]="localization.localize('categories.home.placeholder', 'ecommerce')"
+    classIconButtonInput="icon icon--scan-code" [backInput]="true" classIconButton="icon icon--buy"
+    (iconButtonEvent)="navigateToBasket()" (iconButtonInputEvent)="navigateToScanner()" [badge]="count$ | async">
+  </header-input>
+
+  <div class="container container-desktop-product">
+    <div class="content">
+
+      <ion-label class="text--content-0-c">
+        {{ categoryName }}
+      </ion-label>
+
+      <div class="display--flex align-items--start inner-spacing--24">
+
+        <ion-label class="text--content-1-a width--100">
+          {{ mainInfo.itemCount }} {{ 'categories.products.textProducts' | localize: 'ecommerce' }}
+        </ion-label>
+
+        <ion-icon *ngIf="!showFilterIcon && !searching" class="icon icon--filter icon--26"
+          (click)="onShowFilterModal()">
+        </ion-icon>
+
+        <ion-icon *ngIf="showFilterIcon && !searching" class="icon icon--filter-checked icon--26"
+          (click)="onShowFilterModal()">
+        </ion-icon>
+
+        <div *ngIf="searching" class="display--flex justify-content--center">
+          <ion-spinner name="crescent" />
+        </div>
+      </div>
+
+      <section class="featured">
+        <article class="featured-products">
+          <card-product *ngFor="let product of products ; let i = index" (blurEvent)="onProductCardBlur()"
+            (clickCartShoppingEvent)="onClickShoppingCart($event, product.has_variants, product.id,product.description)"
+            (clickEvent)="navigateToProductDetail(product.id,product.description)"
+            (clickInputCartShoppingEvent)="onClickInputCartShopping($event)" (focusEvent)="onProductCardFocus()"
+            (indexSelected)="onSetSelectedProductCardIndex($event)"
+            (offsetTopEvent)="onHandleOffsetTop($event,product.has_variants)"
+            [(inputValue)]="basketProductQuantity[i].quantity" [data]="product" [index]="product.id">
+          </card-product>
+        </article>
+
+        <page-empty *ngIf="searchValue && products.length === 0" icon="😊" [setBackgroundGray]="true"
+          [title]="localization.localize('categories.message.noResults', 'ecommerce')">
+        </page-empty>
+
+        <page-empty *ngIf="noResultsMessageVisible && products.length === 0" icon="😊" [setDesktop]="true"
+          [setBackgroundGray]="true" [title]="localization.localize('categories.message.noResults', 'ecommerce')">
+        </page-empty>
+
+        <div *ngIf="products.length === 0 && !noResultsMessageVisible" class="featured-products-skeleton-container">
+          <card-product-skeleton *ngFor="let item of [1,1,1,1,1,1]" />
+        </div>
+      </section>
+    </div>
+  </div>
+  <ion-infinite-scroll *ngIf="page <= totalPages" [ngClass]="{'ios':platform ==='ios','android':platform ==='android'}"
+    threshold="150px" position="bottom" (ionInfinite)="loadMoreDataMobile($event)" class="loader">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <menu-input *ngIf="showMenuInput" [ngClass]="{
+    'keyboard-animation-top-menu':keyboardWillShow && platform === 'ios',
+    'keyboard-animation-bottom-menu':!keyboardWillShow && platform === 'ios'
+    }" (clickClearEvent)="onClickClearOption()" (clickOkEvent)="onClickOk()">
+  </menu-input>
+</ion-content>

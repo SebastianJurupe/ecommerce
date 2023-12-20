@@ -1,0 +1,114 @@
+<ion-content>
+  <header-title position="start" [title]="localization.localize('profile.login.title', 'ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="content">
+
+      <div class="content-form display--flex flex--column inner-spacing--40">
+
+        <div class="content-form-input display--flex flex--column inner-spacing--24">
+
+          <div class="content-email">
+
+            <input-floating-label [label]="placeholders.labelUser" type="text" [(value)]="username"
+              (modelChangeEvent)="updateLoginButtonState()">
+            </input-floating-label>
+          </div>
+
+          <div class="content-password display--flex flex--column inner-spacing--8">
+
+            <div class="content-input">
+
+              <input-floating-label [label]="placeholders.labelPassword" [type]="inputType" [(value)]="password"
+                (modelChangeEvent)="updateLoginButtonState()">
+              </input-floating-label>
+
+              <ion-icon *ngIf="password && inputType === 'password'" (click)="toggleInput('text')"
+                class=" icon icon--hide icon--no-padding input__icon-position">
+              </ion-icon>
+
+              <ion-icon *ngIf="password && inputType === 'text'" (click)="toggleInput('password')"
+                class=" icon icon--eye-open icon--no-padding input__icon-position">
+              </ion-icon>
+            </div>
+
+            <div class="content label display--flex justify-content--end">
+
+              <ion-label (click)="resetPassword()" class="text--content-3-a text--gray-scale-500">
+                {{ placeholders.labelRecover }}
+              </ion-label>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-button display--flex flex--column inner-spacing--24">
+
+          <ion-button (click)="login()" class="c-button c-button--large c-button--primary c-button--full-width"
+            [disabled]="isLoginButtonDisabled || isLoading">
+
+            <ng-container *ngIf="isLoading">
+              <ion-spinner name="crescent" />
+            </ng-container>
+
+            <span *ngIf="!isLoading">
+              {{ placeholders.buttonLogin }}
+            </span>
+
+          </ion-button>
+
+          <div class="display--flex flex--row justify-content--center">
+
+            <ion-label (click)="register()" class="text--content-2-a text--gray-scale-500">
+              {{ placeholders.labelText }}
+              <span class="text--gray-scale-1000 ">
+                {{ placeholders.buttonSignUp }}
+              </span>
+            </ion-label>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-base footer-base--no-line negative-index">
+    <div class="utils-line--full"></div>
+
+    <div class="footer-base__container">
+      <div class="display--flex flex--column inner-spacing--40">
+
+        <div class="display--flex inner-spacing--24">
+
+          <button-social-media *ngFor="let button of iconSocial" [classIcon]="button.classIcon"
+            (clickEvent)="button.method()">
+          </button-social-media>
+        </div>
+
+        <div class="items display--flex inner-spacing--12 align-items--center">
+
+          <ion-note
+            class="text--content-1-a display--flex inner-spacing--8 align-items--center">
+
+            <img class="country-flag flag" [src]="country.flag" />
+            {{ country.description }}
+          </ion-note>
+
+          <div>
+            <ion-label class="text--content-1-a">|</ion-label>
+          </div>
+
+          <div class="option">
+
+            <div class="option result d-flex ">
+              <ion-text (click)="chooseLanguagePopover($event)" id="choose-language-login" class="text--content-1-a">
+                {{ selectedLanguage === 'en_US'
+                ? placeholders.english
+                : placeholders.spanish}}
+              </ion-text>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

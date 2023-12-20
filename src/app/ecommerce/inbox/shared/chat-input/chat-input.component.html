@@ -1,0 +1,52 @@
+<div class="chat-input__container">
+
+    <div [hidden]="recording" class="input__content">
+        <inbox-chat-input-resources [resources]="resources" class="chat-input__resources theme-scroll-bar" />
+
+        <div class="chat-input__editor">
+
+            <inbox-chat-input-action class="action plus" icon="icon icon--plus">
+                <div options class="chat-input__dropdown-content">
+                    <ion-item button (click)="onAddFile()" class="chat-input__dropdown-option" mode="md" lines="none">
+                        <ion-label>
+                            {{'inbox.dashboard.file' | localize : 'ecommerce'}}
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item *ngIf="native" button (click)="onAddImage()" class="chat-input__dropdown-option" mode="md"
+                        lines="none">
+                        <ion-label>
+                            {{'inbox.dashboard.image' | localize : 'ecommerce'}}
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item *ngIf="native" button (click)="onAddVideo()" class="chat-input__dropdown-option" mode="md"
+                        lines="none">
+                        <ion-label>
+                            {{'inbox.dashboard.video' | localize : 'ecommerce'}}
+                        </ion-label>
+                    </ion-item>
+                </div>
+            </inbox-chat-input-action>
+
+            <div inbox class="chat-input__input theme-scroll-bar" role="text" contenteditable="true" tabIndex="0"
+                spellcheck="false" aria-label="Input" [id]="id" [(empty)]="empty" [(cursorPosition)]="cursorPosition"
+                (onEnter)="onSend()" (onPasteFile)="onPasteFile($event)">
+            </div>
+
+            <div *ngIf="empty" class="chat-input__input-placeholder" for="chat-input">
+                {{'inbox.dashboard.write' | localize : 'ecommerce'}}
+            </div>
+
+            <inbox-chat-input-action (onAction)="onSend()" class="action send"
+                [icon]="empty ? 'icon icon--send-fill' : 'icon icon--send-fill'" [disabled]="empty" />
+
+        </div>
+    </div>
+
+    <inbox-chat-input-toolbar class="chat-input__actions" [id]="id" [cursorPosition]="cursorPosition"
+        [(recording)]="recording" [(empty)]="empty" (onAddFile)="onAddFile()" (onAddImage)="onAddImage()"
+        (onAddVideo)="onAddVideo()" (onSend)="onSend()" (onSendAudio)="onSendAudio($event)"
+        (onSendImage)="onSendImage($event)" />
+
+</div>

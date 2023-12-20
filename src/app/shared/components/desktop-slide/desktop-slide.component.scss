@@ -1,0 +1,45 @@
+.aside-container {
+  margin-right: 40px;
+  width: 311px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+item-option {
+  padding: 12px 24px;
+
+  &.selected {
+    border-radius: 5px;
+    background-color: var(--p-gray-scale-100);
+  }
+}
+
+title-section {
+  padding: 0px 24px;
+  margin-bottom: 34px;
+}
+
+//Tablet
+@media screen and (min-width: 744px) and (max-width: 1134px) {
+
+  .aside-container {
+    width: 266px;
+    margin-right: 24px;
+  }
+
+  title-section {
+    padding: 0 24px 0 24px;
+    margin-bottom: 24px;
+  }
+
+}
+
+//Monitor pequeño
+@media screen and (min-width: 1134px) and (max-width: 1280px) {}
+
+//Monitores grande
+@media screen and (min-width: 1281px) {}

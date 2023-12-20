@@ -1,0 +1,75 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('basket.addCouponModal.title', 'ecommerce')" position="start"
+    (iconButtonEvent)="close()" position="start" classIconButton="icon icon--close-right cursor-pointer">
+  </header-title>
+
+  <div class="content hide-scrollbar">
+    <div class="width--100 hide-scrollbar">
+
+      <!-- <input-validate #inputValidate [labelButton]="localization.localize('basket.addCouponModal.button', 'ecommerce')"
+        (inputValueChangeEvent)="handleInputValue($event)"
+        [placeholder]="localization.localize('basket.addCouponModal.placeholder', 'ecommerce')">
+      </input-validate> -->
+
+      <section class="coupons-list">
+
+        <ng-container *ngIf="loadingCoupons; else showCoupons">
+          <div *ngFor="let item of [1, 1]" class="coupon">
+            <ion-skeleton-text [animated]="true" class="coupon-skeleton"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" class="code-skeleton"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" class="date-skeleton"></ion-skeleton-text>
+            <div class="coupon_conditions_button">
+              <ion-skeleton-text [animated]="true" class="button-skeleton"></ion-skeleton-text>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #showCoupons>
+          <div *ngFor="let item of cuponesFiltered" class="coupon">
+
+            <ion-text class="coupon__discount text--primary text--content-1-c">
+              <!-- {{item.discount_amount}} -->
+            </ion-text>
+            <ion-text class="coupon__label text--primary text--h5-a">
+              {{item.description}}
+            </ion-text>
+
+            <ion-text class="text--secondary text--content-3-a">
+              {{'basket.addCouponModal.labelCode' | localize: 'ecommerce'}}
+              <span>
+                {{item.code}}
+              </span>
+            </ion-text>
+
+            <div class="display--flex align-items--center inner-spacing--4">
+
+              <ion-icon class="icon icon--danger-circle icon--14 icon--gray-scale-700" />
+
+              <ion-text class="text--secondary text--content-3-a">
+                {{'basket.addCouponModal.labelExpires' | localize: 'ecommerce'}}
+                <span class="text--secondary text--content-2-b">{{ item.due_date | dateFormat }}</span>
+              </ion-text>
+            </div>
+
+            <div class="coupon_conditions_button">
+              <ion-button class="c-button c-button--primary buttonUse " *ngIf="coupon!==item.code"
+                (click)="validateCoupon(item)" [disabled]="disabled">
+                {{'basket.addCouponModal.buttonUseCoupon' | localize: 'ecommerce'}}
+              </ion-button>
+              <ion-button class="c-button c-button--primary buttonUse" *ngIf="coupon===item.code"
+                (click)="useLaterCoupon(item)">
+                {{'basket.addCouponModal.buttonUselater' | localize: 'ecommerce'}}
+              </ion-button>
+            </div>
+
+          </div>
+          <page-empty *ngIf=" cuponesFiltered &&  cuponesFiltered.length === 0" icon="😊"
+            [title]="localization.localize('profile.coupons.empty', 'ecommerce')" [setDesktop]="true"
+            [subtitle]="localization.localize('profile.coupons.empty.subTitle', 'ecommerce')">
+          </page-empty>
+        </ng-template>
+      </section>
+    </div>
+  </div>
+</ion-content>

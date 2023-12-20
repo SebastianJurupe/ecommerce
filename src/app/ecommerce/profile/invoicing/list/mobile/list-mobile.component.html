@@ -1,0 +1,48 @@
+<ion-content>
+  <header-title [back]="true" (backEvent)="back()" [title]="localization.localize('profile.invoice.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <page-empty icon="😊" *ngIf="invoicings.length === 0 && emptyInvoice"
+        [title]="localization.localize('profile.invoice.empty.title','ecommerce')"
+        [subtitle]="localization.localize('profile.invoice.empty.subtitle','ecommerce')">
+      </page-empty>
+
+      <section class="invoicings-list" *ngIf="invoicings.length > 0 && !loading">
+        <invoice-item-mobile *ngFor="let invoice of invoicings" [invoice]="invoice"
+          (optionClicked)="openPopover($event)">
+        </invoice-item-mobile>
+
+      </section>
+
+      <section class="skeletons-container display--flex flex--column inner-spacing--24"
+        *ngIf=" invoicings.length===0 && loading">
+        <ng-container *ngFor="let item of [1,1,1]">
+          <div class="display--flex flex--column inner-spacing--4">
+            <div class="skeleton display--flex inner-spacing--40 justify-content--space-between">
+              <ion-skeleton-text animated class="name-skeleton" />
+              <ion-skeleton-text animated  class="menu-skeleton"  />
+            </div>
+            <div>
+              <ion-skeleton-text animated class="number-skeleton"/>
+            </div>
+          </div>
+        </ng-container>
+      </section>
+
+    </div>
+  </div>
+
+  <footer-spacing height="80px"></footer-spacing>
+
+  <div class="footer-base ">
+    <div class="footer-base__container">
+      <ion-button (click)="addInvoice()" class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'profile.invoice.newAccount' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

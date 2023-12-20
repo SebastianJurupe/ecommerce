@@ -1,0 +1,48 @@
+<ion-content>
+
+  <header-title 
+    [title]="localization.localize('basket.paymentMethods.title','ecommerce')" 
+    position="start" 
+    (iconButtonEvent)="buttonClose()" 
+    classIconButton="icon icon--close-right">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <div class="display--flex flex--column inner-spacing--28">
+
+        <item-navigation (clickEvent)="click('Nueva tarjeta')" [label]="localization.localize('basket.paymentMethods.newCard','ecommerce')"
+        [setCheck]="selectedPaymentMethod === 'Nueva tarjeta'" [setArrow]="false" [setShadow]="true"
+        classIconButton="icon icon--card-pay icon--46x32" shapeIconBackground="rectangle">
+      </item-navigation>
+
+        <item-navigation (click)="click('Visa Débito *** 4115')" label="Visa Débito *** 4115"
+          [setCheck]="selectedPaymentMethod === 'Visa Débito *** 4115'" [setArrow]="false" [setShadow]="true"
+          classIconButton="icon icon--logo-visa icon--46x32" shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation>
+
+        <item-navigation (click)="click('Depósito o transferencia')" [label]="localization.localize('basket.paymentMethods.deposit','ecommerce')"
+          [setCheck]="selectedPaymentMethod === 'Depósito o transferencia'" [setArrow]="false" [setShadow]="true"
+          classIconButton="icon icon--avatar-company icon--46x32" shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation>
+
+        <!-- <item-navigation (click)="click('Yape')" label="Yape" [setCheck]="selectedPaymentMethod === 'Yape'"
+          [setArrow]="false" [setShadow]="true" classIconButton="icon icon--logo-yape icon--46x32"
+          shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation> -->
+
+        <item-navigation (click)="click('Pago efectivo')" label="Pago efectivo"
+          [setCheck]="selectedPaymentMethod === 'Pago efectivo'" [setArrow]="false" [setShadow]="true"
+          classIconButton="icon icon--efect-pay icon--46x32"  shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation>
+
+        <item-navigation (click)="click('Paypal')" label="Paypal" [setCheck]="selectedPaymentMethod === 'Paypal'"
+          [setArrow]="false" [setShadow]="true" classIconButton="icon icon--logo-paypal icon--46x32"
+          shapeIconBackground="rectangle" [setBackground]="true">
+        </item-navigation>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

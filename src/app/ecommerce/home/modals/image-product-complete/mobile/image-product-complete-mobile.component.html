@@ -1,0 +1,25 @@
+<div class="content" style=" background-color: black !important;
+padding-inline: 0 !important;">
+
+  <div class="header-img display--flex justify-content--space-between"
+    [ngClass]="{
+      'ios':platform === 'ios',
+      'android':platform === 'android'
+      }">
+    <ion-icon
+      class="icon icon--close-center icon--white"
+      (click)="dismiss()">
+    </ion-icon>
+
+    <ion-text class="text--content-1-a text--white">
+      {{ currentIndex }}/{{ imagesVariantsProduct.length }}
+    </ion-text>
+  </div>
+
+  <swiper-container 
+    (slidechange)="slideChange($event)">
+   <swiper-slide *ngFor="let image of imagesVariantsProduct">
+     <img [src]="image.path" alt="Slide">
+   </swiper-slide>
+ </swiper-container>
+</div>

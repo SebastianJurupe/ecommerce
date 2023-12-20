@@ -1,0 +1,22 @@
+<div class="content">
+
+  <div
+    (click)="selectOption('camera')"
+    class="display--flex align-items--center inner-spacing--14">
+    <ion-icon class="icon icon--camera icon--gray-scale-700">
+    </ion-icon>
+    <ion-text class="text--primary">
+      {{ 'profile.modalCameraGallery.camera' | localize: 'ecommerce' }}
+    </ion-text>
+  </div>
+  <div
+    (click)="selectOption('gallery')"
+    class="display--flex align-items--center inner-spacing--14">
+    <ion-icon class="icon icon--image-2 icon--gray-scale-700">
+    </ion-icon>
+    <ion-text class="text--primary">
+      {{ 'profile.modalCameraGallery.gallery' | localize: 'ecommerce' }}
+    </ion-text>
+  </div>
+
+</div>

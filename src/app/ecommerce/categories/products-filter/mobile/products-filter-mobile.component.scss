@@ -1,0 +1,30 @@
+.icon--26 {
+  height: 26px !important;
+  width: 26px !important;
+}
+
+.featured {
+
+  .featured-products {
+    column-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 24px;
+    row-gap: 40px;
+  }
+}
+
+.featured-products-skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background-color: var(--p-background-gray)
+}
+
+.container-desktop-product {
+  background-color: var(--p-background-gray) !important
+}
+
+ion-content {
+  --background: var(--p-background-gray) !important
+}

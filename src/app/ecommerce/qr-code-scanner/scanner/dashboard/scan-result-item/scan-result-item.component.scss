@@ -1,0 +1,76 @@
+.scan__result {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 1rem;
+    gap: 0.25rem;
+
+    &.has-user {
+
+        .scan__result-detail {
+            width: calc(100% - 100px);
+        }
+
+        .scan__result-actions {
+            width: 50px;
+            min-width: 50px;
+        }
+    }
+
+    .scan__result-image {
+        height: 36px;
+        width: 36px;
+        margin-top: auto;
+        margin-bottom: auto;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+    }
+
+    .scan__result-detail {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        .scan_result-title {
+            color: var(--ion-color-step-150);
+            font-weight: 500;
+        }
+
+        .scan__result-subtitle {
+            color: var(--ion-color-step-400);
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .scan_result-title,
+        .scan__result-subtitle {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .scan__result-actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .scan__result-action {
+            min-width: 52px;
+            padding: 0;
+            margin: 0;
+
+            .scan__result-action-label {
+                color: var(--ion-color-primary);
+                font-weight: 500;
+            }
+        }
+    }
+}

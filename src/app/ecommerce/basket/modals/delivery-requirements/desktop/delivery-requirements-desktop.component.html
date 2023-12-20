@@ -1,0 +1,35 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('basket.deliveryRequirements.title', 'ecommerce')"
+    (iconButtonEvent)="close()" position="start" classIconButton="icon icon--close-right cursor-pointer ">
+  </header-title>
+  <div class="container">
+    <div class="width--100 hide-scrollbar">
+      <div class=" display--flex flex--column inner-spacing--32 ">
+        <div class="label-description display--flex ">
+          <ion-label class="text--content-2-a text--gray-scale-700 ">
+            {{'basket.deliveryRequirements.label' | localize: 'ecommerce'}}</ion-label>
+        </div>
+
+        <div class="textArea-description">
+          <ion-textarea class="description" [(ngModel)]="textAreaContent">
+          </ion-textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer-spacing height="80px"></footer-spacing>
+  <div class="footer-base">
+    <div class="footer-base__container display--flex gap-3">
+      <ion-button class="c-button c-button--primary  c-button--outline c-button--large c-button--full-width buttom-top"
+        (click)="close()">
+        {{'basket.calendarModal.buttonCancel' | localize: 'ecommerce'}}
+      </ion-button>
+
+      <ion-button class="c-button c-button--primary c-button--large c-button--full-width buttom-top"
+        [disabled]="!textAreaContentIsValid()" (click)="save()">
+        {{'basket.deliveryRequirements.buttonConfirm' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-content>
+
+  <div class="container">
+    <div class="content">
+
+      <section class="slides-banner-app">
+
+        <swiper-container *ngIf="slides.length !== 0" [pagination]="true" [spaceBetween]="30">
+          <swiper-slide *ngFor="let slide of slides">
+
+            <img [src]="slide.image_desktop" [alt]="slide.description">
+
+          </swiper-slide>
+          <swiper-pagination>
+          </swiper-pagination>
+        </swiper-container>
+
+        <img src="/assets/general/banner-download-app.png" alt="Banner Download">
+      </section>
+
+      <section class="for-you">
+        <ion-text class="text--primary text--heading-a">
+          {{ placeholders.forYou }}
+        </ion-text>
+
+        <article class="for-you-items width--full-page">
+          <card-product-recommendation *ngFor="let item of [1,1,1,1,1,1,1,1]" src="/assets/images/test1.jpg"
+            [price]="120">
+          </card-product-recommendation>
+        </article>
+      </section>
+
+      <section class="featured">
+        <ion-text class="text--primary text--heading-a">
+          {{ placeholders.featured }}
+        </ion-text>
+
+        <article class="featured-products">
+          <!--
+          <card-product
+            *ngFor="let product of products; let i = index"
+            (clickEvent)="product.clickEvent()"
+            (clickInputCartShoppingEvent)="product.clickInputCartShoppingEvent()"
+            (clickCartShoppingEvent)="product.clickCartShoppingEvent()"
+            (focusEvent)="focus()"
+            (blurEvent)="blur()"
+            (indexSelected)="indexCardProductSelected($event)"
+            (clickInputCartShoppingEvent)="clickInputCartShopping($event)"
+            (clickCartShoppingEvent)="clickCartShopping($event)"
+            [amountInput]="product.showInputCartShopping"
+            [addToCart]="product.showCartShopping"
+            [price]="product.price"
+            [underprice]="product.underprice"
+            [(inputValue)]="product.inputValue"
+            [details]="product.details"
+            [index]="i"
+
+            >
+
+        </card-product> -->
+
+        </article>
+
+      </section>
+    </div>
+  </div>
+</ion-content>

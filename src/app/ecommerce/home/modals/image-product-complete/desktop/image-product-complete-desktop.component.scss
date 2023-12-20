@@ -1,0 +1,41 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.extra-content{
+  background-color: black !important;
+  padding-inline: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.header-img {
+  margin-bottom: 56px;
+  position: absolute;
+  width: 100%;
+  padding-inline: 24px;
+  z-index: 999 !important;
+
+  &.android {
+    top: 2em !important;
+  }
+
+  &.ios {
+    top: 3.3em !important;
+  }
+}
+
+swiper-container {
+  height: 100%;
+
+  swiper-slide {
+    height: 100% !important;
+    background-color: black !important;
+    img {
+      height: 100%;
+    }
+  }
+}
+

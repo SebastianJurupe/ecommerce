@@ -1,0 +1,54 @@
+<ion-content>
+  <header-title [close]="true" (closeEvent)="onBackButtonPressed()"
+    [title]="localization.localize('basket.typeMethods.title','ecommerce')">
+  </header-title>
+
+
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--28 pt-20">
+        <section class="advice">
+          <ion-text class="text--secondary text--content-2-a">
+            {{'basket.typeMethods.textMessage' | localize: 'ecommerce'}}
+          </ion-text>
+        </section>
+
+        <section class="cards-container">
+          <article class="method-pay">
+            <ion-icon class="icon icon--avatar-company icon--46x32"></ion-icon>
+
+            <ion-text class="method-pay-description text--primary">
+              {{'basket.paymentMethods.deposit' | localize: 'ecommerce'}}
+            </ion-text>
+          </article>
+        </section>
+
+        <section class="box-container">
+          <div class="box-container__item">
+            <input-prefix [setLine]="false"
+              [placeholder]="localization.localize('basket.typeMethods.textDNI','ecommerce')"
+              prefix="DNI"></input-prefix>
+          </div>
+          <div class="box-container__item">
+            <input-flag [setLine]="false" [mask]="country.mask"
+              [placeholder]="localization.localize('basket.typeMethods.textPhone','ecommerce')" [code]="country.code"
+              [srcFlag]="country.flag" [label]="country.description" (clickArrowEvent)="openCountriesModal()">
+            </input-flag>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button [disabled]="false" (click)="goToVoucherPay()"
+        class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'basket.paymentMethods.buttomPayment' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

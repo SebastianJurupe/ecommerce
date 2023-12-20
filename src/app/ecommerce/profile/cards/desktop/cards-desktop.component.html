@@ -1,0 +1,41 @@
+<ion-content>
+
+    <header-extended [srcBrand]="headerDesktopService.logoSrc" (menuClickEvent)="headerDesktopService.viewMenu()"
+        (basketClickEvent)="headerDesktopService.goToShoppingCart()" [setDesktop]="true"
+        (brandButtonEvent)="brandButtonEventCliked()" (profileClickEvent)="headerDesktopService.profilePopover($event)"
+        (inboxClickEvent)="inboxClick()" placeholder="¿Qué estas buscando?" [search]="true" class="header--desktop">
+    </header-extended>
+
+    <div class="content--desktop container-desktop container-desktop-section">
+        <div class="content display--flex ">
+
+
+            <app-desktop-slide></app-desktop-slide>
+
+
+            <div
+                class="main-content display--flex flex--column inner-spacing--24 width--100 container-scroll-desktop-vertical">
+
+                <section class="cards-container">
+                    <card-item-desktop *ngFor="let card of cards" [card]="card" (deleteCard)="deleteCard($event)">
+                    </card-item-desktop>
+                </section>
+
+                <page-empty *ngIf="cards.length === 0" icon="😊" [setDesktop]="true" (clickButtonEvent)="addCard()"
+                    [setButton]="true" labelButton="{{'profile.cards.newCard' | localize: 'ecommerce' }}"
+                    classIconButton="icon icon--plus-1" title="Aún no tienes ninguna tarjeta"
+                    subtitle="Agrega tu tarjeta para comprar más rápido">
+                </page-empty>
+
+                <div class="card-content" *ngIf="cards.length > 0">
+                    <ion-button (click)="addCard()"
+                        class="c-button c-button--small c-button--primary c-button--no-padding-y c-button--full-width">
+                        <ion-icon class="icon icon--plus-1" />
+                        {{'profile.cards.newCard' | localize: 'ecommerce' }}
+                    </ion-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ion-content>

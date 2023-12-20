@@ -1,0 +1,36 @@
+<ion-content>
+
+  <div class="content--desktop container-desktop container-desktop-section">
+    <div class="content display--flex">
+      <app-desktop-slide>
+      </app-desktop-slide>
+
+      <div class="container-all container-scroll-desktop-vertical">
+        <page-empty *ngIf="favoriteItems.length === 0 && emptyFavorite" icon="😊" [setDesktop]="true"
+          [title]="localization.localize('profile.favorites.empty.title','ecommerce')"
+          [subtitle]="localization.localize('profile.favorites.empty.subtitle','ecommerce')">
+        </page-empty>
+
+        <section *ngIf="favoriteItems.length > 0 && !loading" class="favorite-items">
+          <favorite-item-desktop *ngFor="let favoriteItem of favoriteItems" [favoriteItem]="favoriteItem"
+            (moveToBasket)="moveToBasket($event)">
+          </favorite-item-desktop>
+        </section>
+
+        <section class="favorite-items" *ngIf="favoriteItems.length===0 && loading">
+          <article class="favorite-item display--flex inner-spacing--14" *ngFor="let item of [1, 2, 3]">
+            <ion-skeleton-text animated class="imgProduct-skeleton" />
+            <div class="display--flex  flex--column justify-content--space-between inner-spacing--10 width--100 ">
+              <div class="display--flex justify-content--space-between">
+                <ion-skeleton-text animated class="price-skeleton" />
+                <ion-skeleton-text animated class="like-skeleton" />
+              </div>
+              <ion-skeleton-text animated class="detail-skeleton" />
+              <ion-skeleton-text animated class="move-skeleton" />
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </div>
+</ion-content>

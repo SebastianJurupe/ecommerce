@@ -1,0 +1,105 @@
+<ion-tabs (ionTabsDidChange)="ionTabsDidChange()">
+
+  <ion-tab-bar [ngClass]="{'tab-hidden' : !toolbar.state && device==='mobile'}" slot="bottom" *ngIf="showMore">
+    <div class="utils-line--all-width tab__line"></div>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-text-center">
+        <ion-col>
+          <ion-tab-button routerLink="/app/ecommerce/home">
+            <div class="items bandeja" #item>
+              <ion-icon [ngClass]="activated[0]
+                ? 'icon icon--home-2-fill'
+                : 'icon icon--home-2'" class="icon--gray-scale-1000">
+              </ion-icon>
+              <ion-text class="text--secondary">
+                {{ toolbarService.tabs[0] }}
+              </ion-text>
+            </div>
+          </ion-tab-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-tab-button routerLink="/app/ecommerce/categories">
+            <div class="items companies" #item>
+              <ion-icon [ngClass]="activated[1]
+                ? 'icon icon--categories-fill-dark icon--24'
+                : 'icon icon--categories icon--24'" class="icon--gray-scale-1000">
+              </ion-icon>
+              <ion-text class="text--secondary">
+                {{ toolbarService.tabs[1] }}
+              </ion-text>
+            </div>
+          </ion-tab-button>
+        </ion-col>
+
+        <ion-col>
+          <!-- routerLink="/app/ecommerce/inbox" -->
+          <ion-tab-button routerLink="/app/ecommerce/inbox">
+            <div class="items companies" #item>
+              <ion-icon [ngClass]="activated[2]
+                ? 'icon icon--chat-fill'
+                : 'icon icon--chat'" class="icon--gray-scale-1000">
+              </ion-icon>
+              <ion-text class="text--secondary">
+                {{ toolbarService.tabs[2] }}
+              </ion-text>
+            </div>
+          </ion-tab-button>
+        </ion-col>
+
+        <ion-col>
+
+          <ion-tab-button routerLink="basket" routerDirection="root">
+
+            <div class="items position-relative ">
+              <span *ngIf="(count$ | async) as state" class="badge">
+                <div *ngIf="state !== 0" >
+                  {{count$  | async}}
+                </div>
+              </span>
+              <ion-icon [ngClass]="activated[3]
+              ? 'icon icon--buy-2-fill'
+              : 'icon icon--buy-2'" class="icon--gray-scale-1000">
+              </ion-icon>
+
+              <ion-label>
+                <ion-text class="text--secondary">
+                  {{ toolbarService.tabs[3] }}
+                </ion-text>
+              </ion-label>
+            </div>
+          </ion-tab-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-tab-button routerLink="/app/ecommerce/profile">
+
+            <div class="items profile-home" #item>
+              <ion-icon [ngClass]="activated[4]
+                  ? 'icon icon--profile-fill'
+                  : 'icon icon--profile'" class="icon--gray-scale-1000">
+              </ion-icon>
+              <ion-text class="text--secondary">
+                {{ toolbarService.tabs[4] }}
+              </ion-text>
+            </div>
+
+          </ion-tab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-tab-bar>
+
+</ion-tabs>
+
+<div [ngClass]="{'tab-hidden' : !toolbar.state && device!=='mobile'}" *ngIf="!showMore">
+  <header-extended [srcBrand]="headerDesktopService.logoSrc"
+    (basketClickEvent)="headerDesktopService.goToShoppingCart()" [setDesktop]="true" class="header--desktop"
+    (menuClickEvent)="headerDesktopService.viewMenu()" (profileClickEvent)="profilePopover($event)"
+    (brandButtonEvent)="headerDesktopService.goToHome()" (inboxClickEvent)="headerDesktopService.goToInbox()"
+    (onFocusEvent)="headerDesktopService.inputClicked($event)" [badgeBasket]="count$ | async"
+    (inputEvent)="search($event)" [placeholder]="localization.localize('categories.home.placeholder', 'ecommerce')"
+    [search]="true" [inputValue]="value |async">
+  </header-extended>
+
+</div>

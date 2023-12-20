@@ -1,0 +1,29 @@
+<ion-content>
+
+  <header-title position="start" [title]="title" classIconButton="icon icon--close-right cursor-pointer"
+    (iconButtonEvent)="back()">
+  </header-title>
+
+  <div class="input-search-container hide-scrollbar" >
+    <input-search [search]="true" (inputValueChangeEvent)="search($event)" (clearInputEvent)="clearInput()"
+      [placeholder]="localization.localize('profile.bookOfClaims.modalOptionSearch','ecommerce')">
+    </input-search>
+  </div>
+
+  <section class="data-list hide-scrollbar">
+
+    <div (click)="select(item)" *ngFor="let item of data | filter: searchText : 'description'"
+      class="address cursor-pointer">
+      <ion-text class="text--primary text--content-1-a">
+        {{ item?.description }}
+      </ion-text>
+
+      <div *ngIf="item.id !== selectedId" class="virtual-box">
+      </div>
+
+      <ion-icon *ngIf="item.id === selectedId" slot="start" name="checkmark">
+      </ion-icon>
+    </div>
+  </section>
+
+</ion-content>

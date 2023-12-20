@@ -1,0 +1,57 @@
+<ion-content>
+  <header-title (backEvent)="back()" [back]="true" [title]="localization.localize('profile.infPersonal.title','ecommerce')" ></header-title>
+  <div class="container">
+    <div class="content">
+      <div class="display--flex flex--column inner-spacing--24">
+
+        <div 
+          (click)="changeProfile()"
+          class="display--flex align-items--center inner-spacing--24 justify-content--space-between">
+            <ion-label class="text--content-1-a">
+              {{ 'profile.infPersonal.photo' | localize: 'ecommerce' }}
+            </ion-label>
+            <avatar-profile 
+              class=""
+              src="/assets/images/test1.jpg" 
+              [width]="40" 
+              [height]="40">
+            </avatar-profile>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation
+            (clickEvent)="showModalName()"
+            [label]="localization.localize('profile.infPersonal.name','ecommerce')" 
+            sublabel="Gustavo Fring">
+          </item-navigation>
+        </div>
+
+        <div class="utils-line--all-width"></div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation  
+            (clickEvent)="showModalEmail()"
+            [label]="localization.localize('profile.infPersonal.email','ecommerce')"
+            sublabel="geor.admin@geor.com">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation  
+            (clickEvent)="showModalPhone()"
+            [label]="localization.localize('profile.infPersonal.phone','ecommerce')"
+            sublabel="+51 987 564 121">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation
+            (clickEvent)="showModalPassword()"
+            [label]="localization.localize('profile.infPersonal.password','ecommerce')">
+          </item-navigation>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

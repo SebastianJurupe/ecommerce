@@ -1,0 +1,24 @@
+<ion-content>
+  <header-title (click)="this.dialog.dismiss('cancel')" [back]="true"
+    [title]="localization.localize('profile.infPersonal.email','ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="side--scroll width--100">
+      <div>
+        <input-floating-label [label]="localization.localize('profile.infPersonal.modalEmail','ecommerce')"
+          [(value)]="inputValue">
+        </input-floating-label>
+      </div>
+
+      <div class="footer-base footer-base--no-toolbar">
+        <div class="footer-base__container">
+          <ion-button [disabled]="!inputValue"
+            class="c-button c-button--primary  c-button--large c-button--full-width buttom-top"
+            (click)="showModalEmailCode()">
+            {{'profile.modalPassw.save' | localize: 'ecommerce'}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

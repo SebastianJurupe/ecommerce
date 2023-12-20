@@ -1,0 +1,40 @@
+<ion-content class="hide-scrollbar" [ngClass]="{'desktop': device!=='mobile'}">
+  <header-title [back]="true" (backEvent)="back()" [title]="title" *ngIf="device==='mobile'">
+  </header-title>
+
+  <header-title [title]="title" position="start" (iconButtonEvent)="close()" position="start"
+    classIconButton="icon icon--close-right cursor-pointer" *ngIf="device==='desktop'">
+  </header-title>
+
+  <div class="input-search-container hide-scrollbar">
+
+    <input-search [search]="true" (inputValueChangeEvent)="search($event)" (clearInputEvent)="clearInput()"
+    [placeholder]="localization.localize('profile.bookOfClaims.modalOptionSearch','ecommerce')">>
+    </input-search>
+  </div>
+
+  <section class="countries-list hide-scrollbar" [ngClass]="device!=='mobile'
+  ? 'countries-list-desktop '
+  : 'countries-list'">
+
+    <div class="not-found" *ngIf="notFound">
+      No se encontraron resultados
+    </div>
+
+    <div (click)="select(country)" class="country cursor-pointer" *ngFor="let country of countries$ | async">
+
+      <img class="country-flag flag" [src]="country.flag" [alt]="country.description">
+
+      <ion-text class="country-name text--primary text--content-1-a">
+        {{ country.description }}
+        <span *ngIf="showCountryCode">
+          {{ country.code }}
+        </span>
+      </ion-text>
+
+      <ion-icon *ngIf="country.id === countryId" class="country-checkmark" slot="end" name="checkmark">
+      </ion-icon>
+    </div>
+  </section>
+
+</ion-content>

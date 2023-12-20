@@ -1,0 +1,23 @@
+.skeleton-category-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .skeleton-category {
+    display: flex;
+    justify-content: space-between;
+
+    &-name {
+      width: 70%;
+    }
+
+    &-arrow {
+      color: #262626;
+      font-size: 24px;
+    }
+  }
+}
+
+.margin-0 {
+  margin: 0px;
+}

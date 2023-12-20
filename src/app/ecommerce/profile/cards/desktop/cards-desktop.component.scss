@@ -1,0 +1,13 @@
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card-content {
+    max-width: 193px;
+}
+
+.main-content {
+    margin-top: 60px;
+}

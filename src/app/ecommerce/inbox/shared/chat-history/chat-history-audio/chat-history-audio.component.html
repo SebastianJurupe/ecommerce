@@ -1,0 +1,24 @@
+<section class="box-container">
+
+  <ion-icon
+    *ngIf="!isPlaying"
+    (click)="onToggleInteraction()"
+    class="icon icon--media-play icon--32 cursor-pointer"
+  />
+
+  <ion-icon
+    *ngIf="isPlaying"
+    (click)="onToggleInteraction()"
+    class="icon icon--media-pause icon--32 cursor-pointer"
+  />
+
+  <div #waveform class="waveform cursor-pointer"></div>
+
+  <div class="duration text--disabled text--content-1-a">
+    {{ isPlaying ? currentTime : duration }}
+  </div>
+
+  <div class="date-container text--disabled text--tooltip-a disabled">
+    {{ createdDate | luxonFormat: 'HH:mm a' | lowercase }}
+  </div>
+</section>

@@ -1,0 +1,18 @@
+.description{
+    display: flex;
+    width: 342px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: var(--p-gray-scale-50) !important;
+}
+
+.color-text{
+    color: var(--p-success-shade)
+}
+
+.inner-4{
+    gap: 4px;
+}

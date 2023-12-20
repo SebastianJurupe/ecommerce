@@ -1,0 +1,55 @@
+<ion-content>
+
+  <header-title [back]="true" (backEvent)="back()" [title]="localization.localize('basket.storePickup.stores','ecommerce')">
+  </header-title>
+  <div class="container">
+
+    <item-navigation-line [floatLabel]="localization.localize('general.country', 'ecommerce')" [srcFlag]="country.flag"
+      [label]="country.description" [setArrow]="false">
+    </item-navigation-line>
+
+    <item-navigation classIconButton="icon icon--location"
+      [label]="address.description === '' ? localization.localize('profile.address.select', 'ecommerce') : address.address" [setBackground]="true"
+      (clickEvent)="chooseAddress()">
+    </item-navigation>
+
+    <section class="options">
+      <div *ngIf="loading" class="separation">
+        <item-navigation-avatar *ngFor="let store of stores" [avatarSrc]="store.logo" [label]="store.description"
+          [details]="store.address" [sublabelButton]="localization.localize('basket.storePickup.addressHowtoget', 'ecommerce')" (clickEvent)="chooseStore(store)"
+          (clickSublabelEvent)="openMap(store.latitude,store.longitude)">
+        </item-navigation-avatar>
+      </div>
+
+      <div *ngIf="!loading" lines="none" class=" display--flex align-items--center inner-spacing--24 width--100">
+        <ion-thumbnail slot="start" class="logo-skeleton">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label class="width--100">
+          <h3>
+            <ion-skeleton-text [animated]="true" class="name-skeleton"  ></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text [animated]="true" class="address-skeleton" ></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </div>
+    </section>
+
+    <page-empty *ngIf="!available" icon="😊" [title]="localization.localize('basket.storePickup.stores.empty','ecommerce')"
+    [subtitle]="localization.localize('basket.storePickup.stores.empty.subTitle','ecommerce')">
+    </page-empty>
+  </div>
+
+  <footer-spacing height="50px" />
+
+  <div class="footer-base footer-base--no-line">
+    <div class="footer-base__container display--flex justify-content--center">
+      <ion-button (click)="termsAndConditions()"
+        class="c-button c-button--text-primary c-button--extra-small c-button--no-padding-x text--secondary">
+        {{localization.localize('basket.storePickup.seeTerms','ecommerce')}}
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

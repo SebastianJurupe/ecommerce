@@ -1,0 +1,61 @@
+<div class="chat-input__toolbar" [ngClass]="{ 'recording' : !recording }">
+
+    <inbox-chat-input-action (onAction)="stopVoiceRecord()" class="action trash" icon="icon icon--trash" />
+
+    <div class="chat-input__toolbar-time">
+        <label>
+            {{time}}
+        </label>
+    </div>
+
+    <inbox-chat-input-wave *ngIf="recording" [fps]="60" [paused]="paused" [recording]="recording" [data]="amplitudes"
+        class="action wave" />
+
+    <inbox-chat-input-action (onAction)="pauseVoiceRecord()" class="action close"
+        [icon]="paused ? 'icon icon--media-play' : 'icon icon--media-pause'" />
+
+    <inbox-chat-input-action (onAction)="sendAudio()" class="action"
+        [icon]="empty ? 'icon icon--send-fill' : 'icon icon--send-fill'" [disabled]="miliseconds === 0" />
+
+</div>
+
+<div class="chat-input__toolbar" [ngClass]="{ 'recording' : recording }">
+
+    <inbox-chat-input-action class="action plus" icon="icon icon--plus">
+        <div options class="chat-input__dropdown-content">
+            
+            <ion-item button (click)="onAddFile.emit()" class="chat-input__dropdown-option" mode="md"
+                lines="none">
+                <ion-label>
+                    {{'inbox.dashboard.file' | localize : 'ecommerce'}}
+                </ion-label>
+            </ion-item>
+
+            <ion-item *ngIf="native" button (click)="onAddImage.emit()" class="chat-input__dropdown-option" mode="md"
+                lines="none">
+                <ion-label>
+                    {{'inbox.dashboard.image' | localize : 'ecommerce'}}
+                </ion-label>
+            </ion-item>
+
+            <ion-item *ngIf="native" button (click)="onAddVideo.emit()" class="chat-input__dropdown-option" mode="md"
+                lines="none">
+                <ion-label>
+                    {{'inbox.dashboard.video' | localize : 'ecommerce'}}
+                </ion-label>
+            </ion-item>
+
+        </div>
+    </inbox-chat-input-action>
+
+    <inbox-chat-input-emoji *ngIf="!native" class="action" [id]="id" [cursorPosition]="cursorPosition"
+        [(empty)]="empty" />
+
+    <inbox-chat-input-action (onAction)="toggleCase()" class="action text-formating" icon="icon icon--text-formating" />
+
+    <inbox-chat-input-action (onAction)="startVoiceRecord()" class="actionvoice"
+        [icon]="recording ? 'icon icon--voice-3' : 'icon icon--voice-2'" [color]="recording ? 'danger' : 'dark'" />
+
+    <inbox-chat-input-action (onAction)="onSend.emit()" class="action send"
+        [icon]="empty ? 'icon icon--send-fill' : 'icon icon--send-fill'" [disabled]="empty" />
+</div>

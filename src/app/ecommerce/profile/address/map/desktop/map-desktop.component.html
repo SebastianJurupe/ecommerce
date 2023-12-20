@@ -1,0 +1,27 @@
+<ion-content>
+
+  <ion-fab class="mt-3 ms-3" slot="fixed">
+    <ion-fab-button (click)="dismiss()" class="dark button-header">
+      <ion-icon class="icon icon--arrow-left"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <div class="max-height">
+    <div id="map" #map></div>
+  </div>
+
+
+</ion-content>
+<ion-footer class="footer">
+
+  <ion-text
+    (click)="openSearchAddressModal()"
+    class="footer__address text--primary cursor-pointer">
+    {{ address }}
+  </ion-text>
+
+  <ion-button (click)="confirm()" class="c-button c-button--large c-button--primary c-button--full-width">
+    {{ 'general.confirm' | localize: 'ecommerce' }}
+  </ion-button>
+</ion-footer>

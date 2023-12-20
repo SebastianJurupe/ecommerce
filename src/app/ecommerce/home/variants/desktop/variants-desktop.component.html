@@ -1,0 +1,340 @@
+<div class="container-flex">
+  <div class="elements container-scroll-desktop-vertical">
+    <div class="display--flex justify-content--space-between">
+      <div
+        *ngIf="product.description.length === 0"
+        class="text-description-skeleton"
+      >
+        <ion-skeleton-text animated />
+      </div>
+
+      <div
+        *ngIf="product.additional !== null"
+        class="product-description__content text--content-1-a"
+        [innerHTML]="product.additional.value"
+      ></div>
+
+      <div *ngIf="product.additional === null">
+        <ion-text>{{ product.description }}</ion-text>
+      </div>
+      <ion-icon
+        (click)="shareProduct($event)"
+        class="icon icon--share cursor-pointer"
+      >
+      </ion-icon>
+    </div>
+
+    <div *ngIf="product.description.length === 0">
+      <div class="container-attributte" *ngFor="let item of [1, 1, 1, 1]">
+        <ion-skeleton-text
+          animated
+          class="text-attribute-skeleton"
+        ></ion-skeleton-text>
+        <div class="display--flex flex--row inner-spacing--16">
+          <ion-skeleton-text
+            *ngFor="let item of [1, 1, 1, 1]"
+            animated
+            class="option-attribute-skeleton"
+          ></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <!-- No tiene variantes -->
+    <div
+      *ngIf="product.has_variants === false"
+      class="prices display--flex inner-spacing--16 set-scroll hide-scrollbar padding-inline"
+    >
+      <ng-container *ngIf="!product.prices || product.prices.length === 0">
+        <card-price
+          [currencySymbol]="product.currency.symbol"
+          [price]="product.price"
+          [subprice]="
+            product.offer_price === 0 ? undefined : product.offer_price
+          "
+        >
+        </card-price>
+      </ng-container>
+
+      <ng-container *ngIf="product.prices !== null">
+        <card-price
+          *ngFor="let price of product.prices"
+          [currencySymbol]="product.currency.symbol"
+          [price]="+price.price"
+          [subprice]="+price.offer_price === 0 ? undefined : price.offer_price"
+          [stock]="
+            price.min_quantity +
+            ' - ' +
+            price.max_quantity +
+            ' ' +
+            product.unit_type.description
+          "
+        >
+        </card-price>
+      </ng-container>
+    </div>
+
+    <!-- ------- -->
+
+    <!-- Tiene variantes -->
+    <div
+      *ngIf="product.has_variants === true"
+      class="prices display--flex inner-spacing--16 set-scroll hide-scrollbar padding-inline"
+    >
+      <div *ngIf="!dataVariant && product.price !== 0">
+        <ng-container *ngIf="!product.prices || product.prices.length === 0">
+          <card-price
+            [currencySymbol]="product.currency.symbol"
+            [price]="product.price"
+            [subprice]="
+              product.offer_price === 0 ? undefined : product.offer_price
+            "
+          >
+          </card-price>
+        </ng-container>
+
+        <ng-container *ngIf="product.prices !== null">
+          <card-price
+            *ngFor="let price of product.prices"
+            [currencySymbol]="product.currency.symbol"
+            [price]="price.price"
+            [subprice]="price.offer_price === 0 ? undefined : price.offer_price"
+            [stock]="
+              price.min_quantity +
+              ' - ' +
+              price.max_quantity +
+              ' ' +
+              product.unit_type.description
+            "
+          >
+          </card-price>
+        </ng-container>
+      </div>
+
+      <div
+        *ngIf="dataVariant"
+        class="display--flex inner-spacing--16 set-scroll hide-scrollbar padding-inline"
+      >
+        <ng-container *ngIf="dataVariant.prices.length === 0">
+          <card-price
+            *ngIf="dataVariant"
+            [currencySymbol]="product.currency.symbol"
+            [price]="dataVariant.price"
+            [subprice]="
+              dataVariant.offer_price === 0
+                ? undefined
+                : dataVariant.offer_price
+            "
+          >
+          </card-price>
+        </ng-container>
+
+        <ng-container *ngIf="dataVariant.prices.length > 0">
+          <card-price
+            *ngFor="let i of dataVariant.prices"
+            [currencySymbol]="product.currency.symbol"
+            [price]="+i.price"
+            [subprice]="+i.offer_price === 0 ? undefined : i.offer_price"
+            [stock]="
+              i.min_quantity +
+              ' - ' +
+              i.max_quantity +
+              ' ' +
+              product.unit_type.description
+            "
+          >
+          </card-price>
+        </ng-container>
+      </div>
+    </div>
+
+    <div *ngIf="filteredAttributes.length !== 0" class="variant-item">
+      <div
+        class="attributes-container"
+        *ngFor="let attribute of attributeVariants.slice().reverse()"
+      >
+        <!-- Trae todas las varitantes -->
+        <ion-text class="text--content-1-b" *ngIf="attribute !== 'Color'">
+          {{ attribute }}
+        </ion-text>
+
+        <div
+          *ngIf="attributeVariants.length !== 1"
+          class="option display--flex inner-spacing--16 set-scroll hide-scrollbar padding-inline cursor-pointer"
+        >
+          <button-option
+            *ngFor="let value of getAttributeVariantsValue(attribute)"
+            [label]="value"
+            [bordered]="selectedValues[attribute] === value"
+            (click)="handleOptionClick(attribute, value)"
+            [amount]="cartQuantityMap[attribute + '-' + value]"
+          >
+          </button-option>
+        </div>
+
+        <!-- Solo se muestra si tiene una variante -->
+        <div
+          class="display--flex inner-spacing--16"
+          *ngIf="attributeVariants.length === 1"
+        >
+          <div
+            class="container-color display--flex justify-content--space-between cursor-pointer"
+            *ngFor="let value of getAttributeVariantsValue(attribute)"
+          >
+            <button-option
+              [label]="value"
+              [bordered]="selectedValues[attribute] === value.toString()"
+              (click)="handleOptionClick(attribute, value)"
+              [amount]="cartQuantityMap[attribute + '-' + value]"
+            >
+            </button-option>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso general con variantes y sin  variantes -->
+      <div *ngIf="areAllAttributesSelectedExceptColor()" class="variant-items">
+        <ion-text
+          *ngIf="attributeVariants.length !== 1"
+          class="text--content-1-b"
+          >{{ lastVariantName }}
+        </ion-text>
+
+        <div
+          class="container-color display--flex flex--column justify-content--space-between align-items--center inner-spacing--16"
+        >
+          <div
+            ngClass="width--100"
+            *ngFor="let item of matchingVariants; let i = index"
+            class="display--flex justify-content--space-between align-items--center"
+          >
+            <div
+              *ngIf="item.stock > 0"
+              class="display--flex align-items--center"
+            >
+              <ng-container *ngIf="item.files && item.files.length > 0">
+                <product-preview
+                  class="product-preview cursor-pointer"
+                  [src]="item.files[0].path"
+                  (click)="openImg(item.id)"
+                >
+                </product-preview>
+              </ng-container>
+
+              <ion-text *ngIf="lastVariantName !== 'Color'">
+                {{ getValueOfValues(item.values, lastVariantName)[0].value }}
+              </ion-text>
+
+              <div
+                *ngIf="lastVariantName === 'Color'"
+                class="display--flex align-items--center"
+              >
+                <div
+                  *ngIf="item.files && item.files.length <= 0"
+                  [style.background]="
+                    getValueOfValues(item.values, lastVariantName)[0].color
+                  "
+                  class="variant-color-value"
+                ></div>
+
+                <ion-text class="text--content-1-a">
+                  {{ getValueOfValues(item.values, lastVariantName)[0].value }}
+                </ion-text>
+              </div>
+            </div>
+
+            <button-incremental
+              *ngIf="item.stock > 0"
+              (focusEvent)="focus()"
+              (blurEvent)="blur()"
+              (indexSelected)="setIndexSelected($event)"
+              [index]="matchingVariants[i].id"
+              [(value)]="matchingVariants[i].cartQuantity"
+              (input)="handleInput($event)"
+              (valueChange)="calculateTotal()"
+              (click)="asd()"
+              class="cursor-pointer"
+            >
+            </button-incremental>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="this.product.has_variants === false"
+      class="container-color display--flex flex--column justify-content--space-between align-items--center inner-spacing--16"
+    >
+      <div
+        class="display--flex justify-content--space-between align-items--center width--100"
+      >
+        <div
+          class="display--flex align-items--center inner-spacing--8"
+          *ngIf="product.files && product.files.length > 0"
+        >
+          <product-preview [src]="product.files[0].path"></product-preview>
+          <ion-label *ngIf="lastVariantName !== 'Color'">Multi</ion-label>
+        </div>
+
+        <button-incremental
+          (focusEvent)="focus()"
+          (blurEvent)="blur()"
+          (indexSelected)="setIndexSelected($event)"
+          [index]="product.id"
+          [(value)]="cartQuantityWithoutVariant"
+          (valueChange)="calculateTotal()"
+          class="cursor-pointer"
+        >
+        </button-incremental>
+      </div>
+    </div>
+    <footer-spacing height="50px"></footer-spacing>
+  </div>
+
+  <div class="padding-bottom">
+    <div
+      *ngIf="totalQuantity > 0"
+      class="display--flex flex--row justify-content--space-between"
+    >
+      <ion-text *ngIf="showFirstText" class="text--content-1-c">
+        Total ({{ totalQuantity }} {{ unitType }})
+      </ion-text>
+      <ion-text *ngIf="showSecondText" class="text--content-1-c">
+        Precio con oferta: ({{ totalQuantity }} {{ unitType }})
+      </ion-text>
+      <ion-text class="text--content-1-c">
+        {{ this.product.currency.symbol }} {{ totalToPay | number : "1.2-2" }}
+      </ion-text>
+    </div>
+    <div
+      class="buttons-add display--flex flex--row justify-content--space-between inner-spacing--16"
+    >
+      <ion-button
+        (click)="addToBasket()"
+        [disabled]="isAddToBasketDisabled()"
+        class="c-button c-button--large c-button--primary c-button--outline width--50"
+      >
+        <div *ngIf="isAddToBasketLoading">
+          <ion-spinner name="crescent" />
+        </div>
+
+        <span *ngIf="!isAddToBasketLoading">
+          {{ "home.variants.add" | localize : "ecommerce" }}
+        </span>
+      </ion-button>
+
+      <ion-button
+        (click)="goPay()"
+        [disabled]="isAddToBasketDisabled()"
+        class="c-button c-button--large c-button--primary width--50"
+      >
+        <ng-container *ngIf="isGoToPayLoading">
+          <ion-spinner name="crescent" />
+        </ng-container>
+
+        <span *ngIf="!isGoToPayLoading">
+          {{ "home.variants.pay" | localize : "ecommerce" }}
+        </span>
+      </ion-button>
+    </div>
+  </div>
+</div>

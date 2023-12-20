@@ -1,0 +1,116 @@
+.status-container-mobile{
+  position: fixed;
+  z-index: 999;
+
+  .order-status {
+    &-error {
+      background: var(--error-low, #FFF0EF);
+      padding: 16px 24px;
+    }
+
+    &-info {
+      background: var(--info-low, #F0F3FA);
+      padding: 16px 24px;
+    }
+
+    &-success {
+      background: var(--sucess-low, #F1F9F1);
+      padding: 16px 24px;
+    }
+
+    &-warning {
+      background: var(--warning-low, #FEF3EB);
+      padding: 16px 24px;
+    }
+
+    &-label {
+      margin-top: 12px;
+    }
+  }
+}
+
+.status-container-tablet{
+  .order-status {
+    &-error {
+      background: var(--error-low, #FFF0EF);
+      padding: 24px 24px;
+      border-radius: 10px;
+    }
+
+    &-info {
+      background: var(--info-low, #F0F3FA);
+      padding: 24px 24px;
+      border-radius: 10px;
+    }
+
+    &-success {
+      background: var(--sucess-low, #F1F9F1);
+      padding: 24px 24px;
+      border-radius: 10px;
+    }
+
+    &-warning {
+      background: var(--warning-low, #FEF3EB);
+      padding: 24px 24px;
+      border-radius: 10px;
+    }
+
+    &-label {
+      margin-top: 12px;
+    }
+  }
+}
+
+
+.status-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  height: 6px;
+
+  .bar {
+    border-radius: 10px;
+    background-color: var(--p-white);
+    width: auto;
+  }
+}
+
+.red {
+  background-color: var(--p-error-main) !important;
+}
+
+.blue {
+  background-color: var(--p-info-main) !important;
+}
+
+.green {
+  background-color: var(--p-success-main) !important;
+}
+
+.orange {
+  background-color: var(--p-warning-main) !important;
+}
+
+.content.tablet{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:40px;
+}
+
+/*******************************************/
+.success-container {
+  background-color: #F1F9F6;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.success {
+  color: var(--p-success-shade) !important;
+}
+
+.position-tablet{
+  border-left: solid;
+  border-left-width: 1px;
+  border-left-color: var(--grey-grey-200, #404040);
+  padding-left: 40px;
+}

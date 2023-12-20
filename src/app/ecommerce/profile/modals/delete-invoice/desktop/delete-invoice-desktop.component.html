@@ -1,0 +1,22 @@
+<div class="hide--scroll width--100">
+  <div class="modal__container">
+    <div class="modal__headers">
+      <ion-label class="text--content-0-c text-align--center ">
+        {{localization.localize('profile.invoice.deleteInvoice.title','ecommerce')}}
+      </ion-label>
+      <ion-label _ngcontent-ng-c708323190="" class="text--content-2-a text--secondary text-align--center ">
+        {{localization.localize('profile.invoice.deleteInvoice.subtitle','ecommerce')}}
+      </ion-label>
+
+    </div>
+
+    <div class="modal__buttons">
+      <ion-button class="c-button c-button--secondary c-button--outline width--50" (click)="dialog.dismiss('cancel')">
+        {{localization.localize('general.cancel','ecommerce')}}
+      </ion-button>
+      <ion-button class="c-button  c-button--error c-button--primary width--50" (click)="dialog.dismiss('delete')">
+        {{localization.localize('general.delete','ecommerce')}}
+      </ion-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.delivery-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background: var(--p-background-secondary);
+  --min-width: 100% !important;
+}
+

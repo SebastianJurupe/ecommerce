@@ -1,0 +1,23 @@
+.status-container {
+  background-color: var(--p-background-secondary);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .option {
+    display: flex;
+    gap: 12px;
+  }
+
+  ion-icon[name='checkmark'] {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+
+.virtual-box {
+  width: 24px;
+  height: 24px;
+}

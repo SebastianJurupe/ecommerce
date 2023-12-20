@@ -1,0 +1,57 @@
+.share {
+  width: 50%;
+}
+
+.main-content {
+  padding-top: 60px;
+}
+
+.coupons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/*************************/
+.coupon {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--p-gray-scale-200);
+  border-radius: 10px;
+
+  &__conditions__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ion-button {
+      min-width: 145px;
+    }
+  }
+
+  &:hover {
+    background-color: var(--p-gray-scale-100);
+  }
+}
+
+.border-radius {
+  border-radius: unset;
+}
+
+//Skeleton
+.discount-skeleton {
+  width: 60%;
+  height: 20px;
+}
+
+.code-skeleton {
+  width: 15%;
+  height: 15px;
+}
+
+.date-skeleton {
+  width: 20%;
+  height: 15px;
+}

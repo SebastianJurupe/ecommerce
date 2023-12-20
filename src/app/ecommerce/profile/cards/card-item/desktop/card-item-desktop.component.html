@@ -1,0 +1,16 @@
+<article class="method-pay">
+
+    <ion-icon
+      [class]="classCardProvider">
+    </ion-icon>
+
+    <ion-text
+      class="method-pay-description text--primary">
+      {{ description }}
+    </ion-text>
+
+    <ion-icon
+      class="method-pay-delete icon icon--trash icon--gray-scale-500 cursor-pointer"
+      (click)="deleteCardClicked()">
+    </ion-icon>
+  </article>

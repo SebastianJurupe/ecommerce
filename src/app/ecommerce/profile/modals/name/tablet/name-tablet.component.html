@@ -1,0 +1,39 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('profile.infPersonal.name','ecommerce')" position="start"
+    (iconButtonEvent)="cancel()" classIconButton="icon icon--close-right cursor-pointer">
+  </header-title>
+
+  <div class="container">
+    <div class="hide-scroll width--100">
+
+      <input-floating-label [label]="localization.localize('profile.infPersonal.name','ecommerce')" type="text"
+        [(value)]="name">
+      </input-floating-label>
+
+    </div>
+
+    <div class="footer-base footer-base--no-line">
+      <div class="footer-base__container">
+
+        <div class="display--flex align-items--start inner-spacing--16">
+          <ion-button class="c-button c-button--primary c-button--outline c-button--large width--50"
+            (click)="dialog.dismiss('cancel')">
+            {{'profile.modalLogout.outlineLabel' | localize: 'ecommerce'}}
+          </ion-button>
+
+          <ion-button [disabled]="disableButton()" class="c-button c-button--primary c-button--large width--50"
+            (click)="submit()">
+            <ng-container *ngIf="isLoading">
+              <ion-spinner name="crescent" />
+            </ng-container>
+
+            <span *ngIf="!isLoading">
+              {{'profile.modalPassw.save' | localize: 'ecommerce'}}
+            </span>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

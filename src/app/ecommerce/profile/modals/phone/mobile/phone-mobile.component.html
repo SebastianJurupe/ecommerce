@@ -1,0 +1,32 @@
+<ion-content>
+
+  <header-title (click)="dismiss()" [back]="true"
+    [title]="localization.localize('profile.infPersonal.phone','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="scroll--hide width--100">
+
+      <input-floating-label [setAutofocus]="true"
+        [label]="localization.localize('profile.infPersonal.modalPhone','ecommerce')" type="tel" [(value)]="phone">
+      </input-floating-label>
+
+    </div>
+  </div>
+
+  <div class="footer-base footer-base--no-toolbar">
+    <div class="footer-base__container">
+      <ion-button [disabled]="phone.length === 0 || isLoading"
+        class="c-button c-button--primary  c-button--large c-button--full-width buttom-top" (click)="submit()">
+
+        <ng-container *ngIf="isLoading">
+          <ion-spinner name="crescent" />
+        </ng-container>
+
+        <span *ngIf="!isLoading">
+          {{'profile.modalPassw.save' | localize: 'ecommerce'}}
+        </span>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-content>
+
+	<div class="content--desktop container-desktop container-desktop-section">
+		<div class="content display--flex">
+			<app-desktop-slide>
+			</app-desktop-slide>
+
+			<div class="container-all">
+				<div
+					*ngFor="let option of optionsDesktop"
+					class="card cursor-pointer"
+					(click)="option.method()">
+					<ion-icon class="option-icon" [class]="option.icon" />
+					<ion-text class="text--primary text--content-1-a">
+						{{option.name}}
+					</ion-text>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</ion-content>

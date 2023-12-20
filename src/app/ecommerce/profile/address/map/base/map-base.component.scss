@@ -1,0 +1,85 @@
+ion-fab {
+  top: calc(24px + var(--ion-safe-area-top));
+  left: 24px;
+}
+
+ion-fab-button {
+  width: 40px;
+  height: 40px;
+  --background: white;
+  --background-activated: transparent;
+
+  & ion-icon {
+    width: 20px;
+    height: 20px;
+    color: #000000;
+    z-index: 9999;
+  }
+}
+
+.max-height {
+  height: 85%;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+
+  #map {
+    height: calc(100% + 25px);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.footer {
+  background: var(--p-background-secondary);
+  border-radius: 10px 10px 0 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  left: 0;
+  padding-bottom: calc(16px + var(--ion-safe-area-bottom, 0px)) !important;
+  padding-inline: 24px;
+  padding-top: 24px;
+  position: absolute;
+  width: 100%;
+
+  &__address {
+    border-bottom: 1px solid var(--p-gray-scale-200);
+    padding-bottom: 12px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .max-height {
+    height: 85%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .max-height {
+    height: 85%;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1400px) {
+  .max-height {
+    height: 85%;
+    width: 100%;
+  }
+}
+
+div.desktop {
+  ion-button {
+    min-width: 100% !important;
+  }
+}
+
+.button-header {
+  --background-hover: none;
+}

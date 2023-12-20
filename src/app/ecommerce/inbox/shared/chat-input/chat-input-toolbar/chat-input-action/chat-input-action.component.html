@@ -1,0 +1,8 @@
+<div class="chat-input__dropdown">
+    <button #action (click)="toggle($event, action)" aria-label="Chat Action" type="button"
+        class="chat-input__action smile" [disabled]="disabled">
+        <ion-icon [class]="icon" [color]="color"></ion-icon>
+    </button>
+    <ng-content select="[options]">
+    </ng-content>
+</div>

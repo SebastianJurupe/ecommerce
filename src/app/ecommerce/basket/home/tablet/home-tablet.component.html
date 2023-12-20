@@ -1,0 +1,44 @@
+<ion-content>
+
+  <div class="container">
+    <div class="content">
+
+      <section class="basket-items-container">
+        <title-section title="Mi cesta">
+        </title-section>
+
+        <section class="empty">
+          <ion-text class="empty__icon">
+            😊
+          </ion-text>
+          <div class="display--flex flex--column inner-spacing--12">
+            <ion-text class="text--primary">
+              Aún no agregas productos a tu cesta
+            </ion-text>
+            <ion-text class="text--secondary">
+              Empieza agregando tu primer producto
+            </ion-text>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="summary">
+        <title-section title="Resúmen">
+        </title-section>
+
+        <div class="summary__details">
+
+          <item-order label="Total" data="S/ 0.00">
+          </item-order>
+
+          <ion-button [disabled]="true"
+            class="summary__details__button c-button c-button--large c-button--primary c-button--full-width">
+            Ir a pagar
+          </ion-button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</ion-content>

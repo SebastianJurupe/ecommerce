@@ -1,0 +1,54 @@
+.has-toolbar {
+    --padding-top: calc(65px + var(--ion-safe-area-top, 0px)) !important;
+}
+
+.inbox-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--ion-safe-area-top);
+    
+    .inbox-content {
+        height: 100%;
+        max-width: 1280px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        .inbox-content__sidebar {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+            align-items: stretch;
+
+            .inbox-content__sidebar-title {
+                display: flex;
+                flex-direction: row;
+                justify-content: stretch;
+                align-items: center;
+                padding-left: 1.5rem;
+
+                label {
+                    flex: 1 1 auto;
+                    font-weight: bold;
+                }
+            }
+
+            .inbox-content__sidebar-messages {
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding-left: 0.1rem;
+                padding-right: 0.1rem;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+        }
+    }
+}

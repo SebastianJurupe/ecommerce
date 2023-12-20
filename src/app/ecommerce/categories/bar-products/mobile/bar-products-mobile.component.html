@@ -1,0 +1,41 @@
+<ion-content #content>
+
+  <header-title [close]="true" (closeEvent)="back()" classIconButton="icon icon--buy"
+    (iconButtonEvent)="navigateToCart()" [badge]="count$ | async">
+  </header-title>
+
+  <div class="container bg--content">
+    <div class="content">
+
+      <img *ngIf="!isLoading" class="image-banner" [src]="banner">
+
+      <ion-skeleton-text *ngIf="isLoading" class="image-banner banner-skeleton" animated />
+
+      <article *ngIf="products" class="products-container">
+
+        <card-product *ngFor="let product of products ; let i = index" (blurEvent)="onProductCardBlur()"
+          (clickCartShoppingEvent)="onClickShoppingCart($event, product.has_variants, product.id,product.description)"
+          (clickEvent)="onViewProductDetail(product.id,product.description)"
+          (clickInputCartShoppingEvent)="onClickInputCartShopping($event)" (focusEvent)="onProductCardFocus()"
+          (indexSelected)="setSelectedProductCardIndex($event)"
+          (offsetTopEvent)="handleOffsetTop($event,product.has_variants)"
+          [(inputValue)]="basketProductQuantity[i].quantity" [data]="product" [index]="product.id">
+        </card-product>
+      </article>
+
+      <div *ngIf="products.length === 0" class="skeleton-container">
+
+        <card-product-skeleton *ngFor="let item of [1,1,1,1,1,1]" />
+      </div>
+
+    </div>
+  </div>
+
+  <menu-input *ngIf="showMenuInput" (clickClearEvent)="onClearInput()" (clickOkEvent)="onClickOk()">
+  </menu-input>
+  <ion-infinite-scroll *ngIf="page <= totalPages" [ngClass]="{'ios':platform ==='ios','android':platform ==='android'}"
+    threshold="150px" position="bottom" (ionInfinite)="loadMoreData($event)" class="loader">
+    <ion-infinite-scroll-content loadingSpinner="crescent">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,18 @@
+<article class="address-item">
+  <div class="address-item__content">
+    <ion-text class="text--primary text--content-1-a">
+      {{ address.description | textSlice: 25 }}
+    </ion-text>
+    <div class="text--secondary text--content-1-a">
+      {{ address.address}}
+    </div>
+    <span *ngIf="address.default" class="address-item__content__default text--content-3-a">
+      {{ 'general.default' | localize: 'ecommerce' }}
+    </span>
+  </div>
+
+  <div class="address-item__option" (click)="openPopover($event)">
+    <ion-icon class="icon icon--menu-dots icon--gray-scale-500">
+    </ion-icon>
+  </div>
+</article>

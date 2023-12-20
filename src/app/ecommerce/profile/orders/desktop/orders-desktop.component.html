@@ -1,0 +1,50 @@
+<ion-content>
+	<div class="content--desktop container-desktop container-desktop-section">
+		<div class="content display--flex">
+
+			<app-desktop-slide />
+
+			<div class="width--100 display--flex flex--column inner-spacing--20 container-scroll-desktop-vertical">
+				<!-- FILTER OPTION -->
+				<div class=" display--flex justify-content--end">
+					<div class="icon--filter-container cursor-pointer">
+						<ion-icon class="icon icon--filter" (click)="openFilterPopover($event)" />
+					</div>
+				</div>
+
+				<!-- ORDERS LIST -->
+				<section class="orders-list">
+
+					<order-item-desktop
+						*ngFor="let order of orders"
+						[order]="order"
+						(click)="navigateToOrderDetail(order.code)">
+					</order-item-desktop>
+
+					<!-- SKELETON -->
+					<ng-container *ngIf="isLoading">
+						<div class="order-skeleton border-radius-skeleton" *ngFor="let item of [1, 1, 1, 1, 1]">
+							<ion-skeleton-text animated class="number-skeleton" />
+							<ion-skeleton-text animated class="date-skeleton" />
+							<ion-skeleton-text animated class="state-skeleton" />
+						</div>
+					</ng-container>
+
+					<!-- EMPTY STATE -->
+					<page-empty *ngIf="orders.length === 0 && !isLoading" icon="😊" [setDesktop]="true"
+						[title]="localization.localize('profile.home.orders.empty','ecommerce')"
+						[subtitle]="localization.localize('profile.home.orders.subtitle','ecommerce')"
+						classIconButton="icon icon--plus-1">
+					</page-empty>
+
+					<!-- LOAD MORE ORDERS BUTTON -->
+					<ion-button *ngIf="(page < lastPage) && !isLoading" (click)="loadMoreOrders()"
+						class="see-moore-button c-button c-button--text-primary c-button--extra-small c-button--no-padding-x c-button--no-padding">
+						{{localization.localize('profile.home.orders.seeMore','ecommerce')}}
+					</ion-button>
+				</section>
+
+			</div>
+		</div>
+	</div>
+</ion-content>

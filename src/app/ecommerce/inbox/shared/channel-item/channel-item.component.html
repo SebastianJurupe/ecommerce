@@ -1,0 +1,41 @@
+<div (click)="onAction.emit()" class="channel-item__container"
+    [ngClass]="{ 'selected' : channel.channelId == service.channelId}">
+
+    <div class="channel-item__icon">
+        <img *ngIf="channel.companyProfilePic" aria-label="Channel Icon" [src]="channel.companyProfilePic">
+        <ion-icon *ngIf="!channel.companyProfilePic" class="icon icon--company-fill"></ion-icon>
+    </div>
+
+    <div class="channel-item__content">
+        <div class="channel-item__header">
+            <div class="channel-item__title">
+                <span>
+                    {{channel.label || channel.companyName}}
+                </span>
+            </div>
+            <span *ngIf="channel.lastMessage" class="channel-item__activity">
+                {{channel.lastMessage.createdDate | luxonFormat: 'HH:mm'}}
+            </span>
+        </div>
+        <div class="channel-item__body">
+            <div class="channel-item__message">
+                <span *ngIf="channel.lastMessage">
+                    {{
+                        channel.lastMessage.isCurrentUserMessage ?
+                        ('inbox.channel.me' | localize: 'ecommerce' ) :
+                        channel.lastMessage.formatedMsg.name
+                    }}:&nbsp;<ion-icon *ngIf="channel.lastMessage.formatedMsg.hasIcon" class="icon {{channel.lastMessage.formatedMsg.icon}}"></ion-icon>{{
+                        channel.lastMessage.formatedMsg.hasLocalizable ?
+                        (channel.lastMessage.formatedMsg.localizable | localize: 'ecommerce') :
+                        ''
+                    }}{{
+                    channel.lastMessage.formatedMsg.message
+                    }}
+                </span>
+            </div>
+            <span *ngIf="channel.unreadCount" class="channel-item__badge">
+                {{channel.unreadCount}}
+            </span>
+        </div>
+    </div>
+</div>

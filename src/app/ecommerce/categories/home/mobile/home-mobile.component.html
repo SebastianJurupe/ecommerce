@@ -1,0 +1,69 @@
+<ion-content>
+  <header-input (iconButtonInputEvent)="navigateToScanner()" (inputEvent)="onSearch($event)"
+    (keyDownEnterEvent)="onSaveSearch($event)" (clearInputEvent)="onClearInput()"
+    [placeholder]="localization.localize('categories.home.placeholder', 'ecommerce')" title="Canal"
+    classIconButtonInput="icon icon--scan-code" (searchEvent)="onSearchResult()" [search]="true">
+  </header-input>
+
+  <div class="container">
+    <div class="content">
+
+      <div *ngIf="searching" class="display--flex justify-content--center">
+        <ion-spinner name="crescent" />
+      </div>
+
+      <div *ngIf="searchResults.length ; else normalView" class="display--flex flex--column inner-spacing--24">
+        <item-search *ngFor="let product of allProducts" [label]="product.description"
+          (click)="navigateToSearchResult(product)">
+        </item-search>
+      </div>
+
+      <ng-template #normalView>
+        <div class="display--flex flex--column inner-spacing--40">
+
+          <div *ngIf="allSearches.length > 0"
+            class="display--flex flex--column justify-content--start inner-spacing--16 pad-24">
+
+            <ion-label class="text--content-1-c">
+              {{ "categories.home.textSearch" | localize : "ecommerce" }}
+            </ion-label>
+
+            <div class="display--flex flex--column inner-spacing--16">
+
+              <item-last-search *ngFor="let searchText of showAllRecentSearches ? allSearches : allSearches.slice(0, 3)"
+                (clickEvent)="navigateToSearch(searchText)" (clickCloseEvent)="onClear(searchText)"
+                [label]="searchText.text">
+              </item-last-search>
+
+              <p *ngIf="!showAllRecentSearches && !showDeleteAllButton"
+                class="normal-1 padding-content-div text--gray-scale-700 margin-0 " (click)="onShowAllSearchesButton()">
+                {{ "categories.home.textSeeMore" | localize : "ecommerce" }}
+              </p>
+
+              <p *ngIf="showDeleteAllButton" class="normal-1 padding-content-div text--gray-scale-700 margin-0 "
+                (click)="onDeleteAllRecentSearchesButton()">
+                {{ "categories.home.textDelete" | localize : "ecommerce" }}
+              </p>
+            </div>
+          </div>
+
+          <div class="display--flex flex--column inner-spacing--24">
+            <item-navigation *ngFor="let category of categories" [label]="category.name"
+              (click)="navigateToCategory(category)">
+            </item-navigation>
+
+            <section *ngIf="categories.length === 0" class="skeleton-category-container">
+
+              <div *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1]" class="skeleton-category">
+                <ion-skeleton-text animated class="skeleton-category-name" />
+                <div class="skeleton-category-arrow">
+                  <ion-icon class="icon icon--arrow-geor-right-large" />
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ion-content>

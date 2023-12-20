@@ -1,0 +1,8 @@
+<div class="content hide-scrollbar">
+  <modal-base [title]="localization.localize('profile.codeConfirmationModal.title', 'ecommerce')"
+    [subtitle]="localization.localize('profile.codeConfirmationModal.subtitle', 'ecommerce')"
+    [fillLabel]="localization.localize('profile.codeConfirmationModal.fillLabel', 'ecommerce')"
+    [outlineLabel]="localization.localize('profile.codeConfirmationModal.outlineLabel', 'ecommerce')"
+    (fillButtonClickEvent)="sendCodeBy('whatsapp')" (outlineButtonClickEvent)="sendCodeBy('sms')">
+  </modal-base>
+</div>

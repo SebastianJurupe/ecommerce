@@ -1,0 +1,36 @@
+<ion-content>
+  <header-title
+    [close]="true" (closeEvent)="close()"
+    [title]="localization.localize('profile.confirmEmail.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <input-floating-label
+        [label]="localization.localize('profile.infPersonal.modalEmail', 'ecommerce')"
+        type="text"
+        [(value)]="email">
+      </input-floating-label>
+    </div>
+  </div>
+
+  <footer-spacing height="80px" />
+
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button
+        (click)="resetPasswordMobile()"
+        [disabled]="disableButton()"
+        class="c-button c-button--primary  c-button--large c-button--full-width buttom-top">
+
+        <ng-container *ngIf="isLoading">
+          <ion-spinner name="crescent" />
+        </ng-container>
+        <span *ngIf="!isLoading">
+          {{'profile.confirmEmail.titleButton' | localize: 'ecommerce'}}
+        </span>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

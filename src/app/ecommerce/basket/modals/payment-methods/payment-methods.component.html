@@ -1,0 +1,113 @@
+<ion-content>
+
+  <header-title *ngIf="!isMobile" [title]="title" position="start" (iconButtonEvent)="close()"
+    classIconButton="icon icon--close-right cursor-pointer">
+  </header-title>
+
+  <header-title [close]="true" [title]="title" (closeEvent)="close()" />
+
+  <div class=" hide-scrollbar " [ngClass]="{'mb-30 content' : !isMobile, 'container':isMobile}">
+    <div class="width--100 hide-scrollbar">
+
+      <section class="display--flex flex--column inner-spacing--24">
+        <div class="display--flex flex--column text--content-2-a text--secondary  information">
+
+          <ion-label>
+            {{localization.localize('basket.typeMethods.information','ecommerce')}}
+          </ion-label>
+
+          <ion-label>
+            {{ localization.localize('basket.typeMethods.information2','ecommerce') }}
+            <span class="redirection cursor-pointer" (click)="goInbox()">
+              {{localization.localize('basket.typeMethods.information3','ecommerce')}}
+            </span>
+          </ion-label>
+        </div>
+
+        <ion-label class="text--content-0-c">
+          {{localization.localize('basket.typeMethods.amount','ecommerce')}}{{'S/ '+ ' ' + (+amount | number: '1.2-2')}}
+        </ion-label>
+
+        <section class="payment-methods" *ngIf="loading">
+          <div class="payment-method" *ngFor="let account of accounts">
+            <div class="display--flex inner-spacing--16">
+              <!-- <img
+                [src]="account.bank.logo"
+                 alt=""
+              > -->
+              <ion-label class="text--content-1-a">
+                {{ account.bank.description }} - <span> {{ account.currency.description }} </span>
+              </ion-label>
+            </div>
+
+            <div class="display--flex inner-spacing--12 mt-15">
+              <ion-label class="min-70 text--content-1-a">
+                Cta. Cte:
+              </ion-label>
+              <ion-label class="text--content-1-a">
+                {{ account.number }}
+              </ion-label>
+              <ion-icon (click)="copy(account.number)" class="icon icon--copy ml-12 icon--20 cursor-pointer" />
+            </div>
+
+            <div class="display--flex inner-spacing--12">
+              <ion-label class="min-70 text--content-1-a">
+                CCI:
+              </ion-label>
+              <ion-label class="text--content-1-a">
+                {{ account.cci }}
+              </ion-label>
+              <ion-icon (click)="copy(account.cci)" class="icon icon--copy ml-12 icon--20 cursor-pointer" />
+            </div>
+
+            <div class="display--flex inner-spacing--12">
+              <ion-label class="min-70 text--content-1-a company">
+                {{localization.localize('basket.typeMethods.company','ecommerce')}}
+              </ion-label>
+              <ion-label class="text--content-1-a">
+                {{ account.owner }}
+              </ion-label>
+            </div>
+          </div>
+        </section>
+
+        <section class="payment-methods " *ngIf="!loading">
+          <div *ngFor="let item of [1,1]" class="display--flex flex--column inner-spacing--4">
+            <ion-skeleton-text [animated]="true" class="name-skeleton" />
+            <div class="display--flex inner-spacing--12 mt-15">
+              <ion-skeleton-text [animated]="true" class="cte-skeleton" />
+              <ion-skeleton-text [animated]="true" class="number-skeleton" />
+              <ion-skeleton-text [animated]="true" class="copy-skeleton" />
+            </div>
+
+            <div class="display--flex inner-spacing--12">
+              <ion-skeleton-text [animated]="true" class="cte-skeleton" />
+              <ion-skeleton-text [animated]="true" class="number-skeleton" />
+              <ion-skeleton-text [animated]="true" class="copy-skeleton" />
+            </div>
+
+            <div class="display--flex inner-spacing--12">
+              <ion-skeleton-text [animated]="true" class="company-skeleton" />
+              <ion-skeleton-text [animated]="true" class="name-skeleton" />
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <div *ngIf="!justInformative" class="footer-base" [ngClass]="{'footer-base--no-line' : !isMobile}">
+    <div class="footer-base__container display--flex inner-spacing--16">
+      <ion-button *ngIf="!isMobile"
+        class="c-button c-button--primary  c-button--outline c-button--large c-button--full-width buttom-top"
+        (click)="close()">
+        {{'basket.calendarModal.buttonCancel' | localize: 'ecommerce'}}
+      </ion-button>
+      <ion-button (click)="confirm()" [disabled]="disabledButton"
+        class="c-button c-button--primary c-button--large c-button--full-width buttom-top">
+        {{'basket.orderReceiverModal.buttonConfirm' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

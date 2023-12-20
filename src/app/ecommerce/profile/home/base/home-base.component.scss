@@ -1,0 +1,35 @@
+.padding-35 {
+    padding-bottom: 35px
+}
+
+.item-popover {
+    display: flex;
+    padding-left: 0px;
+    align-items: center;
+    gap: 12px;
+}
+
+.popover {
+    --padding-top: 24px;
+    --padding-end: 24px;
+    --padding-bottom: 24px;
+    --padding-start: 24px;
+    --background: var(--p-background-secondary) !important
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.icon-perfil {
+    display: flex;
+    justify-content: space-between
+}
+
+.country-flag {
+    width: 20px !important;
+    height: 20px !important;
+}

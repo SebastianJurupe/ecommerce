@@ -1,0 +1,50 @@
+<ion-content>
+  <header-title [close]="true"
+    [title]="localization.localize('basket.storePickup.authorizationItemPlaceholder', 'ecommerce')"
+    (closeEvent)="close()">
+  </header-title>
+  <div class="container">
+    <div class="content">
+      <section *ngIf="!receiverInfoRegistered" class="receiver-info-form display--flex flex--column inner-spacing--24">
+        <!-- <ion-item class="c-item-input--primary" mode="md">
+          <ion-label position="floating">
+            {{'basket.orderReceiverModal.itemName' | localize: 'ecommerce'}}
+          </ion-label>
+          <ion-input [(ngModel)]="receiverInfo.fullName" class="text--content-1-a text--primary">
+          </ion-input>
+        </ion-item> -->
+        <input-floating-label [label]="localization.localize('basket.orderReceiverModal.itemName', 'ecommerce')"
+          type="text" [(value)]="receiverInfo.name">
+        </input-floating-label>
+
+        <input-prefix [floatLabel]="localization.localize('basket.orderReceiverModal.itemDocumentation', 'ecommerce')"
+          [prefix]="receiverInfo.document.type.prefix" (clickArrowEvent)="openDocumentTypesPopover($event)"
+          (inputValueChangeEvent)="handleDocumentNumber($event)">
+        </input-prefix>
+
+        <input-floating-label [label]="localization.localize('basket.orderReceiverModal.itemPosition', 'ecommerce')"
+          type="text" [(value)]="receiverInfo.position">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('basket.orderReceiverModal.itemEmail', 'ecommerce')"
+          type="text" [(value)]="receiverInfo.email">
+        </input-floating-label>
+
+        <input-flag [mask]="country.mask"
+          [floatLabel]="localization.localize('basket.orderReceiverModal.itemPhone', 'ecommerce')" [code]="country.code"
+          [srcFlag]="country.flag" [label]="country.description" (inputValueChangeEvent)="handleInputPhoneEvent($event)"
+          (onComplete)="handleInputComplete($event)" [(value)]="receiverInfo.phone">
+        </input-flag>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container">
+      <ion-button class="c-button c-button--primary c-button--large c-button--full-width buttom-top"
+        [disabled]="validate()" (click)="save()">
+        {{'basket.orderReceiverModal.buttonConfirm' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

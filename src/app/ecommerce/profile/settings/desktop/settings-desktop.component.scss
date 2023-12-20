@@ -1,0 +1,23 @@
+ion-icon {
+  transform: rotate(180deg);
+  padding: 0px !important;
+}
+
+.main-content {
+  padding-top: 60px;
+  padding-bottom: 24px;
+}
+
+item-navigation {
+  cursor: pointer !important;
+}
+
+.line {
+  border: 1px solid var(--p-gray-scale-200) !important;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1134px) {
+  .main-content {
+    margin-top: unset;
+  }
+}

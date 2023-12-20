@@ -1,0 +1,75 @@
+<ion-content >
+  <header-title
+  *ngIf="device==='mobile'"
+    [close]="true"
+    (closeEvent)="back()"
+    >
+  </header-title>
+
+  <header-title 
+    title="Métodos de pago"
+    position="start" 
+    (iconButtonEvent)="buttonClose()" 
+    classIconButton="icon icon--close-right" 
+    *ngIf="device==='tablet'">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+        <div class="display--flex flex--column inner-spacing--40 align-items--center">
+
+          <div class="display--flex flex--column align-items--center justify-content--center inner-spacing--20">
+            <ion-icon class="icon icon--ok-green icon--48"> </ion-icon>
+
+            <div class="display--flex flex--column align-items--center justify-content--center inner-spacing--8 ">
+              <div class="display--flex flex--column align-items--center justify-content--center inner-4">
+                <ion-text class="text--secondary text--content-2-a align-items--center justify-content--center">
+                  {{'basket.voucher.codePay' | localize: 'ecommerce'}}
+                </ion-text>
+                <div class="display--flex inner-spacing--12 align-items--center">
+                  <ion-label class="text--h3-a">123456789</ion-label>
+                  <ion-icon class="icon icon--copy"></ion-icon>
+                </div>
+              </div>
+              <ion-label class="text--content-1-a text--secondary">{{'basket.voucher.amountPay' | localize: 'ecommerce'}}</ion-label>
+              <div class="ion-text-center">
+                <ion-label class="text--content-1-a text--secondary">{{'basket.voucher.textPay' | localize: 'ecommerce'}} </ion-label>
+                <ion-label class="text--content-1-c text--secondary">{{'basket.voucher.textDate' | localize: 'ecommerce'}}</ion-label> 
+                <ion-label class="text--content-1-a text--secondary"> {{'basket.voucher.textBanks' | localize: 'ecommerce'}}</ion-label>
+              </div>              
+            </div>
+
+            <div class="display--flex inner-spacing--8 justify-content--center">
+              <ion-icon class="icon icon--logo-bcp icon--46x32"></ion-icon>
+              <ion-icon class="icon icon--logo-payment-1 icon--46x32"></ion-icon>
+              <ion-icon class="icon icon--logo-bbva icon--46x32"></ion-icon>
+              <ion-icon class="icon icon--logo-bcp icon--46x32"></ion-icon>
+            </div>
+
+          </div>
+
+          <div class="display--flex flex--column inner-spacing--32 description">
+            <div class="display--flex flex--column inner-spacing--16">
+              <ion-label class="text--content-1-a text--primary">{{'basket.voucher.textFollowNextSteps' | localize: 'ecommerce'}}</ion-label> 
+              <ion-label class="text--content-2-a text--secondary">{{'basket.voucher.textStep1' | localize: 'ecommerce'}}</ion-label> 
+              <div>
+                <ion-label class="text--content-2-a text--secondary">{{'basket.voucher.textStep2' | localize: 'ecommerce'}} </ion-label> 
+                <ion-label class="text--content-2-a text--primary">{{'basket.voucher.textStep2.1' | localize: 'ecommerce'}}</ion-label> 
+              </div>
+              <ion-label class="text--content-2-a text--secondary">{{'basket.voucher.textStep3' | localize: 'ecommerce'}}</ion-label> 
+            </div>
+            <div class="display--flex inner-spacing--12 align-items--center ">
+              <ion-icon class="icon icon--danger-circle icon--18"></ion-icon>
+              <ion-label class="text--content-1-a text--primary">{{'basket.voucher.textCreditedInstantly' | localize: 'ecommerce'}}</ion-label> 
+            </div>
+          </div>
+      
+          <div class="display--flex inner-spacing--12 align-items--center justify-content--center" (click)="share()">
+            <ion-icon class="icon icon--share icon--success" ></ion-icon>
+            <ion-label class="text--content-1-a color-text" >{{'basket.voucher.textShare' | localize: 'ecommerce'}}</ion-label> 
+          </div>
+        </div>
+      </div>
+  </div>
+</ion-content>

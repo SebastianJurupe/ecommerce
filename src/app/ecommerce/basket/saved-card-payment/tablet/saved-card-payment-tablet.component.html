@@ -1,0 +1,93 @@
+<ion-content>
+
+  <header-title
+   [close]="true"
+   (closeEvent)="back()"
+   [title]="localization.localize('basket.typeMethods.title','ecommerce')" 
+   *ngIf="device==='mobile'">
+  </header-title>
+
+  <header-title 
+  [title]="localization.localize('basket.typeMethods.title','ecommerce')"
+    position="start" 
+    (iconButtonEvent)="buttonClose()" 
+    classIconButton="icon icon--close-right" 
+    *ngIf="device==='tablet'">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--28 pt-20" >
+        <section class="advice">
+          <ion-text  class="text--secondary text--content-2-a">
+            {{'basket.typeMethods.textMessage' | localize: 'ecommerce'}}
+          </ion-text>
+        </section>
+
+        <section class="cards-container">
+          <article class="method-pay" *ngFor="let card of cards">
+            <img
+              class="method-pay-logo"
+              src="/assets/general/logo-visa.svg"
+              alt="Logo Method Pay">
+
+            <ion-text
+              class="method-pay-description text--primary">
+              {{ card.description }}
+            </ion-text>
+          </article>
+        </section>
+
+        <section class="box-container">
+          <div class="card-form-field cvv">
+            <ion-input
+              type="tel"
+              maxlength="3"
+              placeholder="CVV"
+              [(ngModel)]="cvv"
+              (ngModelChange)="checkCvvCompletion()">
+            </ion-input>
+            <ion-icon
+              (click)="openSecurityCodeModal()"
+              class="icon icon--danger-circle icon--gray-scale-700 icon--20">
+            </ion-icon>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+<div class="footer-base" *ngIf="device==='mobile'">
+  <div  class="footer-base__container">
+    <ion-button
+        (click)="payNotMade()"
+        [disabled]="!cvvCompleted"
+        class="c-button c-button--large c-button--primary c-button--full-width">
+        {{ 'basket.paymentMethods.buttomPayment' | localize: 'ecommerce' }}
+      </ion-button>
+  </div>
+</div>
+
+<div class="footer-base" *ngIf="device==='tablet'">
+  <div class="footer-base__container">
+
+    <div class="display--flex align-items--start inner-spacing--16">
+
+      <ion-button
+          class="c-button c-button--primary c-button--outline c-button--large width--50"
+          (click)="payMethodModal()">
+          Cancelar
+        </ion-button>
+
+      <ion-button
+        (click)="payNotMade()"
+        [disabled]="!cvvCompleted"
+        class="c-button c-button--primary c-button--large width--50">
+        {{ 'basket.paymentMethods.buttomPayment' | localize: 'ecommerce' }}
+      </ion-button>
+    </div>
+  </div>
+</div>
+</ion-content>

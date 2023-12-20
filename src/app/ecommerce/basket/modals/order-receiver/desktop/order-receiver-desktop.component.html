@@ -1,0 +1,51 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('basket.storePickup.authorizationItemPlaceholder', 'ecommerce')"
+    position="start" (iconButtonEvent)="close()" position="start"
+    classIconButton="icon icon--close-right cursor-pointer">
+  </header-title>
+
+  <div class="container">
+    <div class="width--100 hide-scrollbar">
+      <section *ngIf="!receiverInfoRegistered" class="receiver-info-form display--flex flex--column inner-spacing--24">
+
+        <input-floating-label [label]="localization.localize('basket.orderReceiverModal.itemName', 'ecommerce')"
+          type="text" [(value)]="receiverInfo.name">
+        </input-floating-label>
+
+        <input-prefix class="cursor-pointer"
+          [floatLabel]="localization.localize('basket.orderReceiverModal.itemDocumentation', 'ecommerce')"
+          (inputValueChangeEvent)="handleDocumentNumber($event)" [prefix]="receiverInfo.document.type.prefix"
+          (clickArrowEvent)="openDocumentTypesPopover($event)">
+        </input-prefix>
+
+        <input-floating-label [label]="localization.localize('basket.orderReceiverModal.itemPosition', 'ecommerce')"
+          type="text" [(value)]="receiverInfo.position">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('basket.orderReceiverModal.itemEmail', 'ecommerce')"
+          type="text" [(value)]="receiverInfo.email">
+        </input-floating-label>
+
+        <input-flag [mask]="country.mask"
+          [floatLabel]="localization.localize('basket.orderReceiverModal.itemPhone', 'ecommerce')" [code]="country.code"
+          [srcFlag]="country.flag" [label]="country.description" (inputValueChangeEvent)="handleInputPhoneEvent($event)"
+          [(value)]="receiverInfo.phone" class="cursor-pointer" (onComplete)="handleInputComplete($event)">
+        </input-flag>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <div class="footer-base__container display--flex gap-3">
+      <ion-button class="c-button c-button--primary  c-button--outline c-button--large c-button--full-width buttom-top"
+        (click)="close()">
+        {{'basket.calendarModal.buttonCancel' | localize: 'ecommerce'}}
+      </ion-button>
+      <ion-button class="c-button c-button--primary c-button--large c-button--full-width buttom-top" (click)="save()"
+        [disabled]="validate()">
+        {{'basket.orderReceiverModal.buttonConfirm' | localize: 'ecommerce'}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

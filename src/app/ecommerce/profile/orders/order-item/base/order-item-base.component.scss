@@ -1,0 +1,58 @@
+.order {
+  border: 1px solid var(--p-gray-scale-100);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &__time-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__details {
+    display: flex;
+    align-items: center;
+  }
+
+  &__status {
+    width: fit-content;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+
+}
+
+.dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pending-payment {
+  background-color: var(--p-error-low) !important;
+  color: var(--p-error-main) !important;
+}
+
+.preparation {
+  background-color: var(--p-warning-low) !important;
+  color: var(--p-warning-main) !important;
+}
+
+.on-the-way {
+  background-color: rgba(240, 243, 250, 1) !important;
+  color: rgba(8, 105, 194, 1) !important;
+}
+
+.delivered {
+  background-color: var(--p-success-low) !important;
+  color: var(--p-success-main) !important;
+}
+
+.canceled {
+  background-color: var(--p-gray-scale-200) !important;
+  color: var(--p-gray-scale-700) !important;
+}

@@ -1,0 +1,56 @@
+<ion-content class="ion-no-padding" [scrollX]="false" [scrollY]="false" [ngClass]="{ 'has-toolbar' : screen != 'mobile' }">
+
+  <div *ngIf="session.user; else requireLogin" class="inbox-container">
+
+    <div *ngIf="service.status.loaded; else loading;" class="inbox-content">
+
+      <aside class="inbox-content__sidebar">
+
+        <div class="inbox-content__sidebar-title">
+
+          <label class="d-block text-center">
+            {{'inbox.dashboard.title' | localize: 'ecommerce'}}
+          </label>
+
+          <ion-button fill="clear">
+            <ion-icon class="icon icon--search" color="dark"></ion-icon>
+          </ion-button>
+
+        </div>
+
+        <div class="inbox-content__sidebar-messages theme-scroll-bar">
+          <inbox-channel-item *ngFor="let channel of service.channels; index as i;" [channel]="channel" [index]="i" (onAction)="openChannel(channel)"/>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <ng-template #loading>
+      <inbox-loading class="inbox-content" />
+    </ng-template>
+
+  </div>
+
+  <ng-template #requireLogin>
+    <div class="inbox-container">
+      <div class="inbox-content">
+
+        <aside class="inbox-content__sidebar left">
+        </aside>
+
+        <section class="inbox-content__view">
+          <page-empty class="inbox-content__view-empty" icon="😊" [title]="localization.localize('inbox.dashboard.login.title','ecommerce')"
+            [subtitle]="localization.localize('inbox.dashboard.login.subtitle','ecommerce')">
+          </page-empty>
+        </section>
+
+        <aside class="inbox-content__sidebar right">
+        </aside>
+
+      </div>
+    </div>
+
+  </ng-template>
+
+</ion-content>

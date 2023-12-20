@@ -1,0 +1,14 @@
+.method-pay {
+  align-items: center;
+  background: var(--p-gray-scale-50);
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 16px 10px;
+
+  &-description {
+    flex: 1;
+    text-transform: capitalize;
+  }
+}

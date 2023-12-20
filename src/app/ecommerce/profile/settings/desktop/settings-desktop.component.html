@@ -1,0 +1,79 @@
+<ion-content>
+
+
+  <div class="content--desktop container-desktop container-desktop-section">
+    <div class="content display--flex ">
+
+
+      <app-desktop-slide [disabled]="disabled"></app-desktop-slide>
+
+      <div
+        class="main-content display--flex flex--column inner-spacing--24 width--100 container-scroll-desktop-vertical">
+
+        <title-section [title]="localization.localize('profile.infPersonal.title','ecommerce')">
+        </title-section>
+
+        <div class="display--flex align-items--center inner-spacing--24 justify-content--space-between cursor-pointer"
+          (click)="onChangeProfile()">
+          <ion-label class="text--content-1-a">
+            {{ 'profile.infPersonal.photo' | localize: 'ecommerce' }}
+          </ion-label>
+          <avatar-profile [src]="personalInformation.avatar ? personalInformation.avatar : defaultAvatarSrc"
+            [width]="40" [height]="40">
+          </avatar-profile>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.name','ecommerce')"
+            (clickEvent)="onShowUpdateNameModal()" [sublabel]="personalInformation.name">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.email','ecommerce')"
+            (clickEvent)="onShowUpdateEmailModal()" [sublabel]="personalInformation.email"
+            [setButton]="!session.user.isEmailConfirmed" buttonLabel="(Validar correo)"
+            classButton="c-button c-button--text-delete c-button--no-padding" (clickButtonEvent)="validateEmail()">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.phone','ecommerce')"
+            (clickEvent)="onShowUpdatePhoneModal()"
+            [sublabel]="personalInformation.country.code + ' ' +personalInformation.phone"
+            [setButton]="!session.user.isPhoneNumberConfirmed" buttonLabel="(Validar número de celular)"
+            classButton="c-button c-button--text-delete c-button--no-padding" (clickButtonEvent)="validatePhone()">
+          </item-navigation>
+        </div>
+
+        <div class="display--flex flex--column inner-spacing--24">
+          <item-navigation [label]="localization.localize('profile.infPersonal.password','ecommerce')"
+            (clickEvent)="onShowUpdatePasswordModal()">
+          </item-navigation>
+        </div>
+
+        <div class="line"></div>
+
+        <item-navigation (clickEvent)="onChooseLanguagePopover($event)"
+          [label]="localization.localize('profile.setting.language','ecommerce')" [sublabel]="selectedLanguage">
+        </item-navigation>
+
+        <item-navigation (clickEvent)="onOpenChangeModePopover($event)"
+          [label]="localization.localize('profile.setting.screenMode','ecommerce')" [sublabel]="selectedMode">
+        </item-navigation>
+
+        <div class="line"></div>
+
+        <ion-button class="c-button c-button--text-delete c-button--full-width c-button--no-padding-x">
+          <div class="c-button__content c-button__content--left inner-spacing--12"  (click)="onLogOutTablet()">
+            <ion-icon slot="start" class="icon icon--logout icon--delete" />
+            {{'profile.setting.logout' | localize: 'ecommerce'}}
+          </div>
+        </ion-button>
+
+
+
+      </div>
+    </div>
+  </div>
+</ion-content>

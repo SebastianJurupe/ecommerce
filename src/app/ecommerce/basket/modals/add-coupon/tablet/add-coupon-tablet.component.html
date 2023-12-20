@@ -1,0 +1,49 @@
+<ion-content>
+  <header-title
+  position="start"
+    [title]="localization.localize('basket.addCouponModal.title', 'ecommerce')">
+  </header-title>
+  <div class="container">
+    <div class="content">
+      <input-validate
+        #inputValidate
+        [labelButton]="localization.localize('basket.addCouponModal.button', 'ecommerce')"
+        (inputValueChangeEvent)="handleInputValue($event)"
+        [placeholder]="localization.localize('basket.addCouponModal.placeholder', 'ecommerce')">
+      </input-validate>
+      <section class="coupons-list">
+        <div *ngFor="let item of coupons" class="coupon">
+          <ion-text class="coupon__discount text--primary text--content-1-c">
+            {{item.valor}}
+          </ion-text>
+          <ion-text class="coupon__label text--primary text--h5-a">
+            {{item.text}}
+          </ion-text>
+          <ion-text class="text--secondary">
+            {{'basket.addCouponModal.labelCode' | localize: 'ecommerce'}}
+            <span class="text--content-3-a">
+              {{item.cod}}
+            </span>
+          </ion-text>
+          <div class="display--flex align-items--center inner-spacing--4">
+            <ion-icon class="icon icon--danger-circle icon--14" />
+            <ion-text class="text--secondary text--content-3-a">
+              {{'basket.addCouponModal.labelExpires' | localize: 'ecommerce'}}
+              <span class="text--secondary text--content-2-b">
+                {{item.expiration}}
+              </span>
+            </ion-text>
+          </div>
+          <div class="coupon__conditions__button">
+            <ion-text (click)="viewConditions()" class="text--secondary text--content-2-a">
+              {{'basket.addCouponModal.buttonConditions' | localize: 'ecommerce'}}
+            </ion-text>
+            <ion-button class="c-button c-button--primary" (click)="validateCoupon(item)">
+              {{'basket.addCouponModal.buttonUseCoupon' | localize: 'ecommerce'}}
+            </ion-button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</ion-content>

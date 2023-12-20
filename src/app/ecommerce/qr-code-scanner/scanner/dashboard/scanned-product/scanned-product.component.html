@@ -1,0 +1,37 @@
+<section class="item-result">
+  <ion-icon class="icon icon--label"></ion-icon>
+
+  <div class="item-result-content">
+    <ion-text class="item-result-content-name text--primary text--black text--heading-a">
+      {{ product.description }}
+    </ion-text>
+    <ion-text class="item-result-content-price text--primary text--black text--content-2-a">
+      {{ 'home.product.price' | localize: 'ecommerce' }}: {{ product.currency.symbol }} {{ product.price | number: '1.2-2' }}
+    </ion-text>
+  </div>
+
+  <ion-input
+    #input
+    [(ngModel)]="quantity"
+    [style.max-width.px]="handleInputWidth()"
+    class="input text--content-3-a"
+    placeholder="0"
+    maxlength="6"
+    type="tel"
+    color="dark">
+  </ion-input>
+</section>
+
+<section class="footer">
+  <ion-button
+    (click)="addToCard()"
+    class="c-button c-button--text-primary c-button--extra-small c-button--no-padding-x">
+    <ng-container *ngIf="isLoading">
+      <ion-spinner class="spinner" name="crescent" />
+    </ng-container>
+
+    <span *ngIf="!isLoading">
+      {{ 'general.done' | localize: 'ecommerce' }}
+    </span>
+  </ion-button>
+</section>

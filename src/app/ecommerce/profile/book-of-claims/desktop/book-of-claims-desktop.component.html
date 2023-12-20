@@ -1,0 +1,113 @@
+<ion-content>
+
+    <div class="content--desktop container-desktop container-desktop-section">
+        <div class="content display--flex ">
+            <div>
+                <app-desktop-slide>
+                </app-desktop-slide>
+            </div>
+            <div class="width--100 complete" *ngIf="registeredClaim">
+                <registered-claim-desktop>
+                </registered-claim-desktop>
+            </div>
+            <section class="container-scroll-desktop-vertical padding-bottom" *ngIf="!registeredClaim">
+                <div class="header display--flex flex--column inner-spacing--14">
+                    <ion-text class="text--h4-a">
+                        {{localization.localize('profile.help.bookOfClaims','ecommerce')}}
+                    </ion-text>
+                    <ion-text class="text--content-2-a text--secondary">
+                        {{ 'profile.bookOfClaims.information' | localize: 'ecommerce' }} <u (click)="goEmail()"
+                            class="text--primary text-decoration-underline cursor-pointer">reclamos@renac.pe</u>
+                    </ion-text>
+                </div>
+                <div class="container-all border">
+                    <!-- name -->
+                    <div id="item-0">
+                        <input-floating-label
+                            [label]="localization.localize('profile.bookOfClaims.fullNames','ecommerce')"
+                            [(value)]="claim.full_name">
+                        </input-floating-label>
+                    </div>
+                    <!-- document -->
+                    <div id="item-1" class="cursor-pointer">
+                        <item-navigation-line [floatLabel]="localization.localize('profile.bookOfClaims.docIdentification','ecommerce')" [label]="claim.document.type.prefix"
+                            (clickEvent)="openDocumentTypesPopover($event)">
+                        </item-navigation-line>
+                    </div>
+                    <!-- number document -->
+                    <div id="item-2">
+                        <input-floating-label [label]="localization.localize('profile.bookOfClaims.docNumber','ecommerce')" [(value)]="claim.document.document_number">
+                        </input-floating-label>
+                    </div>
+                    <!-- email -->
+                    <div id="item-3">
+                        <input-floating-label [label]="localization.localize('profile.bookOfClaims.email','ecommerce')"
+                            [(value)]="claim.email">
+                        </input-floating-label>
+                    </div>
+                    <!-- phone -->
+                    <div id="item-4">
+                        <input-floating-label [label]="localization.localize('profile.bookOfClaims.phone','ecommerce')"
+                            [(value)]="claim.phone">
+                        </input-floating-label>
+                    </div>
+                    <!-- direction -->
+                    <div id="item-5">
+                        <input-floating-label
+                            [label]="localization.localize('profile.bookOfClaims.address','ecommerce')"
+                            [(value)]="claim.address">
+                        </input-floating-label>
+                    </div>
+                    <!-- department -->
+                    <div id="item-6" class="cursor-pointer">
+                        <item-navigation-line [floatLabel]="country.national_division[0]"
+                            label="{{ addressForm.extra[0].value ? addressForm.extra[0].value : country.national_division[0] }}"
+                            (clickEvent)="openDepartmentsModal()">
+                        </item-navigation-line>
+                    </div>
+                    <!-- provincia -->
+                    <div id="item-7" class="cursor-pointer">
+                        <item-navigation-line [floatLabel]="country.national_division[1]"
+                            label="{{ addressForm.extra[1].value ? addressForm.extra[1].value : country.national_division[1] }}"
+                            (clickEvent)="openProvincesModal()">
+                        </item-navigation-line>
+                    </div>
+                    <!-- distrito -->
+                    <div id="item-8" class="cursor-pointer">
+                        <item-navigation-line [floatLabel]="country.national_division[2]"
+                            label="{{ addressForm.extra[2].value ? addressForm.extra[2].value : country.national_division[2] }}"
+                            (clickEvent)="openDistrictsModal()">
+                        </item-navigation-line>
+                    </div>
+                    <!-- text-area -->
+                    <div class="text-area" id="item-9">
+                        <ion-text class="text--content-3-a text--secondary">
+                            {{ 'profile.bookOfClaims.description' | localize: 'ecommerce' }}
+                        </ion-text>
+                        <ion-textarea [(ngModel)]="claim.description" name="description" class="description">
+                        </ion-textarea>
+                    </div>
+                    <!-- button -->
+                    <div id="item-10" class="cursor-pointer">
+                        <div class="button-container">
+                            <ion-button (click)="sendClaim()"
+                                class="c-button c-button--large c-button--primary c-button--full-width"
+                                [disabled]="handleButtonDisabled()">
+
+                                <ng-container *ngIf="isLoading">
+                                    <ion-spinner name="crescent"></ion-spinner>
+                                </ng-container>
+
+                                <span *ngIf="!isLoading">
+                                    {{ 'profile.bookOfClaims.send' | localize: 'ecommerce' }}
+                                </span>
+
+                            </ion-button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</ion-content>

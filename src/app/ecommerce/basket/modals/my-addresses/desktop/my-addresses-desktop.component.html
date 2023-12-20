@@ -1,0 +1,84 @@
+<ion-content>
+  <header-title position="start" [title]="localization.localize('basket.myAddresses.title', 'ecommerce')"
+    classIconButton="icon icon--close-right cursor-pointer" (iconButtonEvent)="dialog.dismiss('cancel')">
+  </header-title>
+
+  <div class="content hide-scrollbar">
+
+    <section *ngIf="addressService.isLoading && addresses.length === 0"
+      class="addresses-skeleton-container display--flex flex--column inner-spacing--24">
+      <div class="skeleton" *ngFor="let item of [1,1,1,1]">
+        <div class="container-description display--flex flex--row inner-spacing--12">
+          <ion-skeleton-text animated class="radio-check" />
+          <div class="colum-info display--flex flex--column inner-spacing--12">
+            <ion-skeleton-text animated class="description-address" />
+            <ion-skeleton-text animated class="edit-skeleton" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div *ngIf="addresses.length !== 0" class="list-dateAddresses display--flex flex--column inner-spacing--24">
+      <ion-radio-group #radioGroup [(ngModel)]="selectedAddress.id"
+        class="list-delivery-time display--flex flex--column inner-spacing--24">
+
+        <div class="item-dateAddresses display--flex align-items--start inner-spacing--12 cursor-pointer"
+          *ngFor="let address of addresses" (click)="selectRadio(address)">
+
+          <ion-radio class="width-24" [id]="'radio_' + address" [value]="address.id">
+          </ion-radio>
+
+          <div class="info-content display--flex flex--column inner-spacing--12">
+            <div class="addresses">
+              <div class="info-addresses">
+                <ion-label class="text--content-1-a text--gray-scale-1000" [for]="'radio_' + address">
+                  {{ address.description }}
+                </ion-label>
+                <ion-label class="text--content-1-a text--secondary" [for]="'radio_' + address">
+                  {{ address.address }}
+                </ion-label>
+              </div>
+            </div>
+            <div class="button-edit">
+              <ion-button class="c-button c-button--text-primary c-button--no-padding"
+                (click)="editAddress(address.id)">
+                <ion-text class="text--gray-scale-700">
+                  {{'basket.addBillingModal.buttonEdit' | localize: 'ecommerce'}}
+                </ion-text>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </ion-radio-group>
+      <div class="button-add cursor-pointer">
+        <item-option [label]="localization.localize('basket.myAddresses.buttonAdd', 'ecommerce')"
+          classIconButton="icon icon--plus-1 icon--24 icon--gray-scale-1000 cursor-pointer" (click)="addAddress()"
+          class="width--100">
+        </item-option>
+      </div>
+    </div>
+
+    <page-empty *ngIf="addresses.length === 0 && emptyAdress" icon="😊" [setDesktop]="true"
+      (clickButtonEvent)="addAddress()" [setButton]="true"
+      [labelButton]="localization.localize('profile.address.newAddress','ecommerce')"
+      classIconButton="icon icon--plus-1" [title]="localization.localize('profile.address.empty.title','ecommerce')"
+      [subtitle]="localization.localize('profile.address.empty.subtitle','ecommerce')">
+    </page-empty>
+  </div>
+
+  <footer-spacing height="80px"></footer-spacing>
+
+  <div class="footer-base footer-base--no-line" *ngIf="addresses.length!==0">
+    <div class="footer-base__container">
+      <div class="buttons-container display--flex inner-spacing--16">
+        <ion-button (click)="dialog.dismiss('cancel')"
+          class="c-button c-button--primary c-button--outline c-button--large width--50 ">
+          {{'profile.modalLogout.outlineLabel' | localize: 'ecommerce'}}
+        </ion-button>
+        <ion-button (click)="save()" class="c-button c-button--large c-button--primary width--50">
+          {{'basket.orderReceiverModal.buttonConfirm' | localize: 'ecommerce'}}
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

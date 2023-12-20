@@ -1,0 +1,45 @@
+ion-checkbox {
+  --checkbox-background-checked: var(--p-primary-main);
+  --border-color-checked: transparent;
+  --border-color: var(--p-secondary-outline-border);
+  --size: 24px;
+  --checkmark-color: var(--p-gray-scale-0);
+  --checkmark-width: 2px;
+  opacity: 1;
+}
+
+.button-edit {
+  padding-inline: 40px;
+  padding-top: 12px;
+}
+
+.radio-check {
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  border-radius: 50%;
+}
+
+.colum-info {
+  width: 100%;
+}
+
+.description-title {
+  width: 60%;
+  height: 16px;
+}
+
+.description-fiscal {
+  width: 20%;
+  height: 16px;
+}
+
+.edit-skeleton {
+  width: 48px;
+  height: 20px;
+}
+
+.mb-skeleton {
+  margin-bottom: 5px;
+}

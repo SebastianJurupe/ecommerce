@@ -1,0 +1,10 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="#F1F9F1"/>
+<circle cx="14.3247" cy="15.2183" r="4.32471" stroke="#3B873E" stroke-width="1.5"/>
+<circle cx="24.3467" cy="27.1371" r="1.96713" stroke="#3B873E" stroke-width="1.5"/>
+<circle cx="14.2926" cy="27.1371" r="1.96713" stroke="#3B873E" stroke-width="1.5"/>
+<path d="M14.3243 13.2178L14.3243 17.2174" stroke="#3B873E" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M16.3243 15.2178L12.3247 15.2178" stroke="#3B873E" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M24.7846 16.5047V15.8521C24.7846 14.2224 23.4635 12.9014 21.8339 12.9014H21.1267M24.7846 16.5047L24.7788 16.5014M24.7846 16.5047L28.5329 18.686C29.4409 19.2145 29.9995 20.1858 29.9995 21.2363V24.1836C29.9995 25.8132 28.6784 27.1343 27.0488 27.1343H26.3118M24.7846 16.5047V25.2249M10.1012 21.2518V24.1874C10.1012 25.5683 11.0498 26.7276 12.3308 27.0494M29.9997 21.4788H27.4029M22.385 27.1381H16.2667" stroke="#3B873E" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#F5F5F5"/>
+</svg>

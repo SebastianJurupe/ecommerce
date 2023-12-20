@@ -1,0 +1,34 @@
+<ion-content class="content-no-header">
+  <div class="container">
+    <div class="content">
+
+      <div class="display--flex flex--column inner-spacing--32">
+        <div class="icon-perfil">
+          <avatar-profile
+            [src]="imageProfile"
+            [width]="48"
+            [height]="48">
+          </avatar-profile>
+          <ion-label>
+            {{session.user.name}}
+          </ion-label>
+        </div>
+
+
+        <div class="card-component__details display--flex flex--column inner-spacing--24 ">
+          <item-option
+            *ngFor="let resource of resources"
+            [amount]="resource.badge"
+            (clickEvent)="resource.method()"
+            [label]="resource.name"
+            [classIconButton]="resource.format"
+            class="width--100 cursor-pointer">
+          </item-option>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</ion-content>

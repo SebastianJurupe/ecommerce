@@ -1,0 +1,17 @@
+<ion-content>
+  
+  <header-title
+    (backEvent)="back()"
+    [back]="true"
+    title='Quienes Somos'>
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <div [innerHTML]="about.content">
+      </div>
+
+    </div>
+  </div>
+</ion-content>

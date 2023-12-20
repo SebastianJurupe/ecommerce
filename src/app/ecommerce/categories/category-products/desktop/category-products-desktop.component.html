@@ -1,0 +1,55 @@
+<ion-content [scrollY]="false">
+
+  <div class="container-desktop content--desktop-category container-desktop-section">
+
+    <div class="content content-category">
+
+      <div class="content filter-column container-scroll-desktop-vertical">
+
+        <div class="category-name-container display--flex flex--column inner-spacing--24">
+          <ion-label class="text--content-0-c">
+            {{ categoryName }}
+          </ion-label>
+        </div>
+        <app-filter-desktop [openedFromCategoryProducts]="openedFromCategoryProducts"
+          (onClearFilters)="onCleanFilters()" />
+      </div>
+
+      <div class="products-column width--100 container-scroll-desktop-vertical">
+        <section class="featured" *ngIf="products.length>0">
+
+          <article *ngIf="products" class="featured-products">
+
+            <card-product *ngFor="let product of products; let i = index" (blurEvent)="onProductCardBlur()"
+              (clickCartShoppingEvent)="onClickShoppingCart($event, product.has_variants, product.id,product.description)"
+              (clickEvent)="navigateToProductDetail(product.id,product.description)"
+              (clickInputCartShoppingEvent)="onClickInputCartShopping($event)" (focusEvent)="onProductCardFocus()"
+              (indexSelected)="onSetSelectedProductCardIndex($event)"
+              (offsetTopEvent)="onHandleOffsetTop($event,product.has_variants)"
+              [(inputValue)]="basketProductQuantity[i].quantity" [data]="product" height="300" [index]="product.id"
+              [setDesktop]="true">
+            </card-product>
+          </article>
+          <div class="display--flex width--100 align-items--center justify-content--center">
+            <div style="width: 169px; margin-top: 24px;" *ngIf="page <= totalPages">
+              <ion-button class="c-button c-button--secondary c-button--outline c-button--full-width"
+                (click)="loadMoreDataDestkop()">{{localization.localize('profile.home.orders.seeMore','ecommerce')}}</ion-button>
+            </div>
+          </div>
+        </section>
+
+        <page-empty *ngIf="noResultsMessageVisible && products.length === 0" icon="😊" [setDesktop]="true"
+          [setBackgroundGray]="true" [title]="localization.localize('categories.message.noResults', 'ecommerce')">
+        </page-empty>
+
+        <div *ngIf="products.length === 0 && !noResultsMessageVisible" class="featured-products">
+
+          <card-product-skeleton *ngFor="let item of [1,1,1,1,1,1,1,1]" [desktopMode]="true" />
+        </div>
+      </div>
+    </div>
+    <footer-spacing height="40px" />
+
+
+  </div>
+</ion-content>

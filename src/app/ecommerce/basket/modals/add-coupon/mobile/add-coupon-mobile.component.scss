@@ -1,0 +1,41 @@
+.coupons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/*************************/
+.coupon {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--p-gray-scale-200);
+  border-radius: 10px;
+
+  &__conditions__button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+//SKELETON
+.discount-skeleton {
+  height: 30px;
+}
+
+.code-skeleton {
+  height: 15px;
+  width: 20%;
+}
+
+.date-skeleton {
+  height: 15px;
+  width: 30%;
+}
+
+.button-skeleton {
+  height: 40px;
+  width: 30%;
+}

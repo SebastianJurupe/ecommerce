@@ -1,0 +1,52 @@
+<ion-content>
+
+  <header-title
+    (backEvent)="onBackButtonPressed()"
+    [back]="true"
+    [title]="localization.localize('profile.changeMode.title','ecommerce')" >
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <div class="display--flex flex--column inner-spacing--24">
+
+        <div
+          class="display--flex inner-spacing--24"
+          (click)="setTheme('system')">
+          <ion-label class="text--content-1-a width--100">
+            {{'profile.changeMode.automatic' | localize: 'ecommerce'}}
+          </ion-label>
+          <ion-icon
+            class="icon icon--check"
+            *ngIf="mode === 'system'"
+          ></ion-icon>
+        </div>
+
+        <div
+          class="display--flex inner-spacing--24"
+          (click)="setTheme('light')">
+          <ion-label class="text--content-1-a width--100">
+            {{'profile.changeMode.light' | localize: 'ecommerce'}}
+          </ion-label>
+          <ion-icon
+            class="icon icon--check"
+            *ngIf="mode === 'light'"
+          ></ion-icon>
+        </div>
+
+        <div
+          class="display--flex inner-spacing--24"
+          (click)="setTheme('dark')">
+          <ion-label class="text--content-1-a width--100 ">
+            {{'profile.changeMode.dark' | localize: 'ecommerce'}}
+          </ion-label>
+          <ion-icon
+            class="icon icon--check"
+            *ngIf="mode === 'dark'"
+          ></ion-icon>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

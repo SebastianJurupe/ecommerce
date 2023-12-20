@@ -1,0 +1,30 @@
+<ion-content>
+
+  <header-title
+   [back]="true"
+   (backEvent)="back()"
+   title="Agregar dirección">
+  </header-title>
+
+  <div class="input-search-container hide-scrollbar" >
+    <input-search
+      [search]="true"
+      (inputValueChangeEvent)="search($event)"
+      (clearInputEvent)="clearInput()"
+      placeholder="Buscar">
+    </input-search>
+  </div>
+
+  <section class="addresses-list hide-scrollbar">
+
+    <div
+      (click)="selectAddress(address)"
+      *ngFor="let address of addresses$ | async"
+      class="address">
+      <ion-text class="text--secondary text--content-1-a">
+        {{ address?.description }}
+      </ion-text>
+    </div>
+  </section>
+
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-content #content>
+
+  <div class="container-desktop-1 content--desktop-1">
+    <div class="content">
+
+      <img *ngIf="!isLoading" class="image-banner-desktop" [src]="banner">
+
+      <ion-skeleton-text *ngIf="isLoading" class="image-banner banner-skeleton-desktop" animated />
+
+      <article *ngIf="products" class="products-container">
+
+        <card-product *ngFor="let product of products ; let i = index" (blurEvent)="onProductCardBlur()"
+          (clickCartShoppingEvent)="onClickShoppingCartDesktop($event, product.has_variants, product.id,product.description)"
+          (clickEvent)="onViewProductDetailDesktop(product.id,product.description)"
+          (clickInputCartShoppingEvent)="onClickInputCartShoppingDesktop($event)" (focusEvent)="onProductCardFocus()"
+          (indexSelected)="setSelectedProductCardIndex($event)" [setLockInput]="!userIsAuthenticated"
+          [(inputValue)]="basketProductQuantity[i].quantity" [data]="product" [index]="product.id" height="300"
+          [setDesktop]="true">
+        </card-product>
+      </article>
+
+      <div *ngIf="products.length === 0" class="skeleton-container">
+        <card-product-skeleton *ngFor="let item of [1,1,1,1,1,1,1,1]" [desktopMode]="true" />
+      </div>
+      <footer-spacing height="40px"></footer-spacing>
+      <div class="display--flex width--100 align-items--center justify-content--center">
+        <div class="button-seeMore" *ngIf="page <= totalPages">
+          <ion-button class="c-button c-button--secondary c-button--outline c-button--full-width"
+            (click)="nextGetFeaturedCategoryDetails()">{{localization.localize('profile.home.orders.seeMore','ecommerce')}}</ion-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

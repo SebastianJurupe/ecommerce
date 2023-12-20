@@ -1,0 +1,78 @@
+<ion-content>
+
+  <header-title [back]="true" (backEvent)="back()"
+    [title]="localization.localize('profile.help.bookOfClaims','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <registered-claim-mobile *ngIf="registeredClaim">
+      </registered-claim-mobile>
+
+      <section *ngIf="!registeredClaim" class="claim-form">
+
+        <input-floating-label [setAutofocus]="true"
+          [label]="localization.localize('profile.bookOfClaims.fullNames','ecommerce')" [(value)]="claim.full_name">
+        </input-floating-label>
+
+        <input-prefix [floatLabel]="localization.localize('profile.help.documentNumber','ecommerce')"
+          [prefix]="claim.document.type.prefix" (clickArrowEvent)="openDocumentTypesPopover($event)"
+          (inputValueChangeEvent)="handleDocumentNumber($event)" type="tel">
+        </input-prefix>
+
+        <input-floating-label [label]="localization.localize('profile.bookOfClaims.email','ecommerce')"
+          [(value)]="claim.email">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('profile.bookOfClaims.phone','ecommerce')"
+          [(value)]="claim.phone">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('profile.bookOfClaims.address','ecommerce')"
+          [(value)]="claim.address">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('profile.bookOfClaims.department','ecommerce')"
+          [(value)]="claim.department">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('profile.bookOfClaims.province','ecommerce')"
+          [(value)]="claim.province">
+        </input-floating-label>
+
+        <input-floating-label [label]="localization.localize('profile.bookOfClaims.district','ecommerce')"
+          [(value)]="claim.district">
+        </input-floating-label>
+
+        <div class="display--flex flex--column inner-spacing--12">
+          <ion-text class="text--secondary text--content-3-a">
+            {{ 'profile.bookOfClaims.description' | localize: 'ecommerce' }}
+          </ion-text>
+          <ion-textarea [(ngModel)]="claim.description" name="description" class="description">
+          </ion-textarea>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <footer-spacing height="80px"></footer-spacing>
+
+  <div *ngIf="!registeredClaim" class="footer-base">
+    <div class="footer-base__container">
+      <ion-button (click)="sendClaim()" class="c-button c-button--large c-button--primary c-button--full-width"
+        [disabled]="handleButtonDisabled()">
+
+        <ng-container *ngIf="isLoading">
+          <ion-spinner name="crescent"></ion-spinner>
+        </ng-container>
+
+        <span *ngIf="!isLoading">
+          {{ 'profile.bookOfClaims.send' | localize: 'ecommerce' }}
+        </span>
+
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,75 @@
+.invoicings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 24px;
+}
+
+.card-content {
+  max-width: 193px;
+}
+
+.main-content {
+  padding-top: 60px;
+}
+
+.favorite-items {
+  display: grid;
+  gap: 24px;
+}
+
+.skeleton {
+  .gap--12px {
+    gap: 12px;
+  }
+
+  .margin-top--24px {
+    margin-top: 24px;
+  }
+
+}
+
+//Skeleton
+.invoice-item {
+  border: 1px solid var(--p-gray-scale-200);
+  border-radius: 10px;
+  padding: 24px;
+  padding-bottom: 0px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  &__option {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.name-skeleton {
+  width: 15%;
+  height: 24px;
+}
+
+.buttons-skeleton {
+  width: 30%;
+  padding: 8px;
+}
+
+.address-skeleton {
+  width: 20%;
+  height: 24px;
+}
+
+.edit-skeleton {
+  width: 40%;
+  height: 24px;
+}
+
+.delete-skeleton {
+  width: 40%;
+  height: 24px;
+}

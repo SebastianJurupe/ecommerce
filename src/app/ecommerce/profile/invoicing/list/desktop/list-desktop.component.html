@@ -1,0 +1,55 @@
+<ion-content>
+
+  <div class="content--desktop container-desktop container-desktop-section">
+    <div class="content display--flex">
+
+      <app-desktop-slide></app-desktop-slide>
+
+      <div
+        class="main-content width--100 display--flex flex--column inner-spacing--24 container-scroll-desktop-vertical" >
+        <section class="invoicings-list" *ngIf="invoicings.length > 0 && !loading">
+
+          <invoice-item-desktop *ngFor="let invoice of invoicings" [invoice]="invoice"
+            (optionClicked)="editModal($event)">
+          </invoice-item-desktop>
+
+          <div class="card-content" *ngIf="invoicings.length > 0">
+            <ion-button (click)="addInvoice()"
+              class="c-button c-button--small c-button--primary c-button--no-padding-y c-button--full-width">
+              <ion-icon class="icon icon--plus-1"></ion-icon>
+              {{ 'profile.invoice.newAccount' | localize: 'ecommerce' }}
+            </ion-button>
+          </div>
+        </section>
+
+        <page-empty *ngIf="invoicings.length === 0 && emptyInvoice" icon="😊" [setDesktop]="true"
+          (clickButtonEvent)="addInvoice()" [setButton]="true"
+          labelButton="{{ 'profile.invoice.newAccount' | localize: 'ecommerce' }}" classIconButton="icon icon--plus-1"
+          [title]="localization.localize('profile.home.billingInformation.empty','ecommerce')"
+          [subtitle]="localization.localize('profile.home.billingInformation.empty.subtitle','ecommerce')">
+        </page-empty>
+
+
+        <section class="skeletons-container display--flex flex--column inner-spacing--24 " *ngIf="invoicings.length===0 && loading">
+
+          <article class="invoice-item" *ngFor="let item of [1, 2, 3]">
+            
+            <div class="invoice-item__content">
+              <ion-skeleton-text animated class="name-skeleton" ></ion-skeleton-text>
+              <ion-skeleton-text animated class="address-skeleton"></ion-skeleton-text>
+            </div>
+
+            <div class="invoice-item__option">
+              <div class="display--flex inner-spacing--24 justify-content--end buttons-skeleton" >
+                <ion-skeleton-text class="edit-skeleton" animated ></ion-skeleton-text>
+                <ion-skeleton-text class="delete-skeleton" animated ></ion-skeleton-text>
+              </div>
+            </div>
+          </article>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

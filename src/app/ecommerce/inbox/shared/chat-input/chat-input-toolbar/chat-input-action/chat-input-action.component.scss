@@ -1,0 +1,22 @@
+.chat-input__action {
+    background: none;
+    padding: 4px;
+    height: 28px;
+    width: 28px;
+
+    &[disabled] {
+        opacity: 0.4;
+    }
+
+    &:hover:not([disabled]) {
+        opacity: 0.75;
+    }
+
+    &:active:not([disabled]) {
+        opacity: 0.5;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "com.geor.basic",
+                 "sha256_cert_fingerprints": ["A9:69:FE:66:95:AF:5A:05:CD:8A:9F:45:1B:09:A5:37:5B:6E:82:44:FB:50:97:98:99:B5:1D:3B:FC:16:6A:63"] }
+}]

@@ -1,0 +1,44 @@
+.welcome {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .country-language {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    margin-top: 40px;
+  }
+  
+  .confirm-button {
+    margin-top: 40px;
+  }
+  
+  .preferences-label {
+    margin-top: 24px;
+    text-align: center;
+  }
+  
+  .language-popover {
+    --offset-x: -16px;
+  
+    .list {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+  
+      .item-popover {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+  }
+  
+  .list {
+    background-color: var(--p-background-secondary);
+  }

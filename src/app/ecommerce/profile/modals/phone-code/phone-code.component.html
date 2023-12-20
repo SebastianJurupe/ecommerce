@@ -1,0 +1,46 @@
+<ion-content>
+
+  <header-title [title]="localization.localize('profile.validatePhone.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="scroll-hide width--100 ">
+
+      <div class="display--flex flex--column inner-spacing--35 align-items--center">
+        <div class="display--flex justify-content--center">
+
+          <ion-label class="label-text text--gray-scale-700  text--content-1-a text-align--center">
+            {{'profile.validatePhone.subtitle' | localize: 'ecommerce'}}
+            <span class="text--gray-scale-1000 ">
+              {{ phone }}
+            </span>
+          </ion-label>
+        </div>
+
+        <div class="code__container display--flex flex--column inner-spacing--12">
+          <div class="code-input">
+            <ion-item>
+              <ion-input #ionInput [value]="inputModel" (ionInput)="onInput($event)"
+                [class.max-length-reached]="isMaxLengthReached" type="tel" class="spaced-input text-align--center">
+              </ion-input>
+            </ion-item>
+          </div>
+
+          <div class="counter-label display--flex justify-content--center">
+            <ion-label>
+              {{ countdown }}
+            </ion-label>
+          </div>
+        </div>
+        <div class="content-label">
+          <ion-label class="text--content-1-a text--gray-scale-500">
+            {{'profile.validatePhone.textCode' | localize: 'ecommerce'}}
+            <span [ngClass]="{'text--gray-scale-1000': countdownExpired}" (click)="resendCode()">
+              {{'profile.validatePhone.resend' | localize: 'ecommerce'}}
+            </span>
+          </ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

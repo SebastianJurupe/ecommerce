@@ -1,0 +1,9 @@
+<div class="container">
+  <modal-delete [title]="localization.localize('profile.address.deleteAddress.title','ecommerce')"
+    [subtitle]="localization.localize('profile.address.deleteAddress.subtitle','ecommerce')"
+    [outlineLabel]="localization.localize('general.cancel','ecommerce')"
+    [fillLabel]="localization.localize('general.delete','ecommerce')"
+    (outlineButtonClickEvent)="dialog.dismiss('cancel')" (fillButtonClickEvent)="dialog.dismiss('delete')"
+    [setDesktop]="desktop">
+  </modal-delete>
+</div>

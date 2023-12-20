@@ -1,0 +1,48 @@
+<ion-content>
+
+  <header-title
+    [close]="true"
+    (closeEvent)="dismiss()">
+  </header-title>
+
+  <div class="container">
+      <section class="welcome">
+        <ion-text class="welcome-title text--primary text--content-0-c">
+          {{ placeholders.welcome}}
+        </ion-text>
+        <ion-text class="welcome-label text--primary text--content-1-a">
+          {{ placeholders.welcomeLabel}}
+        </ion-text>
+      </section>
+
+      <section class="country-language">
+        <item-navigation-line
+          [floatLabel]="placeholders.country"
+          [srcFlag]="country.flag"
+          [label]="country.description"
+          (clickEvent)="openCountriesModal()">
+        </item-navigation-line>
+
+        <item-navigation-line
+          (clickArrowEvent)="chooseLanguagePopover($event)"
+          [floatLabel]="placeholders.language"
+          [label]="selectedLanguage === 'en_US'
+            ? placeholders.english
+            : placeholders.spanish">
+        </item-navigation-line>
+      </section>
+
+      <ion-button
+        (click)="dismiss()"
+        class="confirm-button c-button--large c-button c-button--primary c-button--full-width">
+        {{ placeholders.confirm}}
+      </ion-button>
+
+      <section class="preferences-label">
+        <ion-text  class="text--secondary text--content-1-a">
+          {{ placeholders.preferencesLabel}}
+        </ion-text>
+      </section>
+
+  </div>
+</ion-content>

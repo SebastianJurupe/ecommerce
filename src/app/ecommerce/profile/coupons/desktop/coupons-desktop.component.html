@@ -1,0 +1,57 @@
+<ion-content>
+
+  <div class="content--desktop container-desktop container-desktop-section">
+    <div class="content display--flex">
+
+      <app-desktop-slide />
+
+      <div
+        class="main-content width--100 display--flex flex--column inner-spacing--24 container-scroll-desktop-vertical">
+        <section class="coupons-list">
+
+          <ng-container *ngIf="filteredCoupons.length ===0 && loading" >
+            <div *ngFor="let item of [1,1,1]" class="coupon border-radius">
+              <ion-skeleton-text [animated]="true" class="discount-skeleton"  />
+              <ion-skeleton-text [animated]="true" class="code-skeleton" />
+              <div class="display--flex align-items--center inner-spacing--4">
+                <ion-skeleton-text [animated]="true" class="date-skeleton"  />
+              </div>
+            </div>
+          </ng-container>
+
+          <div *ngIf="filteredCoupons.length > 0 && !loading" class="display--flex flex--column inner-spacing--24">
+            <div *ngFor="let item of filteredCoupons" class="coupon">
+
+              <ion-text class="coupon__label text--primary text--h5-a">
+                {{item.description}}
+              </ion-text>
+
+              <ion-text class="text--secondary text--content-3-a">
+                {{ 'profile.coupons.code' | localize: 'ecommerce' }}{{item.code}}
+              </ion-text>
+
+              <div class="display--flex align-items--center inner-spacing--4">
+                <ion-icon class="icon icon--danger-circle icon--14 icon--gray-scale-700">
+                </ion-icon>
+                <ion-text class="text--secondary">
+                  <span class="text--secondary text--content-3-a"> {{ 'profile.coupons.expires' | localize: 'ecommerce'
+                    }} </span>
+                  <span class="text--secondary text--content-2-b">{{ item.due_date | dateFormat }}</span>
+                </ion-text>
+              </div>
+            </div>
+          </div>
+
+          <page-empty
+            *ngIf="filteredCoupons.length === 0 && emptyCupons"
+            icon="😊"
+            [setDesktop]="true"
+            [title]="localization.localize('profile.coupons.empty.title','ecommerce')"
+            [subtitle]="localization.localize('profile.coupons.empty.subtitle','ecommerce')">
+          </page-empty>
+
+        </section>
+      </div>
+    </div>
+  </div>
+</ion-content>

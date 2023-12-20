@@ -1,0 +1,10 @@
+<section class="documents-popover">
+  <div
+    *ngFor="let archive of documentsArchive; let i = index"
+    class="items-popover display--flex align-items--center"
+  >
+    <ion-icon
+      [class]="i === 0 ? 'icon icon--image-2' : 'icon icon--document'" />
+    {{ archive.name }}
+    </div>
+</section>

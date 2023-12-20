@@ -1,0 +1,61 @@
+<section *ngIf="service.channel; else loading" class="chat-container">
+
+    <div class="chat-header">
+        <label class="chat-header__title">
+            {{service.channel.label || service.channel.companyName}}
+        </label>
+        <ion-button (click)="onBackButtonPressed()" fill="clear" color="dark">
+            <ion-icon class="icon icon--close-right"></ion-icon>
+        </ion-button>
+    </div>
+
+    <div class="chat-body keyboard-animation-top">
+        
+        <inbox-chat-history id="chat-content" class="chat-content theme-scroll-bar" [channel]="service.channel"/>
+    
+        <div class="chat-footer">
+            <inbox-chat-input [channel]="service.channel"/>
+        </div>
+
+    </div>
+
+</section>
+
+<ng-template #loading>
+    <section class="skeleton__chat-container">
+        <div class="skeleton__chat-header">
+            <ion-skeleton-text class="skeleton__chat-header__title" [animated]="true"></ion-skeleton-text>
+            <ion-thumbnail class="skeleton__chat-header__button">
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+        </div>
+        <div class="skeleton__chat-content">
+        </div>
+        <div class="skeleton__chat-footer">
+            <ion-skeleton-text class="skeleton__chat-footer-input" [animated]="true"></ion-skeleton-text>
+
+            <div class="skeleton__chat-footer-actions">
+                <ion-thumbnail class="skeleton__chat-footer-action">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-thumbnail>
+
+                <ion-thumbnail class="skeleton__chat-footer-action">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-thumbnail>
+
+                <ion-thumbnail class="skeleton__chat-footer-action">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-thumbnail>
+
+                <ion-thumbnail class="skeleton__chat-footer-action">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-thumbnail>
+
+                <ion-thumbnail class="skeleton__chat-footer-action send">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-thumbnail>
+
+            </div>
+        </div>
+    </section>
+</ng-template>

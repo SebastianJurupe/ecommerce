@@ -1,0 +1,32 @@
+<article class="invoice-item">
+    <div class="invoice-item__content">
+        <ion-text class="text--primary text--content-1-a">
+            {{ invoice.business_name | textSlice: 30 }}
+        </ion-text>
+        <ion-text class="text--secondary text--content-2-a">
+            {{ invoice.fiscal_address }}
+        </ion-text>
+        <span *ngIf="invoice.default" class="invoice-item__content__default text--content-3-a">
+            {{ 'general.default' | localize: 'ecommerce' }}
+        </span>
+    </div>
+
+    <div class="invoice-item__option">
+        <div class="display--flex inner-spacing--24">
+            <ion-button class="c-button c-button--text-primary c-button--extra-small c-button--no-padding-x"
+                (click)="openPopover(invoice.id,$event,true)">
+                <div class="display--flex align-items--center inner-spacing--10">
+                    <ion-icon class="icon icon--edit-square icon--gray-scale-700"></ion-icon>
+                    {{'profile.invoice.edit' | localize: 'ecommerce'}}
+                </div>
+            </ion-button>
+            <ion-button class="c-button c-button--extra-small c-button--no-padding-x c-button--text-delete"
+                (click)="openPopover(invoice.id,$event,false)">
+                <div class="display--flex align-items--center inner-spacing--10">
+                    <ion-icon class="icon icon--trash icon--delete"></ion-icon>
+                    {{'profile.invoice.delete' | localize: 'ecommerce'}}
+                </div>
+            </ion-button>
+        </div>
+    </div>
+</article>

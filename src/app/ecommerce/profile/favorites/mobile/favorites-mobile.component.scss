@@ -1,0 +1,32 @@
+.favorite-items {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+//SKELETON
+.imgProduct-skeleton {
+  width: 90px;
+  height: 92px;
+}
+
+.price-skeleton {
+  width: 20%;
+  height: 20px;
+}
+
+.like-skeleton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.detail-skeleton {
+  width: 65%;
+  height: 20px;
+}
+
+.move-skeleton {
+  width: 40%;
+  height: 20px;
+}

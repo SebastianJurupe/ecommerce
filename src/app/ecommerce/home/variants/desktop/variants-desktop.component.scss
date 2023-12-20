@@ -1,0 +1,92 @@
+.prices-has-variants,
+.attributes-container {
+  margin-top: 16px;
+}
+
+.option {
+  margin-top: 16px;
+}
+
+.prices {
+  margin-top: 16px;
+}
+
+.variant-items {
+  margin-top: 32px;
+}
+
+.product-preview {
+  margin-right: 8px;
+}
+
+.footer-base--no-toolbar {
+  position: fixed;
+  bottom: 0;
+  width: 28%;
+}
+
+.product-description {
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.product-description__content {
+  margin-right: 24px;
+}
+
+.text-description-skeleton {
+  width: 100%;
+  height: 40px;
+}
+
+.option-attribute-skeleton {
+  margin-top: 16px;
+  width: 90px;
+  height: 39px;
+}
+
+.container-attributte {
+  margin-top: 24px;
+}
+
+.text-attribute-skeleton {
+  width: 115px;
+}
+
+.container-color {
+  margin-top: 26px;
+}
+
+.container-flex {
+  padding-inline: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  padding-top: 24px;
+}
+
+.elements {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.padding-bottom {
+  padding-bottom: 20px;
+}
+
+.variant-color-value {
+  width: 52px;
+  height: 67px;
+  margin-right: 8px;
+  border: 1px solid var(--p-gray-scale-400);
+}
+
+.buttons-add {
+  margin-top: 12px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}

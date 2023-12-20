@@ -1,0 +1,30 @@
+<ion-content>
+
+  <header-title
+    (backEvent)="onBackButtonPressed()"
+    [back]="true"
+    [title]="localization.localize('profile.language.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+      <div class="display--flex flex--column inner-spacing--24">
+
+        <div class="display--flex inner-spacing--24" (click)="setLanguage('es_ES')">
+          <ion-label class="text--content-1-a width--100">
+            {{ languages.spanish }}
+          </ion-label>
+          <ion-icon class="icon icon--check" *ngIf="selectedlanguage === 'es_ES'" />
+        </div>
+
+        <div class="display--flex inner-spacing--24" (click)="setLanguage('en_US')">
+          <ion-label class="text--content-1-a width--100">
+            {{ languages.english }}
+          </ion-label>
+          <ion-icon class="icon icon--check" *ngIf="selectedlanguage === 'en_US'" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

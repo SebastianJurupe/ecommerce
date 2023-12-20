@@ -1,0 +1,18 @@
+<div class="scan__result" [ngClass]="{ 'has-user' : user?.id }">
+    <img class="scan__result-image" aria-label="resource-image" [style.backgroundImage]="'url(' + user.profilePicture + ')'">
+    <div *ngIf="user" class="scan__result-detail">
+        <ion-label *ngIf="user" class="scan_result-title">
+            {{user.name}}
+        </ion-label>
+        <ion-label class="scan__result-subtitle">
+            {{user.phoneNumber || user.emailAddress}}
+        </ion-label>
+    </div>
+    <div class="scan__result-actions">
+        <ion-button (click)="onUserChat.emit(user)" *ngIf="user" size="small" fill="clear" class="scan__result-action">
+            <ion-label class="scan__result-action-label">
+                {{'scanner.dashboard.greetings' | localize: 'qrcode'}}
+            </ion-label>
+        </ion-button>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="content" >
+  <div class="display--flex flex--column  inner-spacing--40">
+
+    <section class="display--flex ">
+
+      <ion-text class="title text--primary text--content-0-c width--100">
+        {{'categories.filter.desktop.title' | localize: 'ecommerce'}}
+      </ion-text>
+
+      <div *ngIf="onHasSelections()" class="cursor-pointer filter" (click)="onCleanFilters()">
+        <ion-icon class="icon icon--trash" />
+      </div>
+
+      <ion-text (click)="onApply()" class="color-text filter-container cursor-pointer filter">
+        {{'categories.filter.textFilter' | localize: 'ecommerce'}}
+      </ion-text>
+    </section>
+    <section class="display--flex flex--column inner-spacing--16" *ngIf="!openedFromCategoryProducts">
+      <item-navigation classLabel="text--content-1-c" (click)="onToggleCategories()"
+        [arrowDirection]="showCategories ? 'down' : 'up'"
+        [label]="localization.localize('categories.filter.textCategory','ecommerce')">
+      </item-navigation>
+
+      <div *ngIf="showCategories"
+        class="display--flex align-items--start justify-content--start inner-spacing--10 category">
+
+        <button-option class="cursor-pointer" *ngFor="let category of categories" [label]="category.name"
+          [bordered]="selectedCategory === category.slug" size="small"
+          (click)="onToggleCategorySelection(category.slug,category.id)">
+        </button-option>
+      </div>
+    </section>
+
+    <section *ngFor="let attribute of attributes" class="cursor-pointer display--flex flex--column inner-spacing--16">
+      <item-navigation classLabel="text--content-1-c" (click)="onToggleAttributes(attribute.description)"
+        [arrowDirection]="attribute.showAttributes ? 'down' : 'up'" [label]="attribute.description">
+      </item-navigation>
+
+      <div *ngIf="attribute.showAttributes"
+        class="display--flex align-items--start justify-content--start inner-spacing--10 category">
+
+        <ng-container *ngIf="attribute.description === 'Color'">
+          <button-option class="cursor-pointer" *ngFor="let value of attribute.values" [label]="''"
+            [background]="value.color" [bordered]="onIsColorSelected(value.color)"
+            (click)="onToggleColorSelection(value.color)" size="small">
+          </button-option>
+        </ng-container>
+
+        <ng-container *ngIf="attribute.description !== 'Color'">
+          <button-option class="cursor-pointer" *ngFor="let value of attribute.values" [label]="value.value"
+            [bordered]="onIsAttributteSelected(attribute.description, value.value)" size="small"
+            (click)="onToggleAttributeSelection(attribute.description, value.value)">
+          </button-option>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="cursor-pointer display--flex flex--column  inner-spacing--16">
+      <item-navigation classLabel="text--content-1-c" (click)="onTogglePrice()"
+        [arrowDirection]="showPrice ? 'down' : 'up'"
+        [label]="localization.localize('categories.filter.textPrices','ecommerce')">
+      </item-navigation>
+
+      <div *ngIf="showPrice">
+        <div class="prices">
+          <input-range-price class="cursor-pointer" label="Min" [value]="selectedMinPrice" placeholder="S/ 0.00" 
+            (inputEvent)="onInput($event, 'Min')">
+          </input-range-price>
+          <input-range-price class="cursor-pointer" label="Max" [value]="selectedMaxPrice" placeholder="S/ 0.00" 
+            (inputEvent)="onInput($event, 'Max')">
+          </input-range-price>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

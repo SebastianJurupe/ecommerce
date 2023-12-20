@@ -1,0 +1,36 @@
+.chat-input__toolbar {
+    min-height: 34px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+
+    &.recording {
+        visibility: hidden !important;
+        display: none !important;
+    }
+}
+
+.action {
+    &.wave {
+        flex: 1 1 auto;
+    }
+
+    &.send {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 780px) {
+
+    .action {
+
+        &.plus,
+        &.send {
+            visibility: hidden;
+            display: none;
+        }
+    }
+}

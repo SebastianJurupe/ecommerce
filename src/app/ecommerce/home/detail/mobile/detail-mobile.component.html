@@ -1,0 +1,37 @@
+<ion-content>
+
+  <header-title (click)="onBackButtonPressed()" [close]="true"
+    [title]="localization.localize('home.detail.title','ecommerce')">
+  </header-title>
+
+  <div class="container">
+    <div class="content">
+
+      <section class="container-more display--flex flex--column inner-spacing--24">
+        <div *ngFor="let detail of details()" class="display--flex inner-spacing--12">
+          <ion-text class="text--content-1-a">
+            {{detail.specification}}:
+          </ion-text>
+          <ion-text class="text--content-1-a text--secondary">
+            {{detail.value}}
+          </ion-text>
+        </div>
+      </section>
+
+      <section *ngIf="isLoading" class="skeletons-container display--flex flex--column inner-spacing--24">
+
+        <ng-container *ngFor="let item of [1,1,1]">
+          <div class="skeleton display--flex inner-spacing--8">
+            <ion-skeleton-text animated class="detail-skeleton"  />
+            <ion-skeleton-text animated class="name-skeleton" />
+          </div>
+          <div class="skeleton display--flex inner-spacing--8">
+            <ion-skeleton-text animated class="cant-skeleton" />
+            <ion-skeleton-text animated class="value-skeleton" />
+          </div>
+        </ng-container>
+      </section>
+
+    </div>
+  </div>
+</ion-content>
